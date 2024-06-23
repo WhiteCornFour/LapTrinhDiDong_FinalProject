@@ -118,4 +118,14 @@
         android:gravity="center"
         android:text="Forgot your password ?" />
 
+    <TextView
+        android:id="@+id/tvLoginAD"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:layout_marginTop="30dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:text="Login with admin" />
+
 </LinearLayout>

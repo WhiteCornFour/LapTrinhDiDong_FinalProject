@@ -16,7 +16,7 @@ public class Activity_Login_Customer extends AppCompatActivity {
     EditText edtPasswordLogin, edtFullNameLogin;
     Button btnLoginCustomer;
 
-    TextView tvRegisterLogin, tvForgetPasswordLogin;
+    TextView tvRegisterLogin, tvForgetPasswordLogin, tvLoginAD;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +39,7 @@ public class Activity_Login_Customer extends AppCompatActivity {
         btnLoginCustomer = (Button) findViewById(R.id.btnLoginCustomer);
         tvRegisterLogin = (TextView) findViewById(R.id.tvRegisterLogin);
         tvForgetPasswordLogin = (TextView) findViewById(R.id.tvForgetPasswordLogin);
+        tvLoginAD = (TextView) findViewById(R.id.tvLoginAD);
     }
 
     void addEvent() {
@@ -65,6 +66,13 @@ public class Activity_Login_Customer extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Activity_Login_Customer.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
+        tvLoginAD.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Activity_Login_Customer.this, Activity_DangNhap_Admin.class);
                 startActivity(intent);
             }
         });

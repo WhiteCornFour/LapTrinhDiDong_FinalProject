@@ -18,6 +18,12 @@
             android:name=".Activity_Register"
             android:exported="false" />
         <activity
+            android:name=".Activity_DangNhap_Admin"
+            android:exported="false"/>
+        <activity
+            android:name=".Activity_TrangChu_Admin"
+            android:exported="false"/>
+        <activity
             android:name=".Activity_Login_Customer"
             android:exported="true">
             <intent-filter>
