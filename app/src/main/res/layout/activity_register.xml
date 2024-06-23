@@ -54,6 +54,7 @@
             android:inputType="textPersonName"
             android:textColorHint="@color/white"
             android:layout_marginLeft="10dp"
+            android:textColor="@color/white"
             android:hint="Username" />
     </LinearLayout>
 
@@ -77,9 +78,10 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:ems="10"
-            android:inputType="textPersonName"
+            android:inputType="textPassword"
             android:hint="Password"
             android:layout_marginLeft="10dp"
+            android:textColor="@color/white"
             android:textColorHint="@color/white"
            />
     </LinearLayout>
@@ -104,9 +106,10 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:ems="10"
-            android:inputType="textPersonName"
+            android:inputType="textPassword"
             android:hint="Conform password"
             android:layout_marginLeft="10dp"
+            android:textColor="@color/white"
             android:textColorHint="@color/white" />
     </LinearLayout>
 
@@ -130,9 +133,10 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:ems="10"
-            android:inputType="textPersonName"
-            android:hint="Conform password"
+            android:inputType="textEmailAddress"
+            android:hint="Email"
             android:layout_marginLeft="10dp"
+            android:textColor="@color/white"
             android:textColorHint="@color/white" />
     </LinearLayout>
 
@@ -151,14 +155,15 @@
             app:srcCompat="@drawable/phone_communication_icon" />
 
         <EditText
-            android:id="@+id/editTextTextPersonName5"
+            android:id="@+id/edtPhoneNumberReg"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:ems="10"
             android:inputType="number"
-            android:hint="Conform password"
+            android:hint="Phone number"
             android:layout_marginLeft="10dp"
+            android:textColor="@color/white"
             android:textColorHint="@color/white" />
     </LinearLayout>
 
@@ -179,7 +184,7 @@
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/tvHaveAcc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -189,7 +194,7 @@
             android:text="Already Have An Account" />
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/tvForgotPass"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
