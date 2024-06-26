@@ -37,8 +37,9 @@ jobs:
       run: ./gradlew build
 
     # Chạy các unit test, giúp phát hiện lỗi lập trình ngay khi chúng được thêm vào mã nguồn.
-    - name: Run unit tests
-      run: ./gradlew test
+    # Cần phải viết test cases riêng cho project khi sử dụng unit test
+    # - name: Run unit tests
+    #   run: ./gradlew test
 
     # Kiểm tra phong cách code (cách xuống dòng, định dạng tên biến, tên hàm, ...). Kiểm tra các lỗi lập trình (lỗi biến, hàm không đc sử dụng, sử dụng các API không an toàn, ...)
     - name: Run lint checks
