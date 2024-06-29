@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/black"
+    android:background="@color/light_beige"
     tools:context=".View.Activity_Login_Customer">
 
     <TextView
@@ -16,8 +16,8 @@
         android:layout_marginBottom="15pt"
         android:fontFamily="@font/abril_fatface"
         android:gravity="center"
-        android:text=""
-        android:textColor="#E6D3B3"
+        android:text="Login"
+        android:textColor="@color/dark_brown"
         android:textSize="15pt"
         android:textStyle="bold" />
 
