@@ -19,10 +19,22 @@
             android:name=".OTP_get_password"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".forgotpasswordcustomers"
+            android:exported="false" />
+      <activity
+            android:name=".View.MainActivity"
             android:exported="false" />
         <activity
-            android:name=".forgotpasswordcustomers"
+            android:name=".View.Activity_Register"
+            android:exported="false" />
+        <activity
+            android:name=".View.Activity_DangNhap_Admin"
+            android:exported="false"/>
+        <activity
+            android:name=".View.Activity_TrangChu_Admin"
+            android:exported="false"/>
+        <activity
+            android:name=".View.Activity_Login_Customer"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
