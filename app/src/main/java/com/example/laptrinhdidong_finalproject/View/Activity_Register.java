@@ -52,28 +52,28 @@ public class Activity_Register extends AppCompatActivity {
     public boolean validateInputs(String username, String password, String confirmPassword, String email, String phoneNumber) {
         // Kiểm tra username có hơn 8 ký tự
         if (username.trim().isEmpty() || username.trim().length() <= 8) {
-            Toast.makeText(this, "Username phải có hơn 8 ký tự", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Username must have at least 8 letters", Toast.LENGTH_SHORT).show();
             return false;
         }
         // Kiểm tra password có hơn 8 ký tự
         if (password.trim().isEmpty() || password.trim().length() <= 8) {
-            Toast.makeText(this, "Password phải có hơn 8 ký tự", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Password must have at least 8 letters", Toast.LENGTH_SHORT).show();
             return false;
         }
         // Kiểm tra số điện thoại có đủ 10 số
         if (phoneNumber.trim().isEmpty() || phoneNumber.trim().length() != 10) {
-            Toast.makeText(this, "Số điện thoại phải có đúng 10 số", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Phone number must have 10 number", Toast.LENGTH_SHORT).show();
             return false;
         }
         // Kiểm tra email có đúng cấu trúc
         String emailPattern = "[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}";
         if (email.trim().isEmpty() || !email.trim().matches(emailPattern)) {
-            Toast.makeText(this, "Email không hợp lệ", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Incorrect Email !", Toast.LENGTH_LONG).show();
             return false;
         }
         // Kiểm tra password và confirmPassword giống nhau
         if (!password.equals(confirmPassword)) {
-            Toast.makeText(this, "Vui lòng kiểm tra lại mật khẩu và xác nhận mật khẩu", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Please checking your password and confirm password is correct", Toast.LENGTH_SHORT).show();
             return false;
         }
         return true;
@@ -97,7 +97,7 @@ public class Activity_Register extends AppCompatActivity {
 
                 // Kiểm tra nếu dữ liệu trùng khớp
                 if (existingMail.equals(mail) || existingSdt == sdt) {
-                    Toast.makeText(this, "Số điện thoại hoặc Email đã tồn tại!!!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(this, "Phone number or email have been used!!!", Toast.LENGTH_LONG).show();
                     return true;
                 }
             }
@@ -139,12 +139,12 @@ public class Activity_Register extends AppCompatActivity {
                     String newEntry = "==\r\n" + us + ";;" + pass + ";;" + mail + ";;" + sdt;
                     writeFileTxt(fileName, newEntry);
                     Toast.makeText(Activity_Register.this,
-                            "Đăng ký thành công!!!", Toast.LENGTH_LONG).show();
+                            "Register successful!!!", Toast.LENGTH_LONG).show();
                     resetEdt();
                 } catch (IOException e) {
                     e.printStackTrace();
                     Toast.makeText(Activity_Register.this,
-                            "Có lỗi xảy ra!", Toast.LENGTH_SHORT).show();
+                            "Syntax Error!", Toast.LENGTH_SHORT).show();
                 }
             }
         });

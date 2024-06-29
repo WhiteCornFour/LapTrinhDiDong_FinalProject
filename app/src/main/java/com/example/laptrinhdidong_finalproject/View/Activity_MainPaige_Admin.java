@@ -6,9 +6,8 @@ import android.os.Bundle;
 import android.widget.TextView;
 
 import com.example.laptrinhdidong_finalproject.R;
-import com.example.laptrinhdidong_finalproject.View.Activity_DangNhap_Admin;
 
-public class Activity_TrangChu_Admin extends Activity {
+public class Activity_MainPaige_Admin extends Activity {
 
     protected long backpressTime;
     TextView tvWelCum;
@@ -35,7 +34,7 @@ public class Activity_TrangChu_Admin extends Activity {
 
     @Override
     public void onBackPressed() {
-        Intent intent = new Intent(this, Activity_DangNhap_Admin.class);
+        Intent intent = new Intent(this, Activity_Login_Admin.class);
         startActivity(intent);
         finish();
     }

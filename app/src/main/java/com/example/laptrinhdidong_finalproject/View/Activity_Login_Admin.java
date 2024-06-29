@@ -18,7 +18,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 
-public class Activity_DangNhap_Admin extends Activity {
+public class Activity_Login_Admin extends Activity {
 
     EditText edtUSA, edtPWA;
     Button btnLoginA;
@@ -56,11 +56,11 @@ public class Activity_DangNhap_Admin extends Activity {
                 String password = edtPWA.getText().toString().trim();
 
                 String loginMessage = validateLogin(username, password, filename);
-                Toast.makeText(Activity_DangNhap_Admin.this, loginMessage, Toast.LENGTH_SHORT).show();
+                Toast.makeText(Activity_Login_Admin.this, loginMessage, Toast.LENGTH_SHORT).show();
 
                 if (loginMessage.equals("Login successful")) {
                     // Chuyển sang Activity_TrangChu_Admin và truyền tên đăng nhập
-                    Intent intent = new Intent(Activity_DangNhap_Admin.this, Activity_TrangChu_Admin.class);
+                    Intent intent = new Intent(Activity_Login_Admin.this, Activity_MainPaige_Admin.class);
                     intent.putExtra("USERNAME", username);
                     startActivity(intent);
                     finish(); // Đóng Activity hiện tại sau khi chuyển trang
@@ -77,7 +77,7 @@ public class Activity_DangNhap_Admin extends Activity {
             super.onBackPressed();
             return;
         } else {
-            Toast.makeText(this, "Nhấn back một lần nữa để thoát", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Press one more time for back !", Toast.LENGTH_SHORT).show();
         }
         backpressTime = System.currentTimeMillis();
     }
@@ -86,7 +86,7 @@ public class Activity_DangNhap_Admin extends Activity {
         try {
             String[] credentials = readCredentials(username, fileName);
             if (credentials != null && credentials[1].equals(password)) {
-                return "Login successful";
+                return "Login successful !!!";
             } else {
                 return "Invalid username or password";
             }

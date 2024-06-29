@@ -97,7 +97,7 @@ public class Activity_Login_Customer extends AppCompatActivity {
         tvLoginAD.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Activity_Login_Customer.this, Activity_DangNhap_Admin.class);
+                Intent intent = new Intent(Activity_Login_Customer.this, Activity_Login_Admin.class);
                 startActivity(intent);
             }
         });
@@ -128,12 +128,12 @@ public class Activity_Login_Customer extends AppCompatActivity {
     public boolean validateInputs(String username, String password) {
         // Kiểm tra username có hơn 8 ký tự
         if (username.trim().isEmpty() || username.trim().length() <= 8) {
-            Toast.makeText(this, "Username phải có hơn 8 ký tự", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Username must have at least 8 letters", Toast.LENGTH_SHORT).show();
             return false;
         }
         // Kiểm tra password có hơn 8 ký tự
         if (password.trim().isEmpty() || password.trim().length() <= 8) {
-            Toast.makeText(this, "Password phải có hơn 8 ký tự", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Password must have at least 8 letters", Toast.LENGTH_SHORT).show();
             return false;
         }
 

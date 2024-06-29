@@ -1,4 +1,4 @@
-package com.example.laptrinhdidong_finalproject;
+package com.example.laptrinhdidong_finalproject.View;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,7 +14,9 @@ import android.widget.Toast;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
-public class forgotpasswordcustomers extends AppCompatActivity {
+import com.example.laptrinhdidong_finalproject.R;
+
+public class Activity_ForgotPassword_Customer extends AppCompatActivity {
 
     private static final int SMS_PERMISSION_CODE = 1;
     Button btn_send_qmk_customer;
@@ -44,18 +46,18 @@ public class forgotpasswordcustomers extends AppCompatActivity {
                 generatedOtp = generateOtp();
 
                 if (phoneNumber.isEmpty()) {
-                    Toast.makeText(forgotpasswordcustomers.this, "Please enter your phone number", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Activity_ForgotPassword_Customer.this, "Please enter your phone number", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
-                if (ContextCompat.checkSelfPermission(forgotpasswordcustomers.this, Manifest.permission.SEND_SMS) == PackageManager.PERMISSION_GRANTED) {
+                if (ContextCompat.checkSelfPermission(Activity_ForgotPassword_Customer.this, Manifest.permission.SEND_SMS) == PackageManager.PERMISSION_GRANTED) {
                     sendOtp(phoneNumber, generatedOtp);
 
-                    Intent intent = new Intent(forgotpasswordcustomers.this, OTP_get_password.class);
+                    Intent intent = new Intent(Activity_ForgotPassword_Customer.this, Activity_OTPGetPassword_Customer.class);
                     intent.putExtra("otp", generatedOtp);
                     startActivity(intent);
                 } else {
-                    ActivityCompat.requestPermissions(forgotpasswordcustomers.this, new String[]{Manifest.permission.SEND_SMS}, SMS_PERMISSION_CODE);
+                    ActivityCompat.requestPermissions(Activity_ForgotPassword_Customer.this, new String[]{Manifest.permission.SEND_SMS}, SMS_PERMISSION_CODE);
                 }
             }
         });

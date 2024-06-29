@@ -16,10 +16,10 @@
         android:theme="@style/Theme.LapTrinhDiDong_FinalProject"
         tools:targetApi="31">
         <activity
-            android:name=".OTP_get_password"
+            android:name=".View.Activity_OTPGetPassword_Customer"
             android:exported="false" />
         <activity
-            android:name=".forgotpasswordcustomers"
+            android:name=".View.Activity_ForgotPassword_Customer"
             android:exported="false" />
       <activity
             android:name=".View.MainActivity"
@@ -28,10 +28,10 @@
             android:name=".View.Activity_Register"
             android:exported="false" />
         <activity
-            android:name=".View.Activity_DangNhap_Admin"
+            android:name=".View.Activity_Login_Admin"
             android:exported="false"/>
         <activity
-            android:name=".View.Activity_TrangChu_Admin"
+            android:name=".View.Activity_MainPaige_Admin"
             android:exported="false"/>
         <activity
             android:name=".View.Activity_Login_Customer"
