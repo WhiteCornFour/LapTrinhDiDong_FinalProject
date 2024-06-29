@@ -1,11 +1,12 @@
-package com.example.laptrinhdidong_finalproject;
+package com.example.laptrinhdidong_finalproject.View;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import com.example.laptrinhdidong_finalproject.R;
+import com.example.laptrinhdidong_finalproject.View.Activity_DangNhap_Admin;
 
 public class Activity_TrangChu_Admin extends Activity {
 

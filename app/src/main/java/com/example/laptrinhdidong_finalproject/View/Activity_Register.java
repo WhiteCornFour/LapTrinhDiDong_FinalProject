@@ -1,4 +1,4 @@
-package com.example.laptrinhdidong_finalproject;
+package com.example.laptrinhdidong_finalproject.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -10,10 +10,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.laptrinhdidong_finalproject.R;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.util.ArrayList;
 
 public class Activity_Register extends AppCompatActivity {
 

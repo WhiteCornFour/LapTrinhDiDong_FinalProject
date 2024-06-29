@@ -12,19 +12,19 @@
         android:theme="@style/Theme.LapTrinhDiDong_FinalProject"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
+            android:name=".View.MainActivity"
             android:exported="false" />
         <activity
-            android:name=".Activity_Register"
+            android:name=".View.Activity_Register"
             android:exported="false" />
         <activity
-            android:name=".Activity_DangNhap_Admin"
+            android:name=".View.Activity_DangNhap_Admin"
             android:exported="false"/>
         <activity
-            android:name=".Activity_TrangChu_Admin"
+            android:name=".View.Activity_TrangChu_Admin"
             android:exported="false"/>
         <activity
-            android:name=".Activity_Login_Customer"
+            android:name=".View.Activity_Login_Customer"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
