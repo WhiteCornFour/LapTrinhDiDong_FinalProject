@@ -5,124 +5,156 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/black"
+    android:background="@color/white"
     tools:context=".View.Activity_Login_Customer">
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
-        android:layout_marginBottom="15pt"
-        android:fontFamily="@font/abril_fatface"
-        android:gravity="center"
-        android:text=""
-        android:textColor="#E6D3B3"
-        android:textSize="15pt"
-        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/textView4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="30pt"
-        android:fontFamily="@font/lobster"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="20dp"
+        android:fontFamily="@font/arsenal"
         android:gravity="center"
         android:text="Login"
-        android:textColor="@color/white"
+        android:textColor="@color/dark_brown"
         android:textSize="13pt"
         android:textStyle="bold" />
 
-    <LinearLayout
+    <TextView
+        android:id="@+id/textView3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="horizontal"
-        android:layout_margin="10dp">
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="17pt"
+        android:fontFamily="@font/arsenal"
+        android:layout_marginLeft="20dp"
+        android:text="Welcome Back !!!"
+        android:textColor="@color/dark_brown"
+        android:textSize="15pt"
+        android:textStyle="bold" />
 
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_gravity="center"
-            app:srcCompat="@drawable/customer_man_user_account_profile_icon"
-            android:layout_margin="10dp"/>
+
+    <LinearLayout
+        android:layout_width="370dp"
+        android:layout_height="85dp"
+        android:layout_marginLeft="20dp"
+        android:gravity="center"
+        android:layout_marginRight="20dp"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:fontFamily="@font/arsenal"
+            android:textSize="10pt"
+            android:textColor="@color/dark_beige"
+            android:text="Full Name" />
 
         <EditText
             android:id="@+id/edtFullNameLogin"
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
             android:layout_weight="1"
+            android:backgroundTint="@color/dark_brown"
             android:ems="10"
+            android:hint=""
             android:inputType="textPersonName"
-            android:textColor="@color/white"
-            android:textColorHint="@color/white"
-            android:backgroundTint="#6DFFFFFF"
-            android:hint="Full Name" />
+            android:textColor="@color/dark_brown"
+            android:textColorHint="@color/dark_brown" />
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_width="370dp"
+        android:layout_height="85dp"
+        android:layout_marginLeft="20dp"
         android:gravity="center"
-        android:orientation="horizontal"
-        android:layout_margin="10dp">
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/imageView2"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_gravity="center"
-            app:srcCompat="@drawable/key_icon"
-            android:layout_margin="10dp"/>
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textColor="@color/dark_beige"
+            android:fontFamily="@font/arsenal"
+            android:text="Password"
+            android:textSize="10pt" />
 
         <EditText
             android:id="@+id/edtPasswordLogin"
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
             android:layout_weight="1"
+            android:backgroundTint="@color/dark_brown"
             android:ems="10"
-            android:textColor="@color/white"
-            android:textColorHint="@color/white"
-            android:backgroundTint="#6DFFFFFF"
+            android:hint=""
             android:inputType="textPassword"
-            android:hint="Password" />
+            android:textColor="@color/dark_brown"
+            android:textColorHint="@color/dark_brown"/>
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvForgetPasswordLogin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="10dp"
+        android:textSize="7pt"
+        android:textColor="@color/brown"
+        android:gravity="right"
+        android:text="Forgot your password ?" />
 
     <Button
         android:id="@+id/btnLoginCustomer"
         android:layout_width="275dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="30pt"
+        android:layout_marginTop="70dp"
         android:layout_marginBottom="8pt"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textStyle="bold"
-        android:backgroundTint="#EDFFFEFE"
+        android:backgroundTint="@color/beige"
         android:text="Login" />
 
-    <TextView
-        android:id="@+id/tvRegisterLogin"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="6pt"
+        android:layout_height="40dp"
+        android:layout_marginTop="15dp"
         android:gravity="center"
-        android:text="Don't have an account? Register now"
-        android:textColor="@color/white" />
+        android:orientation="horizontal">
 
-    <TextView
-        android:id="@+id/tvForgetPasswordLogin"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="@color/white"
-        android:gravity="center"
-        android:text="Forgot your password ?" />
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="@color/brown"
+            android:text="Don't have an account ?" />
+
+        <TextView
+            android:id="@+id/tvRegisterLogin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text=" Register now !!!"
+            android:textColor="@color/dark_brown" />
+
+
+    </LinearLayout>
+
 
     <TextView
         android:id="@+id/tvLoginAD"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/white"
+        android:textColor="@color/brown"
         android:layout_marginTop="30dp"
         android:layout_gravity="center"
         android:gravity="center"
