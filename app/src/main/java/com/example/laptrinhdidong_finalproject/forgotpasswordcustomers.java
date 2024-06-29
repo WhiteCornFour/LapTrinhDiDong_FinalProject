@@ -82,6 +82,7 @@ public class forgotpasswordcustomers extends AppCompatActivity {
    // trả lời yêu cầu cấp quyền
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == SMS_PERMISSION_CODE) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 Toast.makeText(this, "SMS permission granted", Toast.LENGTH_SHORT).show();
