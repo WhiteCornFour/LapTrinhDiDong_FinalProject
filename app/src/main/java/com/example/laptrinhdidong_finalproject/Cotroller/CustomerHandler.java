@@ -1,6 +1,7 @@
 package com.example.laptrinhdidong_finalproject.Cotroller;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
@@ -13,6 +14,7 @@ import com.example.laptrinhdidong_finalproject.View.Activity_Register;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Random;
 
 public class CustomerHandler extends SQLiteOpenHelper {
@@ -56,11 +58,29 @@ public class CustomerHandler extends SQLiteOpenHelper {
                 + idCustomer + ", " + nameCustomer + ", "+ emailCustomer +", "+ phoneCustomer +", "+ accountCustomer +", "+ passwordCustomer +") " +
                 "Values "
                 + "('" + c.getIdCustomer() + "','" + c.getNameCustomer() + "', '"+ c.getEmailCustomer() +"','"+ c.getPhoneCustomer() +"', '"+ c.getAccountCustomer() +"', '"+ c.getPasswordCustomer() +"')";
-        Log.d("SQL_INSERT_STATEMENT", sql1);
+        //Log.d("SQL_INSERT_STATEMENT", sql1);
         sqLiteDatabase.execSQL(sql1);
         sqLiteDatabase.close();
     }
-
+    public ArrayList<Customer> loadAllDataOfCustomer()
+    {
+        ArrayList<Customer> customerArrayList = new ArrayList<>();
+        SQLiteDatabase sqLiteDatabase = SQLiteDatabase.openDatabase(PATH, null, SQLiteDatabase.CREATE_IF_NECESSARY);
+        Cursor cursor = sqLiteDatabase.rawQuery("Select * from " + TABLE_NAME, null);
+        cursor.moveToFirst();
+        do {
+            Customer c = new Customer();
+            c.setIdCustomer(cursor.getString(0));
+            c.setNameCustomer(cursor.getString(1));
+            c.setEmailCustomer(cursor.getString(2));
+            c.setPhoneCustomer(cursor.getString(3));
+            c.setAccountCustomer(cursor.getString(4));
+            c.setPasswordCustomer(cursor.getString(5));
+            customerArrayList.add(c);
+        }while (cursor.moveToNext());
+        sqLiteDatabase.close();
+        return customerArrayList;
+    }
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
 
