@@ -3,53 +3,152 @@ package com.example.laptrinhdidong_finalproject.View;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.laptrinhdidong_finalproject.Cotroller.CustomerHandler;
+import com.example.laptrinhdidong_finalproject.Model.Customer;
 import com.example.laptrinhdidong_finalproject.R;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Random;
 
 public class Activity_Register extends AppCompatActivity {
 
-    EditText edtUserReg, edtPassReg, edtPassComfReg, edtEmailReg, edtPhoneNumberReg;
+    private static final String DB_NAME = "drinkingmanager";
+    private static final int DB_VERSION = 1;
+
+    private static final String TABLE_NAME = "Customer";
+    private static final String idCustomer = "idCustomer";
+    private static final String nameCustomer = "nameCustomer";
+    private static final String emailCustomer = "emailCustomer";
+    private static final String phoneCustomer = "phoneCustomer";
+    private static final String accountCustomer = "accountCustomer";
+    private static final String passwordCustomer = "passwordCustomer";
+    private static final String PATH = "/data/data/com.example.laptrinhdidong_finalproject/database/drinkingmanager.db";
+
+    EditText edtNameReg, edtUserReg, edtPassReg, edtPassComfReg, edtEmailReg, edtPhoneNumberReg;
     Button btnRegis;
     TextView tvHaveAcc, tvForgotPass;
-    String fileName = "register";
 
+    CustomerHandler customerHandler;
+
+    SQLiteDatabase sqLiteDatabase;
+    ArrayList<Customer> customerArrayList = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-
         addControl();
+        Log.d("customerArrayList", String.valueOf(customerArrayList.size()));
+        customerHandler = new CustomerHandler(Activity_Register.this, DB_NAME, null, DB_VERSION);
+        customerHandler.onCreate(sqLiteDatabase);
         addEvent();
     }
 
-    void writeFileTxt(String fileName, String st) throws IOException {
-        OutputStream outputStream = openFileOutput(fileName, MODE_APPEND);
-        outputStream.write(st.getBytes());
-        outputStream.close();
-    }
-
     void addControl() {
-        edtUserReg = findViewById(R.id.edtUserReg);
-        edtPassReg = findViewById(R.id.edtPassReg);
-        edtPassComfReg = findViewById(R.id.edtPassComfReg);
-        edtEmailReg = findViewById(R.id.edtEmailReg);
-        edtPhoneNumberReg = findViewById(R.id.edtPhoneNumberReg);
-        btnRegis = findViewById(R.id.btnRegis);
-        tvHaveAcc = findViewById(R.id.tvHaveAcc);
-        tvForgotPass = findViewById(R.id.tvForgotPass);
+        edtNameReg = (EditText) findViewById(R.id.edtNameReg);
+        edtUserReg =  (EditText) findViewById(R.id.edtUserReg);
+        edtPassReg = (EditText) findViewById(R.id.edtPassReg);
+        edtPassComfReg = (EditText) findViewById(R.id.edtPassComfReg);
+        edtEmailReg = (EditText) findViewById(R.id.edtEmailReg);
+        edtPhoneNumberReg = (EditText) findViewById(R.id.edtPhoneNumberReg);
+        btnRegis = (Button) findViewById(R.id.btnRegis);
+        tvHaveAcc = (TextView) findViewById(R.id.tvHaveAcc);
+        tvForgotPass = (TextView) findViewById(R.id.tvForgotPass);
     }
 
-    public boolean validateInputs(String username, String password, String confirmPassword, String email, String phoneNumber) {
+    void addEvent() {
+        tvHaveAcc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Activity_Register.this, Activity_Login_Customer.class);
+                startActivity(intent);
+            }
+        });
+        tvForgotPass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Activity_Register.this, Activity_ForgotPassword_Customer.class);
+                startActivity(intent);
+            }
+        });
+        btnRegis.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String id = generateMKH();
+                String name = edtNameReg.getText().toString();
+                String mail = edtEmailReg.getText().toString();
+                String sdt = edtPhoneNumberReg.getText().toString();
+                String us = edtUserReg.getText().toString();
+                String pass = edtPassReg.getText().toString();
+                String comfpass = edtPassComfReg.getText().toString();
+                Boolean kq = validateInputs(name, us, pass, comfpass, mail, sdt);
+                if (kq.equals(true))
+                {
+//                    for (int i  = 0; i < customerArrayList.size(); i++)
+//                    {
+//                        if(customerArrayList.get(i).getPhoneCustomer().equals(sdt))
+//                        {
+//                            Toast.makeText(Activity_Register.this, "This phone number is already in use!!!",
+//                                    Toast.LENGTH_SHORT).show();
+//                            break;
+//                        }else
+//                        {
+                            Customer c = new Customer(id , name, mail, sdt, us, pass);
+                            customerHandler.insertRecordIntoCustomerTable(c);
+                            resetEdt();
+                            Toast.makeText(Activity_Register.this, "Registered successfully!!!", Toast.LENGTH_LONG).show();
+//                        }
+//                    }
+                }
+
+            }
+        });
+    }
+    void resetEdt() {
+        edtNameReg.setText("");
+        edtUserReg.setText("");
+        edtPassReg.setText("");
+        edtPassComfReg.setText("");
+        edtEmailReg.setText("");
+        edtPhoneNumberReg.setText("");
+    }
+    public static String generateMKH() {
+        // Lấy ngày và giờ hiện tại
+        LocalDateTime now = LocalDateTime.now();
+
+        // Định dạng ngày giờ
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMddHHmmss");
+        String formattedDateTime = now.format(formatter);
+
+        // Tạo số ngẫu nhiên từ 1000 đến 9999
+        Random random = new Random();
+        int randomNumber = random.nextInt(9000) + 1000;
+
+        // Kết hợp ngày giờ và số ngẫu nhiên để tạo mã MKH
+        String mkh = formattedDateTime + randomNumber;
+
+        return mkh;
+    }
+    public boolean validateInputs(String name, String username, String password, String confirmPassword, String email, String phoneNumber) {
+
+        if (name.trim().isEmpty()) {
+            Toast.makeText(this, "Input Your Name!", Toast.LENGTH_SHORT).show();
+            return false;
+        }
         // Kiểm tra username có hơn 8 ký tự
         if (username.trim().isEmpty() || username.trim().length() <= 8) {
             Toast.makeText(this, "Username must have at least 8 letters", Toast.LENGTH_SHORT).show();
@@ -79,81 +178,4 @@ public class Activity_Register extends AppCompatActivity {
         return true;
     }
 
-
-    public boolean readFileText(String fileName, String mail, int sdt) throws IOException {
-        InputStream inputStream = openFileInput(fileName);
-        int size = inputStream.available();
-        byte[] data = new byte[size];
-        inputStream.read(data);
-        String kq = new String(data);
-        inputStream.close();
-
-        String[] taikhoan = kq.split("==");
-        for (String s : taikhoan) {
-            String[] thongTinTaiKhoan = s.split(";;");
-            if (thongTinTaiKhoan.length == 4) {
-                String existingMail = thongTinTaiKhoan[2];
-                int existingSdt = Integer.parseInt(thongTinTaiKhoan[3]);
-
-                // Kiểm tra nếu dữ liệu trùng khớp
-                if (existingMail.equals(mail) || existingSdt == sdt) {
-                    Toast.makeText(this, "Phone number or email have been used!!!", Toast.LENGTH_LONG).show();
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
-
-    void addEvent() {
-        tvHaveAcc.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(Activity_Register.this, Activity_Login_Customer.class);
-                startActivity(intent);
-            }
-        });
-        tvForgotPass.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(Activity_Register.this, MainActivity.class);
-                startActivity(intent);
-            }
-        });
-        btnRegis.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String us = edtUserReg.getText().toString();
-                String pass = edtPassReg.getText().toString();
-                String comfpass = edtPassComfReg.getText().toString();
-                String mail = edtEmailReg.getText().toString();
-                int sdt = Integer.parseInt(edtPhoneNumberReg.getText().toString());
-                if (!validateInputs(us, pass, comfpass, mail, String.valueOf(sdt))) {
-                    return;
-                }
-                try {
-                    boolean kq = readFileText(fileName, mail, sdt);
-                    if (kq) {
-                        return;
-                    }
-                    String newEntry = "==\r\n" + us + ";;" + pass + ";;" + mail + ";;" + sdt;
-                    writeFileTxt(fileName, newEntry);
-                    Toast.makeText(Activity_Register.this,
-                            "Register successful!!!", Toast.LENGTH_LONG).show();
-                    resetEdt();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                    Toast.makeText(Activity_Register.this,
-                            "Syntax Error!", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-    }
-    void resetEdt() {
-        edtUserReg.setText("");
-        edtPassReg.setText("");
-        edtPassComfReg.setText("");
-        edtEmailReg.setText("");
-        edtPhoneNumberReg.setText("");
-    }
 }

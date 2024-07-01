@@ -5,18 +5,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/black"
+    android:background="@color/white"
     tools:context=".View.Activity_Register">
 
     <TextView
         android:id="@+id/textView4"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="70dp"
         android:fontFamily="@font/lobster"
-        android:textSize="15pt"
-        android:textColor="@color/white"
+        android:textSize="20pt"
+        android:textColor="@color/dark_brown"
         android:gravity="center"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="40dp"
         android:text="Quán Nước App" />
 
     <TextView
@@ -24,8 +24,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="@font/lobster"
-        android:textColor="@color/white"
-        android:textSize="13pt"
+        android:textColor="@color/dark_brown"
+        android:textSize="11pt"
         android:gravity="center"
         android:layout_marginTop="10dp"
         android:text="Register for Custommer" />
@@ -35,15 +35,47 @@
         android:layout_height="50dp"
         android:orientation="horizontal"
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="30dp">
+
+        <TextView
+            android:id="@+id/textView8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="9pt"
+            android:textColor="@color/dark_beige"
+            android:text="Your name:" />
+
+        <EditText
+            android:id="@+id/edtNameReg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:layout_marginLeft="10dp"
+            android:textColor="@color/dark_brown"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:layout_marginLeft="20dp"
         android:layout_marginBottom="10dp"
         android:layout_marginRight="20dp">
 
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            app:srcCompat="@drawable/customer_man_user_account_profile_icon" />
+        <TextView
+            android:id="@+id/textView9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="9pt"
+            android:textColor="@color/dark_beige"
+            android:text="Username:" />
 
         <EditText
             android:id="@+id/edtUserReg"
@@ -52,10 +84,9 @@
             android:layout_weight="1"
             android:ems="10"
             android:inputType="textPersonName"
-            android:textColorHint="@color/white"
+            android:textColor="@color/dark_brown"
             android:layout_marginLeft="10dp"
-            android:textColor="@color/white"
-            android:hint="Username" />
+            />
     </LinearLayout>
 
     <LinearLayout
@@ -66,11 +97,14 @@
         android:layout_marginBottom="10dp"
         android:orientation="horizontal">
 
-        <ImageView
-            android:id="@+id/imageView2"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            app:srcCompat="@drawable/key_icon" />
+        <TextView
+            android:id="@+id/textView10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="9pt"
+            android:textColor="@color/dark_beige"
+            android:text="Password:" />
 
         <EditText
             android:id="@+id/edtPassReg"
@@ -79,10 +113,8 @@
             android:layout_weight="1"
             android:ems="10"
             android:inputType="textPassword"
-            android:hint="Password"
             android:layout_marginLeft="10dp"
-            android:textColor="@color/white"
-            android:textColorHint="@color/white"
+            android:textColor="@color/dark_brown"
            />
     </LinearLayout>
 
@@ -94,11 +126,14 @@
         android:layout_marginBottom="10dp"
         android:orientation="horizontal">
 
-        <ImageView
-            android:id="@+id/imageView3"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            app:srcCompat="@drawable/key_icon" />
+        <TextView
+            android:id="@+id/textView11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="9pt"
+            android:textColor="@color/dark_beige"
+            android:text="Comfirm:" />
 
         <EditText
             android:id="@+id/edtPassComfReg"
@@ -107,10 +142,9 @@
             android:layout_weight="1"
             android:ems="10"
             android:inputType="textPassword"
-            android:hint="Conform password"
-            android:layout_marginLeft="10dp"
-            android:textColor="@color/white"
-            android:textColorHint="@color/white" />
+            android:layout_marginLeft="24dp"
+            android:textColor="@color/dark_brown"
+             />
     </LinearLayout>
 
     <LinearLayout
@@ -121,11 +155,14 @@
         android:layout_marginBottom="10dp"
         android:orientation="horizontal">
 
-        <ImageView
-            android:id="@+id/imageView4"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            app:srcCompat="@drawable/envelope_email_icon" />
+        <TextView
+            android:id="@+id/textView12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="9pt"
+            android:textColor="@color/dark_beige"
+            android:text="Email:" />
 
         <EditText
             android:id="@+id/edtEmailReg"
@@ -134,10 +171,9 @@
             android:layout_weight="1"
             android:ems="10"
             android:inputType="textEmailAddress"
-            android:hint="Email"
-            android:layout_marginLeft="10dp"
-            android:textColor="@color/white"
-            android:textColorHint="@color/white" />
+            android:layout_marginLeft="55dp"
+            android:textColor="@color/dark_brown"
+             />
     </LinearLayout>
 
     <LinearLayout
@@ -148,11 +184,14 @@
         android:layout_marginBottom="10dp"
         android:orientation="horizontal">
 
-        <ImageView
-            android:id="@+id/imageView5"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            app:srcCompat="@drawable/phone_communication_icon" />
+        <TextView
+            android:id="@+id/textView14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="9pt"
+            android:textColor="@color/dark_beige"
+            android:text="Phone:"  />
 
         <EditText
             android:id="@+id/edtPhoneNumberReg"
@@ -160,21 +199,19 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:ems="10"
-            android:inputType="number"
-            android:hint="Phone number"
-            android:layout_marginLeft="10dp"
-            android:textColor="@color/white"
-            android:textColorHint="@color/white" />
+            android:inputType="textPersonName"
+            android:layout_marginLeft="45dp"
+            android:textColor="@color/dark_brown" />
     </LinearLayout>
 
     <Button
         android:id="@+id/btnRegis"
         android:layout_width="200dp"
         android:layout_height="50dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:layout_marginBottom="20dp"
-        android:backgroundTint="@color/white"
-        android:textColor="@color/black"
+        android:backgroundTint="@color/beige"
+        android:textColor="@color/white"
         android:layout_gravity="center"
         android:text="Register" />
 
@@ -189,8 +226,9 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:layout_gravity="center"
-            android:textColor="@color/white"
-            android:layout_marginLeft="60dp"
+            android:textColor="@color/dark_brown"
+            android:layout_marginLeft="40dp"
+            android:textSize="7pt"
             android:text="Already Have An Account" />
 
         <TextView
@@ -199,8 +237,9 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:gravity="center"
-            android:textColor="@color/white"
+            android:textColor="@color/dark_brown"
             android:layout_marginLeft="30dp"
+            android:textSize="7pt"
             android:text="Forgot Password" />
     </LinearLayout>
 </LinearLayout>
