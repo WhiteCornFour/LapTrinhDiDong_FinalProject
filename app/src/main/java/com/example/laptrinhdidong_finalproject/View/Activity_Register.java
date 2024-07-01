@@ -52,9 +52,10 @@ public class Activity_Register extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         addControl();
-        Log.d("customerArrayList", String.valueOf(customerArrayList.size()));
         customerHandler = new CustomerHandler(Activity_Register.this, DB_NAME, null, DB_VERSION);
         customerHandler.onCreate(sqLiteDatabase);
+        customerArrayList = customerHandler.loadAllDataOfCustomer();
+        //Log.d("customerArrayList", String.valueOf(customerArrayList.size()));
         addEvent();
     }
 
@@ -98,27 +99,29 @@ public class Activity_Register extends AppCompatActivity {
                 Boolean kq = validateInputs(name, us, pass, comfpass, mail, sdt);
                 if (kq.equals(true))
                 {
-//                    for (int i  = 0; i < customerArrayList.size(); i++)
-//                    {
-//                        if(customerArrayList.get(i).getPhoneCustomer().equals(sdt))
-//                        {
-//                            Toast.makeText(Activity_Register.this, "This phone number is already in use!!!",
-//                                    Toast.LENGTH_SHORT).show();
-//                            break;
-//                        }else
-//                        {
+                    for (int i  = 0; i < customerArrayList.size(); i++)
+                    {
+                        if(customerArrayList.get(i).getPhoneCustomer().equals(sdt) ||
+                                customerArrayList.get(i).getAccountCustomer().equals(us))
+                        {
+                            Toast.makeText(Activity_Register.this, "This phone number or Username is already in use!!!",
+                                    Toast.LENGTH_SHORT).show();
+                            break;
+                        }else
+                        {
                             Customer c = new Customer(id , name, mail, sdt, us, pass);
                             customerHandler.insertRecordIntoCustomerTable(c);
                             resetEdt();
                             Toast.makeText(Activity_Register.this, "Registered successfully!!!", Toast.LENGTH_LONG).show();
-//                        }
-//                    }
+                        }
+                    }
                 }
 
             }
         });
     }
     void resetEdt() {
+        edtNameReg.requestFocus();
         edtNameReg.setText("");
         edtUserReg.setText("");
         edtPassReg.setText("");
