@@ -95,9 +95,9 @@ public class Activity_Register extends AppCompatActivity {
                 String us = edtUserReg.getText().toString();
                 String pass = edtPassReg.getText().toString();
                 String comfpass = edtPassComfReg.getText().toString();
-                Boolean kq = validateInputs(name, us, pass, comfpass, mail, sdt);
-                if (kq.equals(true))
-                {
+//                Boolean kq = validateInputs(name, us, pass, comfpass, mail, sdt);
+//                if (kq.equals(true))
+//                {
 //                    for (int i  = 0; i < customerArrayList.size(); i++)
 //                    {
 //                        if(customerArrayList.get(i).getPhoneCustomer().equals(sdt))
@@ -113,7 +113,7 @@ public class Activity_Register extends AppCompatActivity {
                             Toast.makeText(Activity_Register.this, "Registered successfully!!!", Toast.LENGTH_LONG).show();
 //                        }
 //                    }
-                }
+//                }
 
             }
         });

@@ -1,6 +1,7 @@
 package com.example.laptrinhdidong_finalproject.Cotroller;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
@@ -59,6 +60,23 @@ public class CustomerHandler extends SQLiteOpenHelper {
         Log.d("SQL_INSERT_STATEMENT", sql1);
         sqLiteDatabase.execSQL(sql1);
         sqLiteDatabase.close();
+    }
+
+    public boolean validateLogin(String username, String password) {
+        SQLiteDatabase db = SQLiteDatabase.openDatabase(PATH, null, SQLiteDatabase.OPEN_READONLY);
+        String sql = "SELECT COUNT(*) FROM " + TABLE_NAME + " WHERE " + nameCustomer + " = '" + username + "' AND " + passwordCustomer + " = '" + password + "'";
+        Cursor cursor = db.rawQuery(sql, null);
+
+        boolean isValid = false;
+        if (cursor.moveToFirst()) {
+            int count = cursor.getInt(0);
+            isValid = (count > 0);
+        }
+        Log.d("SQL_COUNT_RESULT", sql);
+        cursor.close();
+        db.close();
+
+        return isValid;
     }
 
     @Override
