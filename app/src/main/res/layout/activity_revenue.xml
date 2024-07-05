@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:textSize="13pt"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:background="@color/dark_beige"
+        android:text="List Of Revenue" />
+
+    <TextView
+        android:id="@+id/textView16"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="9pt"
+        android:textColor="@color/dark_brown"
+        android:text="Filter revenue by year" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/textView13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="7pt"
+            android:textColor="@color/dark_brown"
+            android:textStyle="bold"
+            android:text="From:" />
+
+        <EditText
+            android:id="@+id/edtFromYear"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:hint="year..." />
+
+        <TextView
+            android:id="@+id/textView15"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="7pt"
+            android:textColor="@color/dark_brown"
+            android:textStyle="bold"
+            android:layout_marginLeft="25dp"
+            android:text="To:" />
+
+        <EditText
+            android:id="@+id/edtToYear"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="year..." />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnFilterYear"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:backgroundTint="@color/dark_beige"
+        android:text="Search" />
+
+    <ListView
+        android:id="@+id/lvRevenueByYear"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/light_beige"/>
+</LinearLayout>

@@ -5,19 +5,17 @@ public class Customer {
     String nameCustomer;
     String emailCustomer;
     String phoneCustomer;
-    String accountCustomer;
     String passwordCustomer;
 
-    public Customer(String idCustomer, String nameCustomer, String emailCustomer, String phoneCustomer, String accountCustomer, String passwordCustomer) {
+    public Customer() {
+    }
+
+    public Customer(String idCustomer, String nameCustomer, String emailCustomer, String phoneCustomer, String passwordCustomer) {
         this.idCustomer = idCustomer;
         this.nameCustomer = nameCustomer;
         this.emailCustomer = emailCustomer;
         this.phoneCustomer = phoneCustomer;
-        this.accountCustomer = accountCustomer;
         this.passwordCustomer = passwordCustomer;
-    }
-
-    public Customer() {
     }
 
     public String getIdCustomer() {
@@ -50,14 +48,6 @@ public class Customer {
 
     public void setPhoneCustomer(String phoneCustomer) {
         this.phoneCustomer = phoneCustomer;
-    }
-
-    public String getAccountCustomer() {
-        return accountCustomer;
-    }
-
-    public void setAccountCustomer(String accountCustomer) {
-        this.accountCustomer = accountCustomer;
     }
 
     public String getPasswordCustomer() {
