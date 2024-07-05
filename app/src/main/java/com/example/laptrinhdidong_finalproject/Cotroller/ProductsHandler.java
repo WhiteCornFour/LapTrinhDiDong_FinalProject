@@ -8,7 +8,6 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
-import com.example.laptrinhdidong_finalproject.Model.ProductCategories;
 import com.example.laptrinhdidong_finalproject.Model.Products;
 
 import java.util.ArrayList;
@@ -23,7 +22,9 @@ public class ProductsHandler extends SQLiteOpenHelper {
     private static final String idCategory = "CategoryID";
     private static final String nameProduct = "ProductName";
     private static final String descriptionProduct = "ProductDescription";
-    private static final Float priceProduct = 0.0f;
+    private static final String productImage = "ProductImage";
+    private static final String priceProduct = "InitialPrice";
+
     private static final String PATH = "/data/data/com.example.laptrinhdidong_finalproject/database/drinkingmanager.db";
 
     public ProductsHandler(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
@@ -58,6 +59,24 @@ public class ProductsHandler extends SQLiteOpenHelper {
         sqLiteDatabase.close();
         return productsArrayList;
     }
+
+    public void updateRecord(Products p) {
+        SQLiteDatabase sqLiteDatabase = SQLiteDatabase.openDatabase(PATH, null, SQLiteDatabase.CREATE_IF_NECESSARY);
+
+        // Delete existing record based on ProductID
+        String deleteSQL = "DELETE FROM " + TABLE_NAME + " WHERE " + idProduct + " = ?";
+        sqLiteDatabase.execSQL(deleteSQL, new Object[]{p.getIdProduct()});
+
+        // Insert new record
+        String insertSQL = "INSERT INTO " + TABLE_NAME + " (" +
+                idProduct + ", " + idCategory + ", " + nameProduct + ", " +
+                descriptionProduct + ", " + productImage + ", " + priceProduct + ") VALUES (?, ?, ?, ?, ?, ?)";
+        sqLiteDatabase.execSQL(insertSQL, new Object[]{p.getIdProduct(), p.getIdCategory(), p.getNameProduct(),
+                p.getDescriptionProduct(), p.getImageProduct(), p.getInitialPrice()});
+
+        sqLiteDatabase.close();
+    }
+
 
     public ArrayList<Products> loadProductsByCategory(String categoryId) {
         ArrayList<Products> productsArrayList = new ArrayList<>();
@@ -94,7 +113,7 @@ public class ProductsHandler extends SQLiteOpenHelper {
     public Products returnResultForSearch(String productID) {
         Products product = null;
         SQLiteDatabase sqLiteDatabase = SQLiteDatabase.openDatabase(PATH, null, SQLiteDatabase.OPEN_READONLY);
-        String sql = "SELECT * FROM " + TABLE_NAME + " WHERE " + idProduct + " = productID";
+        String sql = "SELECT * FROM " + TABLE_NAME + " WHERE " + idProduct + " = + '"+ productID +"'";
         Cursor cursor = sqLiteDatabase.rawQuery(sql, null);
 
         if (cursor != null) {
