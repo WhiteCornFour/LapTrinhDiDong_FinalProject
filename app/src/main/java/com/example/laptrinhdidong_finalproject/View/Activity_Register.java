@@ -30,16 +30,15 @@ public class Activity_Register extends AppCompatActivity {
     private static final String DB_NAME = "drinkingmanager";
     private static final int DB_VERSION = 1;
 
-    private static final String TABLE_NAME = "Customer";
-    private static final String idCustomer = "idCustomer";
-    private static final String nameCustomer = "nameCustomer";
-    private static final String emailCustomer = "emailCustomer";
-    private static final String phoneCustomer = "phoneCustomer";
-    private static final String accountCustomer = "accountCustomer";
-    private static final String passwordCustomer = "passwordCustomer";
+    private static final String TABLE_NAME = "Customers";
+    private static final String idCustomer = "CustomerID";
+    private static final String nameCustomer = "CustomerName";
+    private static final String emailCustomer = "CustomerEmail";
+    private static final String phoneCustomer = "PhoneNumber";
+    private static final String passwordCustomer = "LoginPassword";
     private static final String PATH = "/data/data/com.example.laptrinhdidong_finalproject/database/drinkingmanager.db";
 
-    EditText edtNameReg, edtUserReg, edtPassReg, edtPassComfReg, edtEmailReg, edtPhoneNumberReg;
+    EditText edtNameReg, edtPassReg, edtPassComfReg, edtEmailReg, edtPhoneNumberReg;
     Button btnRegis;
     TextView tvHaveAcc, tvForgotPass;
 
@@ -53,7 +52,7 @@ public class Activity_Register extends AppCompatActivity {
         setContentView(R.layout.activity_register);
         addControl();
         customerHandler = new CustomerHandler(Activity_Register.this, DB_NAME, null, DB_VERSION);
-        customerHandler.onCreate(sqLiteDatabase);
+        //customerHandler.onCreate(sqLiteDatabase);
         customerArrayList = customerHandler.loadAllDataOfCustomer();
         //Log.d("customerArrayList", String.valueOf(customerArrayList.size()));
         addEvent();
@@ -61,7 +60,6 @@ public class Activity_Register extends AppCompatActivity {
 
     void addControl() {
         edtNameReg = (EditText) findViewById(R.id.edtNameReg);
-        edtUserReg =  (EditText) findViewById(R.id.edtUserReg);
         edtPassReg = (EditText) findViewById(R.id.edtPassReg);
         edtPassComfReg = (EditText) findViewById(R.id.edtPassComfReg);
         edtEmailReg = (EditText) findViewById(R.id.edtEmailReg);
@@ -77,6 +75,7 @@ public class Activity_Register extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(Activity_Register.this, Activity_Login_Customer.class);
                 startActivity(intent);
+                finish();
             }
         });
         tvForgotPass.setOnClickListener(new View.OnClickListener() {
@@ -84,6 +83,7 @@ public class Activity_Register extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(Activity_Register.this, Activity_ForgotPassword_Customer.class);
                 startActivity(intent);
+                finish();
             }
         });
         btnRegis.setOnClickListener(new View.OnClickListener() {
@@ -93,29 +93,27 @@ public class Activity_Register extends AppCompatActivity {
                 String name = edtNameReg.getText().toString();
                 String mail = edtEmailReg.getText().toString();
                 String sdt = edtPhoneNumberReg.getText().toString();
-                String us = edtUserReg.getText().toString();
                 String pass = edtPassReg.getText().toString();
                 String comfpass = edtPassComfReg.getText().toString();
+                Boolean kq = validateInputs(name, pass, comfpass, mail, sdt);
 
-//                Boolean kq = validateInputs(name, us, pass, comfpass, mail, sdt);
-//                if (kq.equals(true))
-//                {
+                if (kq.equals(true))
+                {
                     for (int i  = 0; i < customerArrayList.size(); i++)
                     {
                         if(customerArrayList.get(i).getPhoneCustomer().equals(sdt) ||
-                                customerArrayList.get(i).getAccountCustomer().equals(us))
+                                customerArrayList.get(i).getEmailCustomer().equals(mail))
                         {
-                            Toast.makeText(Activity_Register.this, "This phone number or Username is already in use!!!",
+                            Toast.makeText(Activity_Register.this, "This phone number or email is already in use!!!",
                                     Toast.LENGTH_SHORT).show();
                             break;
                         }else
                         {
-                            Customer c = new Customer(id , name, mail, sdt, us, pass);
+                            Customer c = new Customer(id , name, mail, sdt, pass);
                             customerHandler.insertRecordIntoCustomerTable(c);
                             resetEdt();
                             Toast.makeText(Activity_Register.this, "Registered successfully!!!", Toast.LENGTH_LONG).show();
                         }
-//                    }
                 }
 
 
@@ -125,7 +123,6 @@ public class Activity_Register extends AppCompatActivity {
     void resetEdt() {
         edtNameReg.requestFocus();
         edtNameReg.setText("");
-        edtUserReg.setText("");
         edtPassReg.setText("");
         edtPassComfReg.setText("");
         edtEmailReg.setText("");
@@ -148,15 +145,10 @@ public class Activity_Register extends AppCompatActivity {
 
         return mkh;
     }
-    public boolean validateInputs(String name, String username, String password, String confirmPassword, String email, String phoneNumber) {
+    public boolean validateInputs(String name, String password, String confirmPassword, String email, String phoneNumber) {
 
         if (name.trim().isEmpty()) {
             Toast.makeText(this, "Input Your Name!", Toast.LENGTH_SHORT).show();
-            return false;
-        }
-        // Kiểm tra username có hơn 8 ký tự
-        if (username.trim().isEmpty() || username.trim().length() <= 8) {
-            Toast.makeText(this, "Username must have at least 8 letters", Toast.LENGTH_SHORT).show();
             return false;
         }
         // Kiểm tra password có hơn 8 ký tự
