@@ -1,42 +1,54 @@
 package com.example.laptrinhdidong_finalproject.Model;
 
-import android.graphics.Bitmap;
+import java.io.Serializable;
+import java.sql.Blob;
 
-public class ProductCategories {
-    Bitmap categoryImage;
-    String categoryID;
-    String categoryName;
+public class ProductCategories implements Serializable {
+    String idCategory;
+    String nameCategory;
+    String descriptionCategory;
+    private byte[] imageCategory;
 
-    public Bitmap getCategoryImage() {
-        return categoryImage;
+    public String getIdCategory() {
+        return idCategory;
     }
 
-    public void setCategoryImage(Bitmap categoryImage) {
-        this.categoryImage = categoryImage;
+    public void setIdCategory(String idCategory) {
+        this.idCategory = idCategory;
     }
 
-    public String getCategoryID() {
-        return categoryID;
+    public String getNameCategory() {
+        return nameCategory;
     }
 
-    public void setCategoryID(String categoryID) {
-        this.categoryID = categoryID;
+    public void setNameCategory(String nameCategory) {
+        this.nameCategory = nameCategory;
     }
 
-    public String getCategoryName() {
-        return categoryName;
+    public String getDescriptionCategory() {
+        return descriptionCategory;
     }
 
-    public void setCategoryName(String categoryName) {
-        this.categoryName = categoryName;
+    public void setDescriptionCategory(String descriptionCategory) {
+        this.descriptionCategory = descriptionCategory;
     }
 
-    public ProductCategories(String categoryID, String categoryName, Bitmap categoryImage) {
-        this.categoryImage = categoryImage;
-        this.categoryID = categoryID;
-        this.categoryName = categoryName;
+    public byte[] getImageCategory() {
+        return imageCategory;
+    }
+
+    public void setImageCategory(byte[] imageCategory) {
+        this.imageCategory = imageCategory;
+    }
+
+    public ProductCategories(String idCategory, String nameCategory, String descriptionCategory, byte[] imageCategory) {
+        this.idCategory = idCategory;
+        this.nameCategory = nameCategory;
+        this.descriptionCategory = descriptionCategory;
+        this.imageCategory = imageCategory;
     }
 
     public ProductCategories() {
     }
 }
+

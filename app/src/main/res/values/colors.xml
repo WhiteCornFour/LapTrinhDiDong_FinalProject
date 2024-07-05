@@ -12,4 +12,7 @@
     <color name="dark_beige">#b99a76</color>
     <color name="brown">#987555</color>
     <color name="dark_brown">#664229</color>
+    <color name="disabled_color">#AFAFAF</color>
+    <color name="lavender">#8692F7</color>
+    <color name="pink">#FF7F7F</color>
 </resources>

@@ -63,9 +63,9 @@ public class CustomerHandler extends SQLiteOpenHelper {
         sqLiteDatabase.close();
     }
 
-    public boolean validateLogin(String username, String password) {
+    public boolean validateLogin(String phone, String password) {
         SQLiteDatabase db = SQLiteDatabase.openDatabase(PATH, null, SQLiteDatabase.OPEN_READONLY);
-        String sql = "SELECT COUNT(*) FROM " + TABLE_NAME + " WHERE " + nameCustomer + " = '" + username + "' AND " + passwordCustomer + " = '" + password + "'";
+        String sql = "SELECT COUNT(*) FROM " + TABLE_NAME + " WHERE " + phoneCustomer + " = '" + phone + "' AND " + passwordCustomer + " = '" + password + "'";
         Cursor cursor = db.rawQuery(sql, null);
 
         boolean isValid = false;
@@ -85,16 +85,18 @@ public class CustomerHandler extends SQLiteOpenHelper {
         ArrayList<Customer> customerArrayList = new ArrayList<>();
         SQLiteDatabase sqLiteDatabase = SQLiteDatabase.openDatabase(PATH, null, SQLiteDatabase.CREATE_IF_NECESSARY);
         Cursor cursor = sqLiteDatabase.rawQuery("Select * from " + TABLE_NAME, null);
-        cursor.moveToFirst();
-        do {
-            Customer c = new Customer();
-            c.setIdCustomer(cursor.getString(0));
-            c.setNameCustomer(cursor.getString(1));
-            c.setEmailCustomer(cursor.getString(2));
-            c.setPhoneCustomer(cursor.getString(3));
-            c.setPasswordCustomer(cursor.getString(4));
-            customerArrayList.add(c);
-        }while (cursor.moveToNext());
+        if (cursor.moveToFirst()) {
+            do {
+                Customer c = new Customer();
+                c.setIdCustomer(cursor.getString(0));
+                c.setNameCustomer(cursor.getString(1));
+                c.setEmailCustomer(cursor.getString(2));
+                c.setPhoneCustomer(cursor.getString(3));
+                c.setPasswordCustomer(cursor.getString(4));
+                customerArrayList.add(c);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
         sqLiteDatabase.close();
         return customerArrayList;
     }

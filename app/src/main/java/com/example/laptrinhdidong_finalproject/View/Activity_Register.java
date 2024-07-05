@@ -95,7 +95,6 @@ public class Activity_Register extends AppCompatActivity {
                 String sdt = edtPhoneNumberReg.getText().toString();
                 String pass = edtPassReg.getText().toString();
                 String comfpass = edtPassComfReg.getText().toString();
-
                 Boolean kq = validateInputs(name, pass, comfpass, mail, sdt);
 
                 if (kq.equals(true))
@@ -115,7 +114,6 @@ public class Activity_Register extends AppCompatActivity {
                             resetEdt();
                             Toast.makeText(Activity_Register.this, "Registered successfully!!!", Toast.LENGTH_LONG).show();
                         }
-                    }
                 }
 
 

@@ -16,8 +16,17 @@
         android:theme="@style/Theme.LapTrinhDiDong_FinalProject"
         tools:targetApi="31">
         <activity
+            android:name=".View.Activity_Deleting_Products"
+            android:exported="false" />
+
+        <activity
+            android:name=".View.Activity_Login_Customer"
+            android:exported="false" />
+
+        <activity
             android:name=".View.Activity_UpdateProduct_Admin"
             android:exported="false" />
+
         <activity
             android:name=".View.Activity_OTPGetPassword_Customer"
             android:exported="false" />
@@ -37,7 +46,7 @@
             android:name=".View.Activity_MainPaige_Admin"
             android:exported="false" />
         <activity
-            android:name=".View.Activity_Login_Customer"
+            android:name=".View.Activity_Deleting_ProductCategories"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
