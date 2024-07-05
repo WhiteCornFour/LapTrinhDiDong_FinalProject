@@ -21,13 +21,12 @@ public class CustomerHandler extends SQLiteOpenHelper {
     private static final String DB_NAME = "drinkingmanager";
     private static final int DB_VERSION = 1;
 
-    private static final String TABLE_NAME = "Customer";
-    private static final String idCustomer = "idCustomer";
-    private static final String nameCustomer = "nameCustomer";
-    private static final String emailCustomer = "emailCustomer";
-    private static final String phoneCustomer = "phoneCustomer";
-    private static final String accountCustomer = "accountCustomer";
-    private static final String passwordCustomer = "passwordCustomer";
+    private static final String TABLE_NAME = "Customers";
+    private static final String idCustomer = "CustomerID";
+    private static final String nameCustomer = "CustomerName";
+    private static final String emailCustomer = "CustomerEmail";
+    private static final String phoneCustomer = "PhoneNumber";
+    private static final String passwordCustomer = "LoginPassword";
     private static final String PATH = "/data/data/com.example.laptrinhdidong_finalproject/database/drinkingmanager.db";
 
     public CustomerHandler(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
@@ -43,7 +42,6 @@ public class CustomerHandler extends SQLiteOpenHelper {
                 nameCustomer + " TEXT NOT NULL," +
                 emailCustomer + " TEXT NOT NULL," +
                 phoneCustomer + " INTEGER NOT NULL UNIQUE," +
-                accountCustomer + " TEXT NOT NULL," +
                 passwordCustomer + " TEXT NOT NULL," +
                 " PRIMARY KEY(" + idCustomer + ")" +
                 ")";
@@ -55,17 +53,18 @@ public class CustomerHandler extends SQLiteOpenHelper {
     {
         SQLiteDatabase sqLiteDatabase = SQLiteDatabase.openDatabase(PATH, null, SQLiteDatabase.CREATE_IF_NECESSARY);
         String sql1 = "INSERT OR IGNORE INTO " + TABLE_NAME + " ("
-                + idCustomer + ", " + nameCustomer + ", "+ emailCustomer +", "+ phoneCustomer +", "+ accountCustomer +", "+ passwordCustomer +") " +
+                + idCustomer + ", " + nameCustomer + ", "+ emailCustomer +", "+ phoneCustomer +", "+ passwordCustomer +") " +
                 "Values "
-                + "('" + c.getIdCustomer() + "','" + c.getNameCustomer() + "', '"+ c.getEmailCustomer() +"','"+ c.getPhoneCustomer() +"', '"+ c.getAccountCustomer() +"', '"+ c.getPasswordCustomer() +"')";
+                + "('" + c.getIdCustomer() + "','" + c.getNameCustomer() + "', '"+ c.getEmailCustomer() +"','"+ c.getPhoneCustomer() +"', '"+ c.getPasswordCustomer() +"')";
+        sqLiteDatabase.execSQL(sql1);
         //Log.d("SQL_INSERT_STATEMENT", sql1);
         sqLiteDatabase.execSQL(sql1);
         sqLiteDatabase.close();
     }
 
-    public boolean validateLogin(String username, String password) {
+    public boolean validateLogin(String phone, String password) {
         SQLiteDatabase db = SQLiteDatabase.openDatabase(PATH, null, SQLiteDatabase.OPEN_READONLY);
-        String sql = "SELECT COUNT(*) FROM " + TABLE_NAME + " WHERE " + nameCustomer + " = '" + username + "' AND " + passwordCustomer + " = '" + password + "'";
+        String sql = "SELECT COUNT(*) FROM " + TABLE_NAME + " WHERE " + phoneCustomer + " = '" + phone + "' AND " + passwordCustomer + " = '" + password + "'";
         Cursor cursor = db.rawQuery(sql, null);
 
         boolean isValid = false;
@@ -85,17 +84,18 @@ public class CustomerHandler extends SQLiteOpenHelper {
         ArrayList<Customer> customerArrayList = new ArrayList<>();
         SQLiteDatabase sqLiteDatabase = SQLiteDatabase.openDatabase(PATH, null, SQLiteDatabase.CREATE_IF_NECESSARY);
         Cursor cursor = sqLiteDatabase.rawQuery("Select * from " + TABLE_NAME, null);
-        cursor.moveToFirst();
-        do {
-            Customer c = new Customer();
-            c.setIdCustomer(cursor.getString(0));
-            c.setNameCustomer(cursor.getString(1));
-            c.setEmailCustomer(cursor.getString(2));
-            c.setPhoneCustomer(cursor.getString(3));
-            c.setAccountCustomer(cursor.getString(4));
-            c.setPasswordCustomer(cursor.getString(5));
-            customerArrayList.add(c);
-        }while (cursor.moveToNext());
+        if (cursor.moveToFirst()) {
+            do {
+                Customer c = new Customer();
+                c.setIdCustomer(cursor.getString(0));
+                c.setNameCustomer(cursor.getString(1));
+                c.setEmailCustomer(cursor.getString(2));
+                c.setPhoneCustomer(cursor.getString(3));
+                c.setPasswordCustomer(cursor.getString(4));
+                customerArrayList.add(c);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
         sqLiteDatabase.close();
         return customerArrayList;
     }

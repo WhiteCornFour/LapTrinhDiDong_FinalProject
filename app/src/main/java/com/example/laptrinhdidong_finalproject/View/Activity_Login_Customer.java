@@ -22,7 +22,7 @@ import java.util.ArrayList;
 
 public class Activity_Login_Customer extends AppCompatActivity {
 
-    EditText edtPasswordLogin, edtFullNameLogin;
+    EditText edtPasswordLogin, edtPhoneLogin;
     Button btnLoginCustomer;
     TextView tvRegisterLogin, tvForgetPasswordLogin, tvLoginAD;
     CustomerHandler customerHandler;
@@ -49,9 +49,9 @@ public class Activity_Login_Customer extends AppCompatActivity {
         customerHandler = new CustomerHandler(Activity_Login_Customer.this, DB_NAME, null, DB_VERSION);
         customerHandler.onCreate(sqLiteDatabase);
         SharedPreferences sharedPreferences = getPreferences(MODE_PRIVATE);
-        String fn = sharedPreferences.getString("tên đầy đủ", null);
+        String pn = sharedPreferences.getString("số điện thoại", null);
         String ps = sharedPreferences.getString("mật khẩu", null);
-        edtFullNameLogin.setText(fn);
+        edtPhoneLogin.setText(pn);
         edtPasswordLogin.setText(ps);
         //----------------------
         addEvent();
@@ -59,7 +59,7 @@ public class Activity_Login_Customer extends AppCompatActivity {
 
     void addControl() {
         edtPasswordLogin = (EditText) findViewById(R.id.edtPasswordLogin);
-        edtFullNameLogin = (EditText) findViewById(R.id.edtFullNameLogin);
+        edtPhoneLogin = (EditText) findViewById(R.id.edtPhoneLogin);
         btnLoginCustomer = (Button) findViewById(R.id.btnLoginCustomer);
         tvRegisterLogin = (TextView) findViewById(R.id.tvRegisterLogin);
         tvForgetPasswordLogin = (TextView) findViewById(R.id.tvForgetPasswordLogin);
@@ -70,15 +70,15 @@ public class Activity_Login_Customer extends AppCompatActivity {
         btnLoginCustomer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String fullName = edtFullNameLogin.getText().toString().trim();
+                String phone = edtPhoneLogin.getText().toString().trim();
                 String password = edtPasswordLogin.getText().toString().trim();
 
 //            if (validateInputs(fullName, password)) {
-                boolean isValid = customerHandler.validateLogin(fullName, password);
+                boolean isValid = customerHandler.validateLogin(phone, password);
                 if (isValid) {
                     Toast.makeText(Activity_Login_Customer.this, "Login success", Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(Activity_Login_Customer.this, MainActivity.class);
-                    intent.putExtra("fullname", fullName);
+                    intent.putExtra("phonenumber", phone);
                     intent.putExtra("password", password);
                     startActivity(intent);
                     resetEdt();
@@ -136,16 +136,16 @@ public class Activity_Login_Customer extends AppCompatActivity {
         SharedPreferences sharedPreferences = getPreferences(MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
-        String fn = edtFullNameLogin.getText().toString();
+        String pn = edtPhoneLogin.getText().toString();
         String ps = edtPasswordLogin.getText().toString();
 
-        editor.putString("tên đầy đủ", fn);
+        editor.putString("số điện thoại", pn);
         editor.putString("mật khẩu", ps);
         editor.apply();
     }
 
     void resetEdt() {
-        edtFullNameLogin.setText("");
+        edtPhoneLogin.setText("");
         edtPasswordLogin.setText("");
     }
 }

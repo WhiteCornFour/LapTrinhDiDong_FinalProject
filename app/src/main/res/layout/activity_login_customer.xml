@@ -55,10 +55,10 @@
             android:fontFamily="@font/arsenal"
             android:textSize="10pt"
             android:textColor="@color/dark_beige"
-            android:text="Full Name" />
+            android:text="Phone Number" />
 
         <EditText
-            android:id="@+id/edtFullNameLogin"
+            android:id="@+id/edtPhoneLogin"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_weight="1"
