@@ -2,8 +2,8 @@ package com.example.laptrinhdidong_finalproject.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.laptrinhdidong_finalproject.Cotroller.ProductHandler;
-import com.example.laptrinhdidong_finalproject.Model.Product;
+import com.example.laptrinhdidong_finalproject.Cotroller.ProductsHandler;
+import com.example.laptrinhdidong_finalproject.Model.Products;
 import com.example.laptrinhdidong_finalproject.R;
 import android.os.Bundle;
 import android.view.View;
@@ -14,7 +14,6 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class Activity_UpdateProduct_Admin extends AppCompatActivity {
 
@@ -30,15 +29,15 @@ public class Activity_UpdateProduct_Admin extends AppCompatActivity {
     private static final String INITIAL_PRICE = "InitialPrice";
     private static final String PATH = "/data/data/com.example.laptrinhdidong_finalproject/database/drinkingmanager.db";
 
-    ProductHandler productHandler;
+    ProductsHandler productHandler;
     EditText edtProductID, edtCategoryID, edtProductName,
             edtProductDescription, edtInitialPrice, edtSearchForUpdate;
     Button btnImportImageUpdateProduct, btnSearchForUpate, btnUpdateProductAD;
     ImageView imgUpdateProduct;
     ListView lvProductForUpdate;
 
-    ArrayList<Product> productArrayList = new ArrayList<>();
-    ArrayList<Product> productArrayListResult = new ArrayList<>();
+    ArrayList<Products> productArrayList = new ArrayList<>();
+    ArrayList<Products> productArrayListResult = new ArrayList<>();
     CustomAdapterListViewFragment_Product customAdapter;
 
     @Override
@@ -46,7 +45,7 @@ public class Activity_UpdateProduct_Admin extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update_product_admin);
         addControl();
-        productHandler = new ProductHandler(Activity_UpdateProduct_Admin.this, DB_NAME
+        productHandler = new ProductsHandler(Activity_UpdateProduct_Admin.this, DB_NAME
         ,null, DB_VERSION);
         productArrayList = productHandler.loadAllDataOfProducts();
         loadDataLV(productArrayList);
@@ -54,7 +53,7 @@ public class Activity_UpdateProduct_Admin extends AppCompatActivity {
         addEvent();
     }
 
-    void loadDataLV(ArrayList<Product> productArrayList)
+    void loadDataLV(ArrayList<Products> productArrayList)
     {
         customAdapter = new CustomAdapterListViewFragment_Product(Activity_UpdateProduct_Admin.this,
                 R.layout.layout_custom_adapter_lv_fragment_product, productArrayList);
@@ -85,7 +84,7 @@ public class Activity_UpdateProduct_Admin extends AppCompatActivity {
                     Toast.makeText(Activity_UpdateProduct_Admin.this, "Please enter product code!!!", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                Product productResult = productHandler.returnResultForRearch(searchID);
+                Products productResult = productHandler.returnResultForSearch(searchID);
                 if (productResult == null)
                 {
                     Toast.makeText(Activity_UpdateProduct_Admin.this, "Product ID does not exist!!!", Toast.LENGTH_SHORT).show();

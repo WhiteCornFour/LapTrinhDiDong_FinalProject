@@ -97,26 +97,21 @@ public class Activity_Register extends AppCompatActivity {
                 String comfpass = edtPassComfReg.getText().toString();
                 Boolean kq = validateInputs(name, pass, comfpass, mail, sdt);
 
-                if (kq.equals(true))
-                {
-                    for (int i  = 0; i < customerArrayList.size(); i++)
-                    {
-                        if(customerArrayList.get(i).getPhoneCustomer().equals(sdt) ||
-                                customerArrayList.get(i).getEmailCustomer().equals(mail))
-                        {
+                if (kq.equals(true)) {
+                    for (int i = 0; i < customerArrayList.size(); i++) {
+                        if (customerArrayList.get(i).getPhoneCustomer().equals(sdt) ||
+                                customerArrayList.get(i).getEmailCustomer().equals(mail)) {
                             Toast.makeText(Activity_Register.this, "This phone number or email is already in use!!!",
                                     Toast.LENGTH_SHORT).show();
                             break;
-                        }else
-                        {
-                            Customer c = new Customer(id , name, mail, sdt, pass);
+                        } else {
+                            Customer c = new Customer(id, name, mail, sdt, pass);
                             customerHandler.insertRecordIntoCustomerTable(c);
                             resetEdt();
                             Toast.makeText(Activity_Register.this, "Registered successfully!!!", Toast.LENGTH_LONG).show();
                         }
+                    }
                 }
-
-
             }
         });
     }

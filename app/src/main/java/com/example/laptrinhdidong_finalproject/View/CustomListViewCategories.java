@@ -1,6 +1,8 @@
 package com.example.laptrinhdidong_finalproject.View;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -55,11 +57,12 @@ public class CustomListViewCategories extends BaseAdapter {
         }
 
         ProductCategories category = arrayList.get(position);
-        holder.tvCategoryID.setText(category.getCategoryID());
-        holder.tvCategoryName.setText(category.getCategoryName());
+        holder.tvCategoryID.setText(category.getIdCategory());
+        holder.tvCategoryName.setText(category.getNameCategory());
 
-        if (category.getCategoryImage() != null) {
-            holder.imgCategory.setImageBitmap(category.getCategoryImage());
+        if (category.getImageCategory() != null) {
+            Bitmap bitmap = BitmapFactory.decodeByteArray(category.getImageCategory(), 0, category.getImageCategory().length);
+            holder.imgCategory.setImageBitmap(bitmap);
         } else {
             holder.imgCategory.setImageResource(R.drawable.empty_img); // set a placeholder image
         }

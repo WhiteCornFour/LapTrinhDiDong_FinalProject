@@ -20,7 +20,10 @@
             android:exported="false" />
 
         <activity
-            android:name=".View.Activity_Login_Customer"
+            android:name=".View.Activity_Deleting_ProductCategories"
+            android:exported="false" />
+
+        <activity android:name=".View.Detail_Deleting_ProductCategories"
             android:exported="false" />
 
         <activity
@@ -46,7 +49,7 @@
             android:name=".View.Activity_MainPaige_Admin"
             android:exported="false" />
         <activity
-            android:name=".View.Activity_Deleting_ProductCategories"
+            android:name=".View.Activity_Login_Customer"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

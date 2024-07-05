@@ -1,5 +1,6 @@
 package com.example.laptrinhdidong_finalproject.Cotroller;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -89,6 +90,28 @@ public class ProductsHandler extends SQLiteOpenHelper {
         sqLiteDatabase.close();
     }
 
+    @SuppressLint("Range")
+    public Products returnResultForSearch(String productID) {
+        Products product = null;
+        SQLiteDatabase sqLiteDatabase = SQLiteDatabase.openDatabase(PATH, null, SQLiteDatabase.OPEN_READONLY);
+        String sql = "SELECT * FROM " + TABLE_NAME + " WHERE " + idProduct + " = productID";
+        Cursor cursor = sqLiteDatabase.rawQuery(sql, null);
+
+        if (cursor != null) {
+            if (cursor.moveToFirst()) {
+                product = new Products();
+                product.setIdProduct(cursor.getString(0));
+                product.setIdCategory(cursor.getString(1));
+                product.setNameProduct(cursor.getString(2));
+                product.setDescriptionProduct(cursor.getString(3));
+                product.setImageProduct(cursor.getBlob(4));
+                product.setInitialPrice(cursor.getFloat(5));
+            }
+            cursor.close();
+        }
+        sqLiteDatabase.close();
+        return product;
+    }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {

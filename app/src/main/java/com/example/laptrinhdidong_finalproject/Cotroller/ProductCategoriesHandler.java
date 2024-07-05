@@ -4,6 +4,8 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 
 import androidx.annotation.Nullable;
 
@@ -50,6 +52,16 @@ public class ProductCategoriesHandler extends SQLiteOpenHelper {
         cursor.close();
         sqLiteDatabase.close();
         return productCategoriesArrayList;
+    }
+
+
+    public void insertNewData(ProductCategories category){
+        SQLiteDatabase sqLiteDatabase = SQLiteDatabase.openDatabase(PATH, null, SQLiteDatabase.OPEN_READWRITE);
+        String insertSQL = "INSERT INTO ProductCategories VALUES " +
+                "(" + "'" + category.getIdCategory() + "','" + category.getNameCategory() + "', '" + category.getDescriptionCategory() + "', '" + category.getImageCategory()+")";
+        sqLiteDatabase.execSQL(insertSQL);
+        sqLiteDatabase.close();
+
     }
 
     public void deleteProductCarte(String idCategory) {

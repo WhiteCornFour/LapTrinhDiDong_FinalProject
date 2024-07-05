@@ -12,12 +12,12 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.example.laptrinhdidong_finalproject.Model.Product;
+import com.example.laptrinhdidong_finalproject.Model.Products;
 import com.example.laptrinhdidong_finalproject.R;
+import com.example.laptrinhdidong_finalproject.View.Activity_Deleting_Products;
 import com.example.laptrinhdidong_finalproject.View.Activity_UpdateProduct_Admin;
 import com.example.laptrinhdidong_finalproject.View.CustomAdapterListViewFragment_Product;
 
-import java.io.InputStream;
 import java.util.ArrayList;
 
 public class Fragment_ProductManagement extends Fragment {
@@ -37,18 +37,18 @@ public class Fragment_ProductManagement extends Fragment {
     Button btnInsertProduct, btnUpdateProduct, btnDeleteProduct;
     ListView lvProductManagement;
 
-    ArrayList<Product> productArrayList = new ArrayList<>();
+    ArrayList<Products> productArrayList = new ArrayList<>();
 
     CustomAdapterListViewFragment_Product customAdapter;
 
-    com.example.laptrinhdidong_finalproject.Cotroller.ProductHandler productHandler;
+    com.example.laptrinhdidong_finalproject.Cotroller.ProductsHandler productHandler;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.layout_show_funtion_product_management, container, false);
         addControl(view);
-        productHandler = new com.example.laptrinhdidong_finalproject.Cotroller.ProductHandler(getContext(), DB_NAME, null, DB_VERSION);
+        productHandler = new com.example.laptrinhdidong_finalproject.Cotroller.ProductsHandler(getContext(), DB_NAME, null, DB_VERSION);
         productArrayList = productHandler.loadAllDataOfProducts();
         customAdapter = new CustomAdapterListViewFragment_Product(getContext(),
                 R.layout.layout_custom_adapter_lv_fragment_product, productArrayList);
@@ -66,10 +66,19 @@ public class Fragment_ProductManagement extends Fragment {
 
     void addEvent()
     {
+
         btnUpdateProduct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getContext(), Activity_UpdateProduct_Admin.class);
+                startActivity(intent);
+            }
+        });
+
+        btnDeleteProduct.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(), Activity_Deleting_Products.class);
                 startActivity(intent);
             }
         });
