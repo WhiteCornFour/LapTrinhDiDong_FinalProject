@@ -62,6 +62,24 @@ public class CustomerHandler extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL(sql1);
         sqLiteDatabase.close();
     }
+
+    public boolean validateLogin(String username, String password) {
+        SQLiteDatabase db = SQLiteDatabase.openDatabase(PATH, null, SQLiteDatabase.OPEN_READONLY);
+        String sql = "SELECT COUNT(*) FROM " + TABLE_NAME + " WHERE " + nameCustomer + " = '" + username + "' AND " + passwordCustomer + " = '" + password + "'";
+        Cursor cursor = db.rawQuery(sql, null);
+
+        boolean isValid = false;
+        if (cursor.moveToFirst()) {
+            int count = cursor.getInt(0);
+            isValid = (count > 0);
+        }
+        Log.d("SQL_COUNT_RESULT", sql);
+        cursor.close();
+        db.close();
+
+        return isValid;
+    }
+
     public ArrayList<Customer> loadAllDataOfCustomer()
     {
         ArrayList<Customer> customerArrayList = new ArrayList<>();
@@ -116,6 +134,7 @@ public class CustomerHandler extends SQLiteOpenHelper {
         //Log.d("Pass", resultPass);
         return resultPass;
     }
+
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
 

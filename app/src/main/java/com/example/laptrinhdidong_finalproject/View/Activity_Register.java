@@ -95,7 +95,9 @@ public class Activity_Register extends AppCompatActivity {
                 String sdt = edtPhoneNumberReg.getText().toString();
                 String pass = edtPassReg.getText().toString();
                 String comfpass = edtPassComfReg.getText().toString();
+
                 Boolean kq = validateInputs(name, pass, comfpass, mail, sdt);
+
                 if (kq.equals(true))
                 {
                     for (int i  = 0; i < customerArrayList.size(); i++)
@@ -115,6 +117,7 @@ public class Activity_Register extends AppCompatActivity {
                         }
                     }
                 }
+
 
             }
         });
