@@ -95,14 +95,16 @@ public class Activity_Login_Customer extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(Activity_Login_Customer.this, Activity_Register.class);
                 startActivity(intent);
+                finish();
             }
         });
 
         tvForgetPasswordLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Activity_Login_Customer.this, MainActivity.class);
+                Intent intent = new Intent(Activity_Login_Customer.this, Activity_ForgotPassword_Customer.class);
                 startActivity(intent);
+                finish();
             }
         });
         tvLoginAD.setOnClickListener(new View.OnClickListener() {
@@ -110,6 +112,7 @@ public class Activity_Login_Customer extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(Activity_Login_Customer.this, Activity_Login_Admin.class);
                 startActivity(intent);
+                finish();
             }
         });
     }

@@ -3,12 +3,16 @@ package com.example.laptrinhdidong_finalproject.View;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.laptrinhdidong_finalproject.Cotroller.AdminHandler;
 import com.example.laptrinhdidong_finalproject.R;
 
 import java.io.BufferedReader;
@@ -20,108 +24,83 @@ import java.io.OutputStreamWriter;
 
 public class Activity_Login_Admin extends Activity {
 
-    EditText edtUSA, edtPWA;
-    Button btnLoginA;
-    String filename = "usa_pwa.txt";
-    protected long backpressTime;
+    private static final String DB_NAME = "drinkingmanager";
+    private static final int DB_VERSION = 1;
+
+    private static final String TABLE_NAME = "Admin";
+    private static final String adminID = "AdminID";
+    private static final String adminName = "AdminName";
+    private static final String loginAccount = "LoginAccount";
+    private static final String loginPassword = "LoginPassword";
+    private static final String PATH = "/data/data/com.example.laptrinhdidong_finalproject/database/drinkingmanager.db";
+
+    AdminHandler adminHandler;
+
+    SQLiteDatabase sqLiteDatabase;
+    EditText edtAccAD, edtPassAD;
+    Button btnLoginAD;
+    TextView tvBackToLoginCustomer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_dangnhap_admin);
-
         addControl();
-        addEvent();
+        adminHandler = new AdminHandler(Activity_Login_Admin.this, DB_NAME, null, DB_VERSION);
 
-        try {
-            // Tạo thông tin đăng nhập ban đầu nếu tệp chưa tồn tại
-            saveCredentials("admin", "123", filename);
-            saveCredentials("admin2", "321", filename);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        addEvent();
     }
 
     void addControl() {
-        edtUSA = findViewById(R.id.edtUSA);
-        edtPWA = findViewById(R.id.edtPWA);
-        btnLoginA = findViewById(R.id.btnLoginA);
+        edtAccAD = (EditText) findViewById(R.id.edtAccAD);
+        edtPassAD = (EditText) findViewById(R.id.edtPassAD);
+        btnLoginAD = (Button) findViewById(R.id.btnLoginAD);
+        tvBackToLoginCustomer = (TextView) findViewById(R.id.tvBackToLoginCustomer);
     }
 
     void addEvent() {
-        btnLoginA.setOnClickListener(new View.OnClickListener() {
+        tvBackToLoginCustomer.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                String username = edtUSA.getText().toString().trim();
-                String password = edtPWA.getText().toString().trim();
-
-                String loginMessage = validateLogin(username, password, filename);
-                Toast.makeText(Activity_Login_Admin.this, loginMessage, Toast.LENGTH_SHORT).show();
-
-                if (loginMessage.equals("Login successful")) {
-                    // Chuyển sang Activity_TrangChu_Admin và truyền tên đăng nhập
-                    Intent intent = new Intent(Activity_Login_Admin.this, Activity_MainPaige_Admin.class);
-                    intent.putExtra("USERNAME", username);
-                    startActivity(intent);
-                    finish(); // Đóng Activity hiện tại sau khi chuyển trang
-                }
+            public void onClick(View view) {
+                Intent intent = new Intent(Activity_Login_Admin.this,
+                        Activity_Login_Customer.class);
+                startActivity(intent);
+                finish();
             }
         });
-
-        backpressTime = 0;
-    }
-
-    @Override
-    public void onBackPressed() {
-        if (backpressTime + 2000 > System.currentTimeMillis()) {
-            super.onBackPressed();
-            return;
-        } else {
-            Toast.makeText(this, "Press one more time for back !", Toast.LENGTH_SHORT).show();
-        }
-        backpressTime = System.currentTimeMillis();
-    }
-
-    String validateLogin(String username, String password, String fileName) {
-        try {
-            String[] credentials = readCredentials(username, fileName);
-            if (credentials != null && credentials[1].equals(password)) {
-                return "Login successful !!!";
-            } else {
-                return "Invalid username or password";
+        btnLoginAD.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String us = edtAccAD.getText().toString();
+                String pass = edtPassAD.getText().toString();
+                //if (validateInputs(us, pass)) {
+                boolean isValid = adminHandler.validateLoginAdmin(us, pass);
+                if (isValid) {
+                    Toast.makeText(Activity_Login_Admin.this, "Login success", Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(Activity_Login_Admin.this,
+                            Activity_MainPaige_Admin.class);
+                    intent.putExtra("us", us);
+                    intent.putExtra("pass", pass);
+                    startActivity(intent);
+                    finish();
+                } else {
+                    Toast.makeText(getApplicationContext(), "Invalid Account or Password", Toast.LENGTH_LONG).show();
+                }
             }
-        } catch (IOException e) {
-            e.printStackTrace();
-            return "An error occurred while reading credentials";
-        }
+            //}
+        });
     }
-
-    void saveCredentials(String username, String password, String fileName) throws IOException {
-        FileOutputStream fos = openFileOutput(fileName, Context.MODE_APPEND);
-        OutputStreamWriter osw = new OutputStreamWriter(fos);
-        osw.write(username + ";;" + password + "==\n");
-        osw.close();
-        fos.close();
-    }
-
-    String[] readCredentials(String username, String fileName) throws IOException {
-        FileInputStream fis = openFileInput(fileName);
-        InputStreamReader isr = new InputStreamReader(fis);
-        BufferedReader br = new BufferedReader(isr);
-
-        String line;
-        while ((line = br.readLine()) != null) {
-            String[] parts = line.split(";;");
-            if (parts.length == 2 && parts[0].equals(username)) {
-                String password = parts[1].replaceAll("==", "");
-                return new String[]{username, password};
-            }
+    public boolean validateInputs(String us, String pass) {
+        // Kiểm tra username có hơn 8 ký tự
+        if (us.trim().isEmpty() || us.trim().length() <= 8) {
+            Toast.makeText(this, "Account must have at least 8 letters", Toast.LENGTH_SHORT).show();
+            return false;
         }
-
-        br.close();
-        isr.close();
-        fis.close();
-
-        return null;
+        // Kiểm tra password có hơn 8 ký tự
+        if (pass.trim().isEmpty() || pass.trim().length() <= 8) {
+            Toast.makeText(this, "Password must have at least 8 letters", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        return true;
     }
 }

@@ -1,5 +1,6 @@
 package com.example.laptrinhdidong_finalproject.Cotroller;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -21,13 +22,12 @@ public class CustomerHandler extends SQLiteOpenHelper {
     private static final String DB_NAME = "drinkingmanager";
     private static final int DB_VERSION = 1;
 
-    private static final String TABLE_NAME = "Customer";
-    private static final String idCustomer = "idCustomer";
-    private static final String nameCustomer = "nameCustomer";
-    private static final String emailCustomer = "emailCustomer";
-    private static final String phoneCustomer = "phoneCustomer";
-    private static final String accountCustomer = "accountCustomer";
-    private static final String passwordCustomer = "passwordCustomer";
+    private static final String TABLE_NAME = "Customers";
+    private static final String idCustomer = "CustomerID";
+    private static final String nameCustomer = "CustomerName";
+    private static final String emailCustomer = "CustomerEmail";
+    private static final String phoneCustomer = "PhoneNumber";
+    private static final String passwordCustomer = "LoginPassword";
     private static final String PATH = "/data/data/com.example.laptrinhdidong_finalproject/database/drinkingmanager.db";
 
     public CustomerHandler(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
@@ -36,28 +36,28 @@ public class CustomerHandler extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        sqLiteDatabase = SQLiteDatabase.openDatabase(PATH, null, SQLiteDatabase.CREATE_IF_NECESSARY);
-        String sql = "CREATE TABLE IF NOT EXISTS " + TABLE_NAME +
-                "(" +
-                idCustomer + " TEXT NOT NULL UNIQUE, " +
-                nameCustomer + " TEXT NOT NULL," +
-                emailCustomer + " TEXT NOT NULL," +
-                phoneCustomer + " INTEGER NOT NULL UNIQUE," +
-                accountCustomer + " TEXT NOT NULL," +
-                passwordCustomer + " TEXT NOT NULL," +
-                " PRIMARY KEY(" + idCustomer + ")" +
-                ")";
-        sqLiteDatabase.execSQL(sql);
-        sqLiteDatabase.close();
+//        sqLiteDatabase = SQLiteDatabase.openDatabase(PATH, null, SQLiteDatabase.CREATE_IF_NECESSARY);
+//        String sql = "CREATE TABLE IF NOT EXISTS " + TABLE_NAME +
+//                "(" +
+//                idCustomer + " TEXT NOT NULL UNIQUE, " +
+//                nameCustomer + " TEXT NOT NULL," +
+//                emailCustomer + " TEXT NOT NULL," +
+//                phoneCustomer + " INTEGER NOT NULL UNIQUE," +
+//                accountCustomer + " TEXT NOT NULL," +
+//                passwordCustomer + " TEXT NOT NULL," +
+//                " PRIMARY KEY(" + idCustomer + ")" +
+//                ")";
+//        sqLiteDatabase.execSQL(sql);
+//        sqLiteDatabase.close();
     }
 
     public void insertRecordIntoCustomerTable(Customer c)
     {
         SQLiteDatabase sqLiteDatabase = SQLiteDatabase.openDatabase(PATH, null, SQLiteDatabase.CREATE_IF_NECESSARY);
         String sql1 = "INSERT OR IGNORE INTO " + TABLE_NAME + " ("
-                + idCustomer + ", " + nameCustomer + ", "+ emailCustomer +", "+ phoneCustomer +", "+ accountCustomer +", "+ passwordCustomer +") " +
+                + idCustomer + ", " + nameCustomer + ", "+ emailCustomer +", "+ phoneCustomer +", "+ passwordCustomer +") " +
                 "Values "
-                + "('" + c.getIdCustomer() + "','" + c.getNameCustomer() + "', '"+ c.getEmailCustomer() +"','"+ c.getPhoneCustomer() +"', '"+ c.getAccountCustomer() +"', '"+ c.getPasswordCustomer() +"')";
+                + "('" + c.getIdCustomer() + "','" + c.getNameCustomer() + "', '"+ c.getEmailCustomer() +"','"+ c.getPhoneCustomer() +"', '"+ c.getPasswordCustomer() +"')";
         //Log.d("SQL_INSERT_STATEMENT", sql1);
         sqLiteDatabase.execSQL(sql1);
         sqLiteDatabase.close();
@@ -92,12 +92,47 @@ public class CustomerHandler extends SQLiteOpenHelper {
             c.setNameCustomer(cursor.getString(1));
             c.setEmailCustomer(cursor.getString(2));
             c.setPhoneCustomer(cursor.getString(3));
-            c.setAccountCustomer(cursor.getString(4));
-            c.setPasswordCustomer(cursor.getString(5));
+            c.setPasswordCustomer(cursor.getString(4));
             customerArrayList.add(c);
         }while (cursor.moveToNext());
         sqLiteDatabase.close();
         return customerArrayList;
+    }
+
+    public boolean verifyPhoneNumberAndSendOTP(String phoneNumber)
+    {
+        SQLiteDatabase sqLiteDatabase = SQLiteDatabase.openDatabase(PATH, null, SQLiteDatabase.CREATE_IF_NECESSARY);
+        String sql = "SELECT COUNT(*) FROM " + TABLE_NAME + " WHERE " + phoneCustomer + " = '" + phoneNumber + "'";
+        Cursor cursor = sqLiteDatabase.rawQuery(sql, null);
+
+        boolean phoneNumberExists = false;
+        if (cursor.moveToFirst()) {
+            int count = cursor.getInt(0);
+            phoneNumberExists = (count > 0);
+        }
+        cursor.close();
+        sqLiteDatabase.close();
+
+        return phoneNumberExists;
+    }
+
+    @SuppressLint("Range")
+    public String returnPassWord(String phoneNumber)
+    {
+        String resultPass = "The results will be displayed here";
+        SQLiteDatabase sqLiteDatabase = SQLiteDatabase.openDatabase(PATH, null, SQLiteDatabase.CREATE_IF_NECESSARY);
+        String sql = "SELECT LoginPassword FROM " + TABLE_NAME + " WHERE " + phoneCustomer + " = '" + phoneNumber + "'";
+        Cursor cursor = sqLiteDatabase.rawQuery(sql, null);
+
+        if (cursor.moveToFirst()) {
+            resultPass = cursor.getString(cursor.getColumnIndex(passwordCustomer));
+        }
+
+        cursor.close();
+        sqLiteDatabase.close();
+
+        //Log.d("Pass", resultPass);
+        return resultPass;
     }
 
     @Override

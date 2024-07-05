@@ -2,26 +2,29 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <uses-permission android:name="android.permission.SEND_SMS"/>
-    <uses-permission android:name="android.permission.RECEIVE_SMS"/>
-    <uses-permission android:name="android.permission.READ_SMS"/>
+    <uses-permission android:name="android.permission.SEND_SMS" />
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />
+    <uses-permission android:name="android.permission.READ_SMS" />
 
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/backgr1"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/Theme.LapTrinhDiDong_FinalProject"
         tools:targetApi="31">
+        <activity
+            android:name=".View.Activity_UpdateProduct_Admin"
+            android:exported="false" />
         <activity
             android:name=".View.Activity_OTPGetPassword_Customer"
             android:exported="false" />
         <activity
             android:name=".View.Activity_ForgotPassword_Customer"
             android:exported="false" />
-      <activity
+        <activity
             android:name=".View.MainActivity"
             android:exported="false" />
         <activity
@@ -29,10 +32,10 @@
             android:exported="false" />
         <activity
             android:name=".View.Activity_Login_Admin"
-            android:exported="false"/>
+            android:exported="false" />
         <activity
             android:name=".View.Activity_MainPaige_Admin"
-            android:exported="false"/>
+            android:exported="false" />
         <activity
             android:name=".View.Activity_Login_Customer"
             android:exported="true">
