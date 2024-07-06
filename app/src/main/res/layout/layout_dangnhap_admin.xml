@@ -1,70 +1,113 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
 
-    <!-- Background Image -->
-    <ImageView
-        android:id="@+id/imgbackground"
+    <TextView
+        android:id="@+id/textView19"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scaleType="centerCrop"
-        android:src="@drawable/background" />
+        android:layout_height="70dp"
+        android:fontFamily="@font/lobster"
+        android:textSize="20pt"
+        android:textColor="@color/dark_brown"
+        android:gravity="center"
+        android:layout_marginTop="90dp"
+        android:text="Thirst Quencher" />
 
-    <!-- Login Layout -->
-    <LinearLayout
-        android:id="@+id/layout_login"
+    <TextView
+        android:id="@+id/textView20"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="16dp"
-        android:layout_centerInParent="true"
-        android:background="#33000000"
-        android:elevation="4dp">
+        android:fontFamily="@font/lobster"
+        android:textColor="@color/dark_brown"
+        android:textSize="11pt"
+        android:gravity="center"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="20dp"
+        android:text="Login for Admin" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:layout_marginLeft="20dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="30dp">
+
+        <TextView
+            android:id="@+id/textView21"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="9pt"
+            android:textColor="@color/dark_beige"
+            android:layout_gravity="center"
+            android:text="Your account:" />
 
         <EditText
-            android:id="@+id/edtUSA"
-            android:layout_width="match_parent"
+            android:id="@+id/edtAccAD"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:drawableLeft="@drawable/customer_man_user_account_profile_icon"
-            android:drawablePadding="8dp"
-            android:hint="Username"
-            android:inputType="text"
-            android:minHeight="48dp"
-            android:paddingStart="16dp"
-            android:paddingEnd="16dp"
-            android:textColor="#FFFFFF"
-
-            android:textColorHint="@color/white" />
-
-        <EditText
-            android:id="@+id/edtPWA"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="16dp"
-            android:drawableLeft="@drawable/key_icon"
-            android:drawablePadding="8dp"
-            android:hint="Password"
-            android:inputType="textPassword"
-            android:minHeight="48dp"
-            android:paddingStart="16dp"
-            android:paddingEnd="16dp"
-            android:textColor="#FFFFFF"
-            android:textColorHint="@color/white" />
-
-        <Button
-            android:id="@+id/btnLoginA"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Login"
-            android:textColor="#ffffff"
-            android:background="@color/teal_200"
-            android:layout_marginTop="16dp" />
-
+            android:layout_weight="1"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:layout_marginLeft="20dp"
+            android:textColor="@color/dark_brown" />
     </LinearLayout>
 
-</RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="10dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/textView22"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="9pt"
+            android:textColor="@color/dark_beige"
+            android:layout_gravity="center"
+            android:text="Your password:" />
+
+        <EditText
+            android:id="@+id/edtPassAD"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:layout_marginLeft="10dp"
+            android:textColor="@color/dark_brown" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnLoginAD"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="30dp"
+        android:backgroundTint="@color/beige"
+        android:text="Login"
+        android:textSize="8pt"
+        android:textColor="@color/white"  />
+
+    <TextView
+        android:id="@+id/tvBackToLoginCustomer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:textColor="@color/dark_brown"
+        android:textSize="7pt"
+        android:text="Back to Customer Login." />
+
+</LinearLayout>

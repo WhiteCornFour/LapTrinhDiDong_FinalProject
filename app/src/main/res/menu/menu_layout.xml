@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group>
+        <item
+            android:id="@+id/warehouseManagement"
+            android:title="Warehouse Management"
+            android:icon="@drawable/baseline_store_24">
+            <menu>
+                <item
+                    android:id="@+id/revenue"
+                    android:title="Revenue"
+                    android:icon="@drawable/arrow"
+                    />
+                <item
+                    android:id="@+id/manageProductCatalog"
+                    android:title="Manage product categories"
+                    android:icon="@drawable/arrow"
+                    />
+                <item
+                    android:id="@+id/productManagement"
+                    android:title="Product management"
+                    android:icon="@drawable/arrow"
+                    />
+            </menu>
+        </item>
+    </group>
+
+    <group>
+        <item
+            android:id="@+id/acc"
+            android:title="Account"
+            android:icon="@drawable/customer_man_user_account_profile_icon">
+            <menu>
+                <item
+                    android:id="@+id/logOut"
+                    android:title="Log out"
+                    android:icon="@drawable/baseline_logout_24"/>
+            </menu>
+        </item>
+    </group>
+
+</menu>
