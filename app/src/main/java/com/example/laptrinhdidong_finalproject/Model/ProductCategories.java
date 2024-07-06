@@ -25,14 +25,6 @@ public class ProductCategories implements Serializable {
         this.nameCategory = nameCategory;
     }
 
-//    public String getDescriptionCategory() {
-//        return descriptionCategory;
-//    }
-//
-//    public void setDescriptionCategory(String descriptionCategory) {
-//        this.descriptionCategory = descriptionCategory;
-//    }
-
     public byte[] getImageCategory() {
         return imageCategory;
     }

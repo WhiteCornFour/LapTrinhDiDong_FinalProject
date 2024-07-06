@@ -4,6 +4,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.database.sqlite.SQLiteStatement;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
@@ -13,15 +14,14 @@ import com.example.laptrinhdidong_finalproject.Model.Customer;
 import com.example.laptrinhdidong_finalproject.Model.ProductCategories;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class ProductCategoriesHandler extends SQLiteOpenHelper {
     private static final String DB_NAME = "drinkingmanager";
     private static final int DB_VERSION = 1;
-
     private static final String TABLE_NAME = "ProductCategories";
     private static final String idCategory = "CategoryID";
     private static final String nameCategory = "CategoryName";
-    private static final String descriptionCategory = "CategoryDescription";
     private static final String imageCategory = "CategoryImage";
     private static final String PATH = "/data/data/com.example.laptrinhdidong_finalproject/database/drinkingmanager.db";
 
@@ -34,7 +34,6 @@ public class ProductCategoriesHandler extends SQLiteOpenHelper {
 
     }
 
-
     public ArrayList<ProductCategories> loadAllDataOfProductCategories()
     {
         ArrayList<ProductCategories> productCategoriesArrayList = new ArrayList<>();
@@ -45,7 +44,6 @@ public class ProductCategoriesHandler extends SQLiteOpenHelper {
             ProductCategories pc = new ProductCategories();
             pc.setIdCategory(cursor.getString(0));
             pc.setNameCategory(cursor.getString(1));
-//            pc.setDescriptionCategory(cursor.getString(2));
             pc.setImageCategory(cursor.getBlob(2));
             productCategoriesArrayList.add(pc);
         }while (cursor.moveToNext());
@@ -64,11 +62,10 @@ public class ProductCategoriesHandler extends SQLiteOpenHelper {
 
     public void insertNewData(ProductCategories category){
         SQLiteDatabase sqLiteDatabase = SQLiteDatabase.openDatabase(PATH, null, SQLiteDatabase.OPEN_READWRITE);
-//        String insertSQL = "INSERT INTO ProductCategories VALUES " + "(" + "'" + category.getIdCategory() + "','" + category.getNameCategory() + "', '" + category.getDescriptionCategory() + "', '" + category.getImageCategory()+")";
-        String insertSQL = "INSERT INTO ProductCategories VALUES " + "(" + "'" + category.getIdCategory() + "','" + category.getNameCategory() + "'," + category.getImageCategory()+")";
-        sqLiteDatabase.execSQL(insertSQL);
+//        String insertSQL = "INSERT INTO ProductCategories VALUES " + "(" + "'" + category.getIdCategory() + "','" + category.getNameCategory() + "'," + category.getImageCategory() +")";
+        String insertSQL = "INSERT INTO " + TABLE_NAME + " (" +  idCategory + "," + nameCategory + "," +  imageCategory + ") VALUES (?, ?, ?)";
+        sqLiteDatabase.execSQL(insertSQL, new Object[]{category.getIdCategory(), category.getNameCategory(), category.getImageCategory()});
         sqLiteDatabase.close();
-
     }
 
     public void deleteProductCarte(String idCategory) {
