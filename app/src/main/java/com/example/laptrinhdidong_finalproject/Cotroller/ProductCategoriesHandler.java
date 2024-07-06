@@ -45,8 +45,8 @@ public class ProductCategoriesHandler extends SQLiteOpenHelper {
             ProductCategories pc = new ProductCategories();
             pc.setIdCategory(cursor.getString(0));
             pc.setNameCategory(cursor.getString(1));
-            pc.setDescriptionCategory(cursor.getString(2));
-            pc.setImageCategory(cursor.getBlob(3));
+//            pc.setDescriptionCategory(cursor.getString(2));
+            pc.setImageCategory(cursor.getBlob(2));
             productCategoriesArrayList.add(pc);
         }while (cursor.moveToNext());
         cursor.close();
@@ -64,8 +64,8 @@ public class ProductCategoriesHandler extends SQLiteOpenHelper {
 
     public void insertNewData(ProductCategories category){
         SQLiteDatabase sqLiteDatabase = SQLiteDatabase.openDatabase(PATH, null, SQLiteDatabase.OPEN_READWRITE);
-        String insertSQL = "INSERT INTO ProductCategories VALUES " +
-                "(" + "'" + category.getIdCategory() + "','" + category.getNameCategory() + "', '" + category.getDescriptionCategory() + "', '" + category.getImageCategory()+")";
+//        String insertSQL = "INSERT INTO ProductCategories VALUES " + "(" + "'" + category.getIdCategory() + "','" + category.getNameCategory() + "', '" + category.getDescriptionCategory() + "', '" + category.getImageCategory()+")";
+        String insertSQL = "INSERT INTO ProductCategories VALUES " + "(" + "'" + category.getIdCategory() + "','" + category.getNameCategory() + "'," + category.getImageCategory()+")";
         sqLiteDatabase.execSQL(insertSQL);
         sqLiteDatabase.close();
 

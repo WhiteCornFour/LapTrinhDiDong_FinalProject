@@ -15,6 +15,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -39,7 +40,7 @@ public class Fragment_ManageProductCatalog extends Fragment {
     ListView lvCategories;
     Button btnAddCategory, btnConfirmAddCategory, btnCancelAdding, btnDeleteCategory;
     ImageButton btnUploadCategoryImage;
-    EditText edtCategoryID, edtCategoryName, edtDescription;
+    EditText edtCategoryID, edtCategoryName, edtCategoryDescription;
     ImageView imgAddedCategory;
     ArrayList<ProductCategories> categoriesArrayList = new ArrayList<>();
     CustomListViewCategories customListViewCategories;
@@ -58,10 +59,9 @@ public class Fragment_ManageProductCatalog extends Fragment {
     }
 
     void addControl(View view) {
-        lvCategories = (ListView) view.findViewById(R.id.lvCategories);
-        btnAddCategory = (Button) view.findViewById(R.id.btnAddCategory);
-        btnDeleteCategory = (Button) view.findViewById(R.id.btnDeleteCategory);
-        edtDescription = (EditText) view.findViewById(R.id.edtDescription);
+        lvCategories = view.findViewById(R.id.lvCategories);
+        btnAddCategory = view.findViewById(R.id.btnAddCategory);
+        btnDeleteCategory = view.findViewById(R.id.btnDeleteCategory);
     }
     void addEvent()
     {
@@ -104,37 +104,48 @@ public class Fragment_ManageProductCatalog extends Fragment {
 
         addCategoryDialog.getWindow().setLayout(width, height); //Thiết lập kích thước hiển thị trên màn hình cho dialog
         addCategoryDialog.show();
-
+        addDialogEvent(addCategoryDialog, customView);
+    }
+    void addDialogEvent(Dialog addCategoryDialog, View customView)
+    {
         // Tham chiếu đến button trong dialog thông qua customView
         btnConfirmAddCategory = customView.findViewById(R.id.btnConfirmAddCategory);
         btnCancelAdding = customView.findViewById(R.id.btnCancelAdding);
         btnUploadCategoryImage = customView.findViewById(R.id.btnUploadCategoryImage);
         edtCategoryID = customView.findViewById(R.id.edtCategoryID);
         edtCategoryName = customView.findViewById(R.id.edtCategoryName);
+        edtCategoryDescription = customView.findViewById(R.id.edtCategoryDescription);
         imgAddedCategory = customView.findViewById(R.id.imgAddedCategory);
 
-//        btnUploadCategoryImage.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//            }
-//        });
+        btnUploadCategoryImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                startActivity(intent);
+            }
+        });
         btnConfirmAddCategory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String categoryID = edtCategoryID.getText().toString();
                 String categoryName = edtCategoryName.getText().toString();
-                String description = edtDescription.getText().toString();
+                String description = edtCategoryDescription.getText().toString();
 
-//                Bitmap categoryImage = Utils.getBitMapFromDrawable(customView.getContext(), R.drawable.empty_img);
-                ProductCategories category = new ProductCategories(categoryID, categoryName, description,null);
-                categoryHandler.insertNewData(category);
+                if(!categoryID.isEmpty() && !categoryName.isEmpty())
+                {
+                    ProductCategories category = new ProductCategories(categoryID, categoryName, null);
+                    categoryHandler.insertNewData(category);
 
-                //Load lại data và set lại adapter
-                categoriesArrayList = categoryHandler.loadAllDataOfProductCategories();
-                customListViewCategories = new CustomListViewCategories(getContext(),
-                        R.layout.layout_gridview_categorymanager, categoriesArrayList);
-                lvCategories.setAdapter(customListViewCategories);
-                addCategoryDialog.dismiss();
+                    //Load lại data và set lại adapter
+                    categoriesArrayList = categoryHandler.loadAllDataOfProductCategories();
+                    customListViewCategories = new CustomListViewCategories(getContext(),
+                            R.layout.layout_gridview_categorymanager, categoriesArrayList);
+                    lvCategories.setAdapter(customListViewCategories);
+                    addCategoryDialog.dismiss();
+                }
+                else {
+                    Toast.makeText(getActivity(), "Null information!", Toast.LENGTH_SHORT).show();
+                }
             }
         });
         btnCancelAdding.setOnClickListener(new View.OnClickListener() {
@@ -143,7 +154,5 @@ public class Fragment_ManageProductCatalog extends Fragment {
                 addCategoryDialog.dismiss();
             }
         });
-
-
     }
 }
