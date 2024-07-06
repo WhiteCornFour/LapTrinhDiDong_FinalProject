@@ -113,6 +113,7 @@ public class Detail_Deleting_ProductCategories extends AppCompatActivity {
             public void onClick(View v) {
                 AlertDialog alertDialog = createAlertDialogDeleteProductsCate();
                 alertDialog.show();
+                setupProductListView();
             }
         });
 
@@ -164,8 +165,9 @@ public class Detail_Deleting_ProductCategories extends AppCompatActivity {
         }
         checkedStates = new boolean[productsArrayList.size()];
         adapterListViewProducts.notifyDataSetChanged();
+        setupProductListView();
         updateButtonStates();
-        refreshActivity();
+//        refreshActivity();
     }
 
 
@@ -245,11 +247,9 @@ public class Detail_Deleting_ProductCategories extends AppCompatActivity {
         }
     }
 
-    private void refreshActivity() {
-        Intent intent = getIntent();
-        finish();
-        startActivity(intent);
-    }
-
-
+//    private void refreshActivity() {
+//        Intent intent = getIntent();
+//        finish();
+//        startActivity(intent);
+//    }
 }

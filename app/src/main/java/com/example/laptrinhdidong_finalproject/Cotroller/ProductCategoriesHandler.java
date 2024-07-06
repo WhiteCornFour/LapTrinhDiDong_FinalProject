@@ -54,6 +54,13 @@ public class ProductCategoriesHandler extends SQLiteOpenHelper {
         return productCategoriesArrayList;
     }
 
+    public ArrayList<String> importSpinnerData(ArrayList<ProductCategories> categories) {
+        ArrayList<String> spinnerData = new ArrayList<>();
+        for (ProductCategories category : categories) {
+            spinnerData.add(category.getIdCategory() + " - " + category.getNameCategory());
+        }
+        return spinnerData;
+    }
 
     public void insertNewData(ProductCategories category){
         SQLiteDatabase sqLiteDatabase = SQLiteDatabase.openDatabase(PATH, null, SQLiteDatabase.OPEN_READWRITE);

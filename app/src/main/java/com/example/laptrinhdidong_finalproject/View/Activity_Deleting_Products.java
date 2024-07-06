@@ -116,7 +116,6 @@ public class Activity_Deleting_Products extends AppCompatActivity {
         adapterListViewProducts.notifyDataSetChanged();
         Toast.makeText(Activity_Deleting_Products.this, "Deleted selected products", Toast.LENGTH_SHORT).show();
         updateButtonStates();
-        refreshActivity();
     }
 
     private AlertDialog createAlertDialogDeleteProducts() {
@@ -127,6 +126,7 @@ public class Activity_Deleting_Products extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 deleteSelectedProducts();
+                setupProductsListView();
             }
         });
         builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
@@ -138,11 +138,6 @@ public class Activity_Deleting_Products extends AppCompatActivity {
         return builder.create();
     }
 
-    private void refreshActivity() {
-        Intent intent = getIntent();
-        finish();
-        startActivity(intent);
-    }
 
     private void updateButtonStates() {
         if (productsArrayList.isEmpty()) {
