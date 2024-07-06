@@ -129,7 +129,7 @@ public class Fragment_ManageProductCatalog extends Fragment {
             public void onClick(View v) {
                 String categoryID = edtCategoryID.getText().toString();
                 String categoryName = edtCategoryName.getText().toString();
-                String description = edtCategoryDescription.getText().toString();
+//                String description = edtCategoryDescription.getText().toString();
 
                 if(!categoryID.isEmpty() && !categoryName.isEmpty())
                 {
