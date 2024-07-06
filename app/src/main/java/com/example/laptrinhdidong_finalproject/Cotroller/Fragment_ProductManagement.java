@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.laptrinhdidong_finalproject.Model.Products;
 import com.example.laptrinhdidong_finalproject.R;
+import com.example.laptrinhdidong_finalproject.View.Activity_Adding_Products;
 import com.example.laptrinhdidong_finalproject.View.Activity_Deleting_Products;
 import com.example.laptrinhdidong_finalproject.View.Activity_UpdateProduct_Admin;
 import com.example.laptrinhdidong_finalproject.View.CustomAdapterListViewFragment_Product;
@@ -66,6 +67,13 @@ public class Fragment_ProductManagement extends Fragment {
 
     void addEvent()
     {
+        btnInsertProduct.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), Activity_Adding_Products.class);
+                startActivity(intent);
+            }
+        });
 
         btnUpdateProduct.setOnClickListener(new View.OnClickListener() {
             @Override

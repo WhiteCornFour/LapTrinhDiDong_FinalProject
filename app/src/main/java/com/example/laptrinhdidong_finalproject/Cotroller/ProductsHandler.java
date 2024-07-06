@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import androidx.annotation.Nullable;
 
@@ -23,7 +24,9 @@ public class ProductsHandler extends SQLiteOpenHelper {
     private static final String idCategory = "CategoryID";
     private static final String nameProduct = "ProductName";
     private static final String descriptionProduct = "ProductDescription";
-    private static final Float priceProduct = 0.0f;
+    private static final String priceProduct = "InitialPrice";
+
+    private static final String productImage = "ProductImage";
     private static final String PATH = "/data/data/com.example.laptrinhdidong_finalproject/database/drinkingmanager.db";
 
     public ProductsHandler(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
@@ -82,6 +85,23 @@ public class ProductsHandler extends SQLiteOpenHelper {
         sqLiteDatabase.close();
         return productsArrayList;
     }
+
+
+    public void insertProducts(Products p) {
+        SQLiteDatabase sqLiteDatabase = SQLiteDatabase.openDatabase(PATH, null, SQLiteDatabase.CREATE_IF_NECESSARY);
+        String insertSQL = "INSERT INTO " + TABLE_NAME + " (" +
+                idProduct + ", " + idCategory + ", " + nameProduct + ", " +
+                descriptionProduct + ", " + productImage + ", " + priceProduct + ") VALUES (?, ?, ?, ?, ?, ?)";
+        sqLiteDatabase.execSQL(insertSQL, new Object[]{p.getIdProduct(), p.getIdCategory(), p.getNameProduct(),
+                p.getDescriptionProduct(), p.getImageProduct(), p.getInitialPrice()});
+        // Thêm log để kiểm tra câu lệnh SQL
+        Log.d("SQL_INSERT", "Executing SQL: " + insertSQL);
+
+//        sqLiteDatabase.execSQL(insertSQL);
+        sqLiteDatabase.close();
+    }
+
+
 
     public void deleteProducts(Products pc) {
         SQLiteDatabase sqLiteDatabase = SQLiteDatabase.openDatabase(PATH, null, SQLiteDatabase.CREATE_IF_NECESSARY);
