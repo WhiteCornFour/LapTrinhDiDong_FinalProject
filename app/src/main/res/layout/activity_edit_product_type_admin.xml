@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".View.Activity_Edit_Product_Type_Admin">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:background="@color/light_beige">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="PRODUCT CATEGORY INFORMATION"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:textColor="@color/dark_brown"
+            android:layout_gravity="center_horizontal"
+            android:paddingBottom="8dp" />
+
+
+        <EditText
+            android:id="@+id/edt_category_id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="ID ProductCategory"
+            android:textColorHint="@color/brown"
+            android:padding="8dp"
+            android:background="@color/white"
+            android:visibility="visible" />
+
+
+        <EditText
+            android:id="@+id/edt_category_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Name ProductCategory"
+            android:textColorHint="@color/brown"
+            android:padding="8dp"
+            android:background="@android:color/white"
+            android:layout_marginTop="8dp" />
+
+        <EditText
+            android:id="@+id/edt_category_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Describe ProductCategory"
+            android:textColorHint="@color/brown"
+            android:padding="8dp"
+            android:background="@android:color/white"
+            android:layout_marginTop="8dp" />
+
+        <Button
+            android:id="@+id/btn_select_image"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="CHOOSE IMAGE"
+            android:backgroundTint="@color/beige"
+            android:textColor="@color/brown"
+            android:layout_marginTop="8dp"/>
+
+        <ImageView
+            android:id="@+id/img_category"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:scaleType="centerCrop"
+            android:background="@color/white"
+            android:layout_marginTop="8dp" />
+
+        <Button
+            android:id="@+id/btn_save_category"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="EDIT"
+            android:backgroundTint="@color/beige"
+            android:textColor="@color/brown"
+            android:layout_marginTop="8dp"/>
+
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/lv_product_types"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+</LinearLayout>
+
