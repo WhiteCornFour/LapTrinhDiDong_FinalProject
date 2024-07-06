@@ -59,9 +59,9 @@ public class Fragment_ManageProductCatalog extends Fragment {
     }
 
     void addControl(View view) {
-        lvCategories = (ListView) view.findViewById(R.id.lvCategories);
-        btnAddCategory = (Button) view.findViewById(R.id.btnAddCategory);
-        btnDeleteCategory = (Button) view.findViewById(R.id.btnDeleteCategory);
+        lvCategories = view.findViewById(R.id.lvCategories);
+        btnAddCategory = view.findViewById(R.id.btnAddCategory);
+        btnDeleteCategory = view.findViewById(R.id.btnDeleteCategory);
     }
     void addEvent()
     {
