@@ -16,13 +16,13 @@ import com.example.laptrinhdidong_finalproject.R;
 
 import java.util.ArrayList;
 
-public class CustomListViewCategories extends ArrayAdapter {
+public class CustomAdapter_ListView_Fragment_ProductCategories extends ArrayAdapter {
     Context context;
 
     int layoutItem;
     ArrayList<ProductCategories> arrayList;
 
-    public CustomListViewCategories(Context context, int layoutItem, ArrayList<ProductCategories> arrayList) {
+    public CustomAdapter_ListView_Fragment_ProductCategories(Context context, int layoutItem, ArrayList<ProductCategories> arrayList) {
         super(context, layoutItem, arrayList);
         this.context = context;
         this.layoutItem = layoutItem;
@@ -51,7 +51,6 @@ public class CustomListViewCategories extends ArrayAdapter {
 
         TextView tvCategoryName = convertView.findViewById(R.id.tvCategoryName);
         tvCategoryName.setText(category.getNameCategory());
-
 
         return convertView;
     }

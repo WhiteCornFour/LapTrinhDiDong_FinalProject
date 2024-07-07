@@ -18,16 +18,15 @@ import com.example.laptrinhdidong_finalproject.Model.Products;
 import com.example.laptrinhdidong_finalproject.R;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
-public class CustomAdapter_ListView_Products extends ArrayAdapter {
+public class CustomAdapter_ListView_Deleting_Products extends ArrayAdapter {
     Context context;
     int layoutItem;
     ArrayList<Products> productsArrayList = new ArrayList<>();
 
     boolean[] checkedStates;
 
-    public CustomAdapter_ListView_Products(@NonNull Context context, int layoutItem, @NonNull ArrayList<Products> productsArrayList, boolean[] checkedStates) {
+    public CustomAdapter_ListView_Deleting_Products(@NonNull Context context, int layoutItem, @NonNull ArrayList<Products> productsArrayList, boolean[] checkedStates) {
         super(context, layoutItem, productsArrayList);
         this.context = context;
         this.layoutItem = layoutItem;

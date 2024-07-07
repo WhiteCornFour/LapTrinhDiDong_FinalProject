@@ -30,7 +30,7 @@ public class Activity_Deleting_ProductCategories extends AppCompatActivity {
 
     ListView lvProductCate;
     ArrayList<ProductCategories> productCategoriesArrayList = new ArrayList<>();
-    CustomAdapter_ListView_ProductCate adapterListViewProductCate;
+    CustomAdapter_ListView_Deleting_ProductCategories adapterListViewProductCate;
     ProductCategoriesHandler productCategoriesHandler;
     SQLiteDatabase sqLiteDatabase;
 
@@ -56,7 +56,7 @@ public class Activity_Deleting_ProductCategories extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 ProductCategories pc = productCategoriesArrayList.get(position);
-                Intent intent = new Intent(Activity_Deleting_ProductCategories.this, Detail_Deleting_ProductCategories.class);
+                Intent intent = new Intent(Activity_Deleting_ProductCategories.this, Activity_Detail_Deleting_ProductCategories.class);
                 intent.putExtra("pc", pc);
                 startActivityForResult(intent, 1);
             }
@@ -66,7 +66,7 @@ public class Activity_Deleting_ProductCategories extends AppCompatActivity {
 
     private void loadProductCategories() {
         productCategoriesArrayList = productCategoriesHandler.loadAllDataOfProductCategories();
-        adapterListViewProductCate = new CustomAdapter_ListView_ProductCate(this, R.layout.layout_custom_adapter_listview_prouductcategories, productCategoriesArrayList);
+        adapterListViewProductCate = new CustomAdapter_ListView_Deleting_ProductCategories(this, R.layout.layout_custom_adapter_listview_prouductcategories, productCategoriesArrayList);
         lvProductCate.setAdapter(adapterListViewProductCate);
     }
 

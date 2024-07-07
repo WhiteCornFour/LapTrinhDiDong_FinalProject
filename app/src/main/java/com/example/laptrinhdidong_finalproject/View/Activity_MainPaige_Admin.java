@@ -19,9 +19,6 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.laptrinhdidong_finalproject.Cotroller.AdminHandler;
-import com.example.laptrinhdidong_finalproject.Cotroller.Fragment_ManageProductCatalog;
-import com.example.laptrinhdidong_finalproject.Cotroller.Fragment_ProductManagement;
-import com.example.laptrinhdidong_finalproject.Cotroller.Fragment_Revenue;
 import com.example.laptrinhdidong_finalproject.R;
 import com.google.android.material.navigation.NavigationView;
 

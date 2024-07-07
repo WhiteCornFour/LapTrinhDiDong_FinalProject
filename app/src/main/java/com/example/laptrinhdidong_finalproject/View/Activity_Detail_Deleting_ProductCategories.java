@@ -9,9 +9,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.os.DeadObjectException;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -26,7 +24,7 @@ import com.example.laptrinhdidong_finalproject.R;
 
 import java.util.ArrayList;
 
-public class Detail_Deleting_ProductCategories extends AppCompatActivity {
+public class Activity_Detail_Deleting_ProductCategories extends AppCompatActivity {
 
     private static final String DB_NAME = "drinkingmanager";
     private static final int DB_VERSION = 1;
@@ -46,7 +44,7 @@ public class Detail_Deleting_ProductCategories extends AppCompatActivity {
     ListView lvDetailProductDelete;
 
     ArrayList<Products> productsArrayList = new ArrayList<>();
-    CustomAdapter_ListView_Products adapterListViewProducts;
+    CustomAdapter_ListView_Deleting_Products adapterListViewProducts;
     ProductsHandler productsHandler;
     SQLiteDatabase sqLiteDatabase;
     boolean[] checkedStates;
@@ -96,11 +94,11 @@ public class Detail_Deleting_ProductCategories extends AppCompatActivity {
         ProductCategories pc = (ProductCategories) intent.getExtras().getSerializable("pc");
         String categoryId = pc.getIdCategory();
 
-        productsHandler = new ProductsHandler(Detail_Deleting_ProductCategories.this, DB_NAME, null, DB_VERSION);
+        productsHandler = new ProductsHandler(Activity_Detail_Deleting_ProductCategories.this, DB_NAME, null, DB_VERSION);
         productsArrayList = productsHandler.loadProductsByCategory(categoryId);
 
         checkedStates = new boolean[productsArrayList.size()];
-        adapterListViewProducts = new CustomAdapter_ListView_Products(Detail_Deleting_ProductCategories.this,
+        adapterListViewProducts = new CustomAdapter_ListView_Deleting_Products(Activity_Detail_Deleting_ProductCategories.this,
                 R.layout.layout_custom_adapter_listview_products, productsArrayList, checkedStates);
         lvDetailProductDelete.setAdapter(adapterListViewProducts);
 
@@ -121,7 +119,7 @@ public class Detail_Deleting_ProductCategories extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 checkAllProducts(true);
-                Toast.makeText(Detail_Deleting_ProductCategories.this, "All products checked", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Activity_Detail_Deleting_ProductCategories.this, "All products checked", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -129,7 +127,7 @@ public class Detail_Deleting_ProductCategories extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 checkAllProducts(false);
-                Toast.makeText(Detail_Deleting_ProductCategories.this, "All products unchecked", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Activity_Detail_Deleting_ProductCategories.this, "All products unchecked", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -138,7 +136,7 @@ public class Detail_Deleting_ProductCategories extends AppCompatActivity {
             public void onClick(View v) {
                 AlertDialog alertDialog = createAlertDialogDeleteProducts();
                 alertDialog.show();
-                Toast.makeText(Detail_Deleting_ProductCategories.this, "Delete products selected", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Activity_Detail_Deleting_ProductCategories.this, "Delete products selected", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -172,7 +170,7 @@ public class Detail_Deleting_ProductCategories extends AppCompatActivity {
 
 
     AlertDialog createAlertDialogDeleteProductsCate() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(Detail_Deleting_ProductCategories.this);
+        AlertDialog.Builder builder = new AlertDialog.Builder(Activity_Detail_Deleting_ProductCategories.this);
         builder.setTitle("Delete Category");
 
         if (!productsArrayList.isEmpty()) {
@@ -189,9 +187,9 @@ public class Detail_Deleting_ProductCategories extends AppCompatActivity {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
                     String cateID = tvDetailCateID.getText().toString();
-                    ProductCategoriesHandler productCategoriesHandler = new ProductCategoriesHandler(Detail_Deleting_ProductCategories.this, DB_NAME, null, DB_VERSION);
+                    ProductCategoriesHandler productCategoriesHandler = new ProductCategoriesHandler(Activity_Detail_Deleting_ProductCategories.this, DB_NAME, null, DB_VERSION);
                     productCategoriesHandler.deleteProductCarte(cateID);
-                    Toast.makeText(Detail_Deleting_ProductCategories.this, "Category deleted", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Activity_Detail_Deleting_ProductCategories.this, "Category deleted", Toast.LENGTH_SHORT).show();
 
                     Intent resultIntent = new Intent();
                     setResult(RESULT_OK, resultIntent);
@@ -211,7 +209,7 @@ public class Detail_Deleting_ProductCategories extends AppCompatActivity {
 
 
     AlertDialog createAlertDialogDeleteProducts() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(Detail_Deleting_ProductCategories.this);
+        AlertDialog.Builder builder = new AlertDialog.Builder(Activity_Detail_Deleting_ProductCategories.this);
         builder.setTitle("Delete Products");
         builder.setMessage("Are you sure to delete the selected products?");
         builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {

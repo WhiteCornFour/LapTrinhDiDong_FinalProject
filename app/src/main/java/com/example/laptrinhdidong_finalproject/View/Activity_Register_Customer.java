@@ -5,9 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -17,15 +15,12 @@ import com.example.laptrinhdidong_finalproject.Cotroller.CustomerHandler;
 import com.example.laptrinhdidong_finalproject.Model.Customer;
 import com.example.laptrinhdidong_finalproject.R;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class Activity_Register extends AppCompatActivity {
+public class Activity_Register_Customer extends AppCompatActivity {
 
     private static final String DB_NAME = "drinkingmanager";
     private static final int DB_VERSION = 1;
@@ -51,7 +46,7 @@ public class Activity_Register extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         addControl();
-        customerHandler = new CustomerHandler(Activity_Register.this, DB_NAME, null, DB_VERSION);
+        customerHandler = new CustomerHandler(Activity_Register_Customer.this, DB_NAME, null, DB_VERSION);
         //customerHandler.onCreate(sqLiteDatabase);
         customerArrayList = customerHandler.loadAllDataOfCustomer();
         //Log.d("customerArrayList", String.valueOf(customerArrayList.size()));
@@ -73,7 +68,7 @@ public class Activity_Register extends AppCompatActivity {
         tvHaveAcc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Activity_Register.this, Activity_Login_Customer.class);
+                Intent intent = new Intent(Activity_Register_Customer.this, Activity_Login_Customer.class);
                 startActivity(intent);
                 finish();
             }
@@ -81,7 +76,7 @@ public class Activity_Register extends AppCompatActivity {
         tvForgotPass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Activity_Register.this, Activity_ForgotPassword_Customer.class);
+                Intent intent = new Intent(Activity_Register_Customer.this, Activity_ForgotPassword_Customer.class);
                 startActivity(intent);
                 finish();
             }
@@ -101,14 +96,14 @@ public class Activity_Register extends AppCompatActivity {
                     for (int i = 0; i < customerArrayList.size(); i++) {
                         if (customerArrayList.get(i).getPhoneCustomer().equals(sdt) ||
                                 customerArrayList.get(i).getEmailCustomer().equals(mail)) {
-                            Toast.makeText(Activity_Register.this, "This phone number or email is already in use!!!",
+                            Toast.makeText(Activity_Register_Customer.this, "This phone number or email is already in use!!!",
                                     Toast.LENGTH_SHORT).show();
                             break;
                         } else {
                             Customer c = new Customer(id, name, mail, sdt, pass);
                             customerHandler.insertRecordIntoCustomerTable(c);
                             resetEdt();
-                            Toast.makeText(Activity_Register.this, "Registered successfully!!!", Toast.LENGTH_LONG).show();
+                            Toast.makeText(Activity_Register_Customer.this, "Registered successfully!!!", Toast.LENGTH_LONG).show();
                         }
                     }
                 }

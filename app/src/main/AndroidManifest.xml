@@ -29,10 +29,10 @@
             android:name=".View.Activity_Deleting_ProductCategories"
             android:exported="false" />
         <activity
-            android:name=".View.Detail_Deleting_ProductCategories"
+            android:name=".View.Activity_Detail_Deleting_ProductCategories"
             android:exported="false" />
         <activity
-            android:name=".View.Activity_UpdateProduct_Admin"
+            android:name=".View.Activity_Updating_Products"
             android:exported="false" />
         <activity
             android:name=".View.Activity_OTPGetPassword_Customer"
@@ -41,13 +41,13 @@
             android:name=".View.Activity_ForgotPassword_Customer"
             android:exported="false" /> 
         <activity
-            android:name=".View.Activity_Edit_Product_Type_Admin"
+            android:name=".View.Activity_Updating_ProductCategories"
             android:exported="false" />
         <activity
             android:name=".View.MainActivity"
             android:exported="false" />
         <activity
-            android:name=".View.Activity_Register"
+            android:name=".View.Activity_Register_Customer"
             android:exported="false" />
         <activity
             android:name=".View.Activity_Login_Admin"

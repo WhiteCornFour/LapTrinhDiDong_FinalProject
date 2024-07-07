@@ -1,4 +1,4 @@
-package com.example.laptrinhdidong_finalproject.Cotroller;
+package com.example.laptrinhdidong_finalproject.View;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,8 +16,8 @@ import com.example.laptrinhdidong_finalproject.Model.Products;
 import com.example.laptrinhdidong_finalproject.R;
 import com.example.laptrinhdidong_finalproject.View.Activity_Adding_Products;
 import com.example.laptrinhdidong_finalproject.View.Activity_Deleting_Products;
-import com.example.laptrinhdidong_finalproject.View.Activity_UpdateProduct_Admin;
-import com.example.laptrinhdidong_finalproject.View.CustomAdapterListViewFragment_Product;
+import com.example.laptrinhdidong_finalproject.View.Activity_Updating_Products;
+import com.example.laptrinhdidong_finalproject.View.CustomAdapter_ListView_Fragment_Product;
 
 import java.util.ArrayList;
 
@@ -40,7 +40,7 @@ public class Fragment_ProductManagement extends Fragment {
 
     ArrayList<Products> productArrayList = new ArrayList<>();
 
-    CustomAdapterListViewFragment_Product customAdapter;
+    CustomAdapter_ListView_Fragment_Product customAdapter;
 
     com.example.laptrinhdidong_finalproject.Cotroller.ProductsHandler productHandler;
 
@@ -51,7 +51,7 @@ public class Fragment_ProductManagement extends Fragment {
         addControl(view);
         productHandler = new com.example.laptrinhdidong_finalproject.Cotroller.ProductsHandler(getContext(), DB_NAME, null, DB_VERSION);
         productArrayList = productHandler.loadAllDataOfProducts();
-        customAdapter = new CustomAdapterListViewFragment_Product(getContext(),
+        customAdapter = new CustomAdapter_ListView_Fragment_Product(getContext(),
                 R.layout.layout_custom_adapter_lv_fragment_product, productArrayList);
         lvProductManagement.setAdapter(customAdapter);
         addEvent();
@@ -78,7 +78,7 @@ public class Fragment_ProductManagement extends Fragment {
         btnUpdateProduct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getContext(), Activity_UpdateProduct_Admin.class);
+                Intent intent = new Intent(getContext(), Activity_Updating_Products.class);
                 startActivity(intent);
             }
         });

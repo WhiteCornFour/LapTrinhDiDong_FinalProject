@@ -13,12 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.laptrinhdidong_finalproject.Cotroller.CustomerHandler;
-import com.example.laptrinhdidong_finalproject.Model.Customer;
 import com.example.laptrinhdidong_finalproject.R;
-
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.ArrayList;
 
 public class Activity_Login_Customer extends AppCompatActivity {
 
@@ -93,7 +88,7 @@ public class Activity_Login_Customer extends AppCompatActivity {
         tvRegisterLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Activity_Login_Customer.this, Activity_Register.class);
+                Intent intent = new Intent(Activity_Login_Customer.this, Activity_Register_Customer.class);
                 startActivity(intent);
                 finish();
             }

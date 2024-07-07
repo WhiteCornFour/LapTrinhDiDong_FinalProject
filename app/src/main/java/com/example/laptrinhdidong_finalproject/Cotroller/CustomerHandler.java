@@ -6,17 +6,12 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
 import com.example.laptrinhdidong_finalproject.Model.Customer;
-import com.example.laptrinhdidong_finalproject.View.Activity_Register;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Random;
 
 public class CustomerHandler extends SQLiteOpenHelper {
     private static final String DB_NAME = "drinkingmanager";

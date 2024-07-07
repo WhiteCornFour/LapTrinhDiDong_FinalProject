@@ -56,7 +56,7 @@ public class Activity_Adding_Products extends AppCompatActivity {
     ProductCategoriesHandler productCategoriesHandler;
     ArrayList<Products> productsArrayList = new ArrayList<>();
     ProductsHandler productsHandler;
-    CustomAdapterListViewFragment_Product customAdapterListViewFragment_product;
+    CustomAdapter_ListView_Fragment_Product customAdapterListViewFragment_product;
 
 
     SQLiteDatabase sqLiteDatabase;
@@ -75,7 +75,7 @@ public class Activity_Adding_Products extends AppCompatActivity {
         ArrayList<String> dataSpinner = productCategoriesHandler.importSpinnerData(productCategoriesArrayList);
         arrayAdapterSpinner = new ArrayAdapter<>(Activity_Adding_Products.this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, dataSpinner);
         spinnerCategoryID.setAdapter(arrayAdapterSpinner);
-        customAdapterListViewFragment_product = new CustomAdapterListViewFragment_Product(Activity_Adding_Products.this, R.layout.layout_custom_adapter_lv_fragment_product, productsArrayList);
+        customAdapterListViewFragment_product = new CustomAdapter_ListView_Fragment_Product(Activity_Adding_Products.this, R.layout.layout_custom_adapter_lv_fragment_product, productsArrayList);
         lvProductForAdding.setAdapter(customAdapterListViewFragment_product);
         addEvent();
     }
@@ -142,7 +142,7 @@ public class Activity_Adding_Products extends AppCompatActivity {
                         // Cập nhật danh sách sản phẩm sau khi thêm thành công
                         productsArrayList.add(pc);
                         productsArrayList = productsHandler.loadAllDataOfProducts();
-                        customAdapterListViewFragment_product = new CustomAdapterListViewFragment_Product(Activity_Adding_Products.this, R.layout.layout_custom_adapter_lv_fragment_product, productsArrayList);
+                        customAdapterListViewFragment_product = new CustomAdapter_ListView_Fragment_Product(Activity_Adding_Products.this, R.layout.layout_custom_adapter_lv_fragment_product, productsArrayList);
                         lvProductForAdding.setAdapter(customAdapterListViewFragment_product);
                         resetEdt();
                     }
