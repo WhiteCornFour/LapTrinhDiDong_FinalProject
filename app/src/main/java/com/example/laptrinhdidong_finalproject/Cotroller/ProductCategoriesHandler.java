@@ -64,6 +64,16 @@ public class ProductCategoriesHandler extends SQLiteOpenHelper {
         return spinnerData;
     }
 
+    public boolean checkDuplicateCategoryData(String idCategory, String nameCategory, ArrayList<ProductCategories> categoryData)
+    {
+        for (int i = 0; i < categoryData.size(); i++) {
+            ProductCategories category = categoryData.get(i);
+            if(category.getIdCategory().equals(idCategory) || category.getNameCategory().equals(nameCategory)){
+                return false;
+            }
+        }
+        return true;
+    }
     public void insertNewData(ProductCategories category){
         SQLiteDatabase sqLiteDatabase = SQLiteDatabase.openDatabase(PATH, null, SQLiteDatabase.OPEN_READWRITE);
 //        String insertSQL = "INSERT INTO ProductCategories VALUES " + "(" + "'" + category.getIdCategory() + "','" + category.getNameCategory() + "'," + category.getImageCategory() +")";

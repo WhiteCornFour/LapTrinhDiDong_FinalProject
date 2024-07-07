@@ -58,7 +58,6 @@ public class Fragment_ManageProductCatalog extends Fragment {
     ImageView imgAddedCategory;
     ArrayList<ProductCategories> categoriesArrayList = new ArrayList<>();
     CustomAdapter_ListView_Fragment_ProductCategories customListViewCategories;
-
     ActivityResultLauncher<Intent> resultLauncher;
 
     @Override
@@ -156,13 +155,17 @@ public class Fragment_ManageProductCatalog extends Fragment {
             String categoryDescription = edtCategoryDescription.getText().toString();
             Bitmap insertImage = Utils.getBitmapFromImageView(imgAddedCategory);
 
-            if(!categoryID.isEmpty() && !categoryName.isEmpty())
+            if(!categoryID.isEmpty() || !categoryName.isEmpty())
             {
-                ProductCategories category = new ProductCategories(categoryID, categoryName, categoryDescription, Utils.getBytesFromBitmap(insertImage));
-                categoryHandler.insertNewData(category);
-
-                loadDBCategoryData();
-                addCategoryDialog.dismiss();
+                if (!categoryHandler.checkDuplicateCategoryData(categoryID, categoryName, categoriesArrayList)) {
+                    Toast.makeText(getActivity(), "The category ID or Name has existed!", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    ProductCategories category = new ProductCategories(categoryID, categoryName, categoryDescription, Utils.getBytesFromBitmap(insertImage));
+                    categoryHandler.insertNewData(category);
+                    loadDBCategoryData();
+                    addCategoryDialog.dismiss();
+                }
             }
             else {
                 Toast.makeText(getActivity(), "Null information!", Toast.LENGTH_SHORT).show();
