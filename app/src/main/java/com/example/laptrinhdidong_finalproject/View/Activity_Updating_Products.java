@@ -141,7 +141,10 @@ public class Activity_Updating_Products extends AppCompatActivity {
                 String name = edtProductName.getText().toString();
                 String descrip = edtProductDescription.getText().toString();
                 Bitmap image = getBitmapFromImageView(imgUpdateProduct);
-                Float price = edtInitialPrice.getAlpha();
+                if (image == null) {
+                    return; // Stop execution if image size is too large
+                }
+                Float price = Float.parseFloat(edtInitialPrice.getText().toString());
                 if (id.isEmpty() || idCate.isEmpty() || name.isEmpty() || descrip.isEmpty())
                 {
                     Toast.makeText(Activity_Updating_Products.this, "Please select a product!", Toast.LENGTH_SHORT).show();
@@ -187,7 +190,21 @@ public class Activity_Updating_Products extends AppCompatActivity {
             drawable.draw(canvas);
         }
 
+        if (!isImageSizeUnderLimit(bitmap, 100)) {
+            Toast.makeText(this, "Image size is too large! It should be less than 100KB.", Toast.LENGTH_SHORT).show();
+            return null;
+        }
+
         return bitmap;
+    }
+
+    public static boolean isImageSizeUnderLimit(Bitmap bitmap, int sizeLimitKB) {
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
+        byte[] byteArray = stream.toByteArray();
+        int sizeInKB = byteArray.length / 1024; // Convert bytes to kilobytes
+
+        return sizeInKB <= sizeLimitKB;
     }
 
     public byte[] getBytesFromBitmap(Bitmap bitmap) {

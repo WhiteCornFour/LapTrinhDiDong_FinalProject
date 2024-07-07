@@ -122,7 +122,10 @@ public class Activity_Adding_Products extends AppCompatActivity {
                 String namePro = edtAddingNameProducts.getText().toString();
                 String desPro = edtAddingDescriptionProducts.getText().toString();
                 Bitmap image = getBitmapFromImageView(imgAddingProducts);
-                Float pricePro = edtAddingPriceProducts.getAlpha();
+                if (image == null) {
+                    return; // Stop execution if image size is too large
+                }
+                Float pricePro = Float.parseFloat(edtAddingPriceProducts.getText().toString());
 
                 if (idPro.isEmpty() || idCate.isEmpty() || namePro.isEmpty() || desPro.isEmpty()) {
                     Toast.makeText(Activity_Adding_Products.this, "Please fill in all the blanks before submitting!!!", Toast.LENGTH_LONG).show();
@@ -178,29 +181,32 @@ public class Activity_Adding_Products extends AppCompatActivity {
         }
     }
 
-        public Bitmap getBitmapFromImageView(ImageView imageView) {
-            Drawable drawable = imageView.getDrawable();
-            Bitmap bitmap = null;
+    public Bitmap getBitmapFromImageView(ImageView imageView) {
+        Drawable drawable = imageView.getDrawable();
+        Bitmap bitmap = null;
 
-            if (drawable instanceof BitmapDrawable) {
-                bitmap = ((BitmapDrawable) drawable).getBitmap();
-            } else {
-                int width = drawable.getIntrinsicWidth();
-                int height = drawable.getIntrinsicHeight();
-                bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
-                Canvas canvas = new Canvas(bitmap);
-                drawable.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
-                drawable.draw(canvas);
-            }
-
-            return bitmap;
+        if (drawable instanceof BitmapDrawable) {
+            bitmap = ((BitmapDrawable) drawable).getBitmap();
+        } else {
+            int width = drawable.getIntrinsicWidth();
+            int height = drawable.getIntrinsicHeight();
+            bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
+            Canvas canvas = new Canvas(bitmap);
+            drawable.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
+            drawable.draw(canvas);
         }
-
-        public byte[] getBytesFromBitmap(Bitmap bitmap) {
-            ByteArrayOutputStream stream = new ByteArrayOutputStream();
-            bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
-            return stream.toByteArray();
+        if (!Activity_Updating_Products.isImageSizeUnderLimit(bitmap, 100)) {
+            Toast.makeText(this, "Image size is too large! It should be less than 100KB.", Toast.LENGTH_SHORT).show();
+            return null;
         }
+        return bitmap;
+    }
+
+    public byte[] getBytesFromBitmap(Bitmap bitmap) {
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
+        return stream.toByteArray();
+    }
 
     void resetEdt() {
         edtAddingIDProducts.setText("");

@@ -74,10 +74,8 @@ public class ProductsHandler extends SQLiteOpenHelper {
                 descriptionProduct + ", " + productImage + ", " + priceProduct + ") VALUES (?, ?, ?, ?, ?, ?)";
         sqLiteDatabase.execSQL(insertSQL, new Object[]{p.getIdProduct(), p.getIdCategory(), p.getNameProduct(),
                 p.getDescriptionProduct(), p.getImageProduct(), p.getInitialPrice()});
-
         sqLiteDatabase.close();
     }
-
 
     public ArrayList<Products> loadProductsByCategory(String categoryId) {
         ArrayList<Products> productsArrayList = new ArrayList<>();
