@@ -1,15 +1,14 @@
 package com.example.laptrinhdidong_finalproject.Cotroller;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 
 import androidx.annotation.Nullable;
 
-import com.example.laptrinhdidong_finalproject.Model.Customer;
 import com.example.laptrinhdidong_finalproject.Model.ProductCategories;
 
 import java.util.ArrayList;
@@ -76,6 +75,30 @@ public class ProductCategoriesHandler extends SQLiteOpenHelper {
         String sql = "DELETE FROM " + TABLE_NAME + " WHERE CategoryID= '" + idCategory + "'";
         sqLiteDatabase.execSQL(sql);
         sqLiteDatabase.close();
+    }
+
+    public boolean updateProductCategor(ProductCategories category) {
+        boolean updated = false;
+        SQLiteDatabase sqLiteDatabase = null;
+        try {
+            sqLiteDatabase = SQLiteDatabase.openDatabase(PATH, null, SQLiteDatabase.CREATE_IF_NECESSARY);
+
+            ContentValues contentValues = new ContentValues();
+            contentValues.put(nameCategory, category.getNameCategory());
+            contentValues.put(descriptionCategory, category.getDescriptionCategory());
+            contentValues.put(imageCategory, category.getImageCategory());
+
+            int kq = sqLiteDatabase.update(TABLE_NAME, contentValues, idCategory + " = ?", new String[]{category.getIdCategory()});
+            updated = kq > 0;
+
+        } catch (SQLiteException e) {
+            e.printStackTrace();
+        } finally {
+            if (sqLiteDatabase != null) {
+                sqLiteDatabase.close();
+            }
+        }
+        return updated;
     }
 
     @Override

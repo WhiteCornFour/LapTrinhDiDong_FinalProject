@@ -15,13 +15,13 @@ import com.example.laptrinhdidong_finalproject.R;
 
 import java.util.ArrayList;
 
-public class CustomListViewCategories extends BaseAdapter {
+public class CustomAdapter_ListView_Fragment_ProductCategories extends BaseAdapter {
     Context context;
 
     int layoutItem;
     ArrayList<ProductCategories> arrayList;
 
-    public CustomListViewCategories(Context context, int layoutItem, ArrayList<ProductCategories> arrayList) {
+    public CustomAdapter_ListView_Fragment_ProductCategories(Context context, int layoutItem, ArrayList<ProductCategories> arrayList) {
         this.context = context;
         this.layoutItem = layoutItem;
         this.arrayList = arrayList;

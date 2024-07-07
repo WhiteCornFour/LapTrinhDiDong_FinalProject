@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".View.Activity_UpdateProduct_Admin">
+    tools:context=".View.Activity_Updating_Products">
 
     <TextView
         android:id="@+id/textView23"

@@ -1,9 +1,8 @@
-package com.example.laptrinhdidong_finalproject.Cotroller;
+package com.example.laptrinhdidong_finalproject.View;
 
 import android.app.Dialog;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
-import android.media.Image;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
@@ -20,12 +19,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.example.laptrinhdidong_finalproject.Cotroller.ProductCategoriesHandler;
 import com.example.laptrinhdidong_finalproject.Model.ProductCategories;
 import com.example.laptrinhdidong_finalproject.R;
 import com.example.laptrinhdidong_finalproject.View.Activity_Deleting_ProductCategories;
-import com.example.laptrinhdidong_finalproject.View.Activity_Deleting_Products;
-import com.example.laptrinhdidong_finalproject.View.CustomAdapterListViewFragment_Product;
-import com.example.laptrinhdidong_finalproject.View.CustomListViewCategories;
+import com.example.laptrinhdidong_finalproject.View.CustomAdapter_ListView_Fragment_ProductCategories;
 
 import java.util.ArrayList;
 
@@ -37,12 +35,12 @@ public class Fragment_ManageProductCatalog extends Fragment {
     static final String PATH = "/data/data/com.example.laptrinhdidong_finalproject/database/drinkingmanager.db";
     ProductCategoriesHandler categoryHandler;
     ListView lvCategories;
-    Button btnAddCategory, btnConfirmAddCategory, btnCancelAdding, btnDeleteCategory;
+    Button btnAddCategory, btnConfirmAddCategory, btnCancelAdding, btnDeleteCategory, btnUpdateCategory;
     ImageButton btnUploadCategoryImage;
     EditText edtCategoryID, edtCategoryName, edtDescription;
     ImageView imgAddedCategory;
     ArrayList<ProductCategories> categoriesArrayList = new ArrayList<>();
-    CustomListViewCategories customListViewCategories;
+    CustomAdapter_ListView_Fragment_ProductCategories customAdapterListViewFragmentProductCategories;
 
     SQLiteDatabase sqLiteDatabase;
 
@@ -62,6 +60,7 @@ public class Fragment_ManageProductCatalog extends Fragment {
         btnAddCategory = (Button) view.findViewById(R.id.btnAddCategory);
         btnDeleteCategory = (Button) view.findViewById(R.id.btnDeleteCategory);
         edtDescription = (EditText) view.findViewById(R.id.edtDescription);
+        btnUpdateCategory = (Button) view.findViewById(R.id.btnUpdateCategory);
     }
     void addEvent()
     {
@@ -69,6 +68,14 @@ public class Fragment_ManageProductCatalog extends Fragment {
             @Override
             public void onClick(View v) {
                 showDialog();
+            }
+        });
+
+        btnUpdateCategory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), Activity_Updating_ProductCategories.class);
+                startActivity(intent);
             }
         });
 
@@ -84,9 +91,9 @@ public class Fragment_ManageProductCatalog extends Fragment {
     void loadDBCategoryData()
     {
         categoriesArrayList = categoryHandler.loadAllDataOfProductCategories();
-        customListViewCategories = new CustomListViewCategories(getContext(),
+        customAdapterListViewFragmentProductCategories = new CustomAdapter_ListView_Fragment_ProductCategories(getContext(),
                 R.layout.layout_gridview_categorymanager, categoriesArrayList);
-        lvCategories.setAdapter(customListViewCategories);
+        lvCategories.setAdapter(customAdapterListViewFragmentProductCategories);
     }
     void showDialog()
     {
@@ -131,9 +138,9 @@ public class Fragment_ManageProductCatalog extends Fragment {
 
                 //Load lại data và set lại adapter
                 categoriesArrayList = categoryHandler.loadAllDataOfProductCategories();
-                customListViewCategories = new CustomListViewCategories(getContext(),
+                customAdapterListViewFragmentProductCategories = new CustomAdapter_ListView_Fragment_ProductCategories(getContext(),
                         R.layout.layout_gridview_categorymanager, categoriesArrayList);
-                lvCategories.setAdapter(customListViewCategories);
+                lvCategories.setAdapter(customAdapterListViewFragmentProductCategories);
                 addCategoryDialog.dismiss();
             }
         });

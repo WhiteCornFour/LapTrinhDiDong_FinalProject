@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -18,16 +17,15 @@ import com.example.laptrinhdidong_finalproject.Model.ProductCategories;
 import com.example.laptrinhdidong_finalproject.R;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
-public class CustomAdapter_ListView_ProductCate extends ArrayAdapter {
+public class CustomAdapter_ListView_Deleting_ProductCategories extends ArrayAdapter {
     Context context;
     int layoutItem;
     ArrayList<ProductCategories> productCategoriesArrayList = new ArrayList<>();
 
 
 
-    public CustomAdapter_ListView_ProductCate(@NonNull Context context, int layoutItem, @NonNull ArrayList<ProductCategories> productCategoriesArrayList) {
+    public CustomAdapter_ListView_Deleting_ProductCategories(@NonNull Context context, int layoutItem, @NonNull ArrayList<ProductCategories> productCategoriesArrayList) {
         super(context, layoutItem, productCategoriesArrayList);
         this.context = context;
         this.layoutItem = layoutItem;

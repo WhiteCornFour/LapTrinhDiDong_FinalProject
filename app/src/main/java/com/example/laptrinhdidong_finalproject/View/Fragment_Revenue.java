@@ -1,4 +1,4 @@
-package com.example.laptrinhdidong_finalproject.Cotroller;
+package com.example.laptrinhdidong_finalproject.View;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

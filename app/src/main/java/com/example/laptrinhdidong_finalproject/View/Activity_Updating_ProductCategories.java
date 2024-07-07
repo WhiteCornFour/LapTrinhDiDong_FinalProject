@@ -19,15 +19,15 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.example.laptrinhdidong_finalproject.Cotroller.ProductCategoryHandler;
-import com.example.laptrinhdidong_finalproject.Model.ProductCategory;
+import com.example.laptrinhdidong_finalproject.Cotroller.ProductCategoriesHandler;
+import com.example.laptrinhdidong_finalproject.Model.ProductCategories;
 import com.example.laptrinhdidong_finalproject.R;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 
-    public class Activity_Edit_Product_Type_Admin extends AppCompatActivity {
+    public class Activity_Updating_ProductCategories extends AppCompatActivity {
         private static final String DB_NAME = "drinkingmanager";
         private static final int DB_VERSION = 1;
         private static final int PICK_IMAGE_REQUEST = 1;
@@ -43,9 +43,9 @@ import java.util.ArrayList;
         EditText edt_category_id, edt_category_name, edt_category_description;
         ImageView img_category;
         Button btn_save_category, btn_select_image;
-        ProductCategoryAdapter adapter;
-        ArrayList<ProductCategory> categoryList;
-        ProductCategoryHandler productCategoryHandler;
+        CustomAdapter_ListView_Updating_ProductCategories adapter;
+        ArrayList<ProductCategories> categoryList;
+        ProductCategoriesHandler productCategoriesHandler;
         SQLiteDatabase sqLiteDatabase;
 
         @Override
@@ -55,11 +55,11 @@ import java.util.ArrayList;
 
             addControl();
             addEvent();
-            productCategoryHandler = new ProductCategoryHandler(Activity_Edit_Product_Type_Admin.this, DB_NAME, null, DB_VERSION);
-            categoryList = productCategoryHandler.loadAllDataOfProductCategory();
-            productCategoryHandler.onCreate(sqLiteDatabase);
+            productCategoriesHandler = new ProductCategoriesHandler(Activity_Updating_ProductCategories.this, DB_NAME, null, DB_VERSION);
+            categoryList = productCategoriesHandler.loadAllDataOfProductCategories();
+            productCategoriesHandler.onCreate(sqLiteDatabase);
 
-            adapter = new ProductCategoryAdapter(this, categoryList);
+            adapter = new CustomAdapter_ListView_Updating_ProductCategories(this, categoryList);
             lv_product_types.setAdapter(adapter);
         }
 
@@ -77,13 +77,13 @@ import java.util.ArrayList;
             lv_product_types.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    ProductCategory selectedCategory = categoryList.get(position);
-                    edt_category_id.setText(selectedCategory.getCategoryID());
-                    edt_category_name.setText(selectedCategory.getCategoryName());
-                    edt_category_description.setText(selectedCategory.getCategoryDescription());
+                    ProductCategories selectedCategory = categoryList.get(position);
+                    edt_category_id.setText(selectedCategory.getIdCategory());
+                    edt_category_name.setText(selectedCategory.getNameCategory());
+                    edt_category_description.setText(selectedCategory.getDescriptionCategory());
 
                     // Chuyển đổi byte[] thành Bitmap và hiển thị
-                    byte[] imageBlob = selectedCategory.getCategoryImage();
+                    byte[] imageBlob = selectedCategory.getImageCategory();
                     if (imageBlob != null) {
                         Bitmap bitmap = BitmapFactory.decodeByteArray(imageBlob, 0, imageBlob.length);
                         img_category.setImageBitmap(bitmap);
@@ -102,27 +102,27 @@ import java.util.ArrayList;
                     byte[] categoryImage = imageViewToByteArray(img_category);
 
                     if (categoryID.isEmpty() || categoryName.isEmpty() || categoryDescription.isEmpty() || categoryImage == null) {
-                        Toast.makeText(Activity_Edit_Product_Type_Admin.this, "Please fill in all fields", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Activity_Updating_ProductCategories.this, "Please fill in all fields", Toast.LENGTH_SHORT).show();
                     } else {
                         boolean kq = false;
-                        for (ProductCategory category : categoryList) {
-                            if (category.getCategoryID().equals(categoryID)) {
+                        for (ProductCategories category : categoryList) {
+                            if (category.getIdCategory().equals(categoryID)) {
                                 kq = true;
                                 break;
                             }
                         }
                         if (!kq) {
-                            Toast.makeText(Activity_Edit_Product_Type_Admin.this, "Category not found", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Activity_Updating_ProductCategories.this, "Category not found", Toast.LENGTH_SHORT).show();
                         } else {
-                            ProductCategory updatedCategory = new ProductCategory(categoryID, categoryName, categoryDescription, categoryImage);
-                            boolean updated = productCategoryHandler.updateProductCategory(updatedCategory);
+                            ProductCategories updatedCategory = new ProductCategories(categoryID, categoryName, categoryDescription, categoryImage);
+                            boolean updated = productCategoriesHandler.updateProductCategor(updatedCategory);
                             if (updated) {
-                                Toast.makeText(Activity_Edit_Product_Type_Admin.this, "Update successful", Toast.LENGTH_SHORT).show();
-                                categoryList = productCategoryHandler.loadAllDataOfProductCategory();
-                                adapter = new ProductCategoryAdapter(Activity_Edit_Product_Type_Admin.this, categoryList);
+                                Toast.makeText(Activity_Updating_ProductCategories.this, "Update successful", Toast.LENGTH_SHORT).show();
+                                categoryList = productCategoriesHandler.loadAllDataOfProductCategories();
+                                adapter = new CustomAdapter_ListView_Updating_ProductCategories(Activity_Updating_ProductCategories.this, categoryList);
                                 lv_product_types.setAdapter(adapter);
                             } else {
-                                Toast.makeText(Activity_Edit_Product_Type_Admin.this, "Update failed", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(Activity_Updating_ProductCategories.this, "Update failed", Toast.LENGTH_SHORT).show();
                             }
                         }
                     }

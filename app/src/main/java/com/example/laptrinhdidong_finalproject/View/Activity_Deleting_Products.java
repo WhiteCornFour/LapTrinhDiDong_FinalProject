@@ -4,13 +4,9 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -32,7 +28,7 @@ public class Activity_Deleting_Products extends AppCompatActivity {
     Button btnDeleteProducts, btnClearAllProducts, btnCheckAllProducts;
 
     ArrayList<Products> productsArrayList = new ArrayList<>();
-    CustomAdapter_ListView_Products adapterListViewProducts;
+    CustomAdapter_ListView_Deleting_Products adapterListViewProducts;
     ProductsHandler productsHandler;
     SQLiteDatabase sqLiteDatabase;
 
@@ -61,7 +57,7 @@ public class Activity_Deleting_Products extends AppCompatActivity {
 
         checkedStates = new boolean[productsArrayList.size()];
 
-        adapterListViewProducts = new CustomAdapter_ListView_Products(Activity_Deleting_Products.this,
+        adapterListViewProducts = new CustomAdapter_ListView_Deleting_Products(Activity_Deleting_Products.this,
                 R.layout.layout_custom_adapter_listview_products, productsArrayList, checkedStates);
         lvProducts.setAdapter(adapterListViewProducts);
         updateButtonStates();

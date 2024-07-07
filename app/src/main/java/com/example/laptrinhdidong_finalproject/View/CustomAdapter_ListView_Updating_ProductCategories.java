@@ -10,18 +10,18 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.laptrinhdidong_finalproject.Model.ProductCategory;
+import com.example.laptrinhdidong_finalproject.Model.ProductCategories;
 import com.example.laptrinhdidong_finalproject.R;
 
 import java.util.ArrayList;
 
-public class ProductCategoryAdapter extends BaseAdapter {
+public class CustomAdapter_ListView_Updating_ProductCategories extends BaseAdapter {
 
      ImageView img_category;
      Context context;
-     ArrayList<ProductCategory> categories;
+     ArrayList<ProductCategories> categories;
 
-    public ProductCategoryAdapter(Context context, ArrayList<ProductCategory> categories) {
+    public CustomAdapter_ListView_Updating_ProductCategories(Context context, ArrayList<ProductCategories> categories) {
         this.context = context;
         this.categories = categories;
     }
@@ -55,12 +55,12 @@ public class ProductCategoryAdapter extends BaseAdapter {
         TextView tvCategoryDescription = view.findViewById(R.id.tv_category_description);
         ImageView img_category = view.findViewById(R.id.img_category);
 
-        ProductCategory category = categories.get(position);
-        tvCategoryId.setText("ID: " + category.getCategoryID());
-        tvCategoryName.setText("Name: " + category.getCategoryName());
-        tvCategoryDescription.setText("Description: " + category.getCategoryDescription());
+        ProductCategories category = categories.get(position);
+        tvCategoryId.setText("ID: " + category.getIdCategory());
+        tvCategoryName.setText("Name: " + category.getNameCategory());
+        tvCategoryDescription.setText("Description: " + category.getDescriptionCategory());
 
-        byte[] imageBlob = category.getCategoryImage();
+        byte[] imageBlob = category.getImageCategory();
         if (imageBlob != null && imageBlob.length > 0) {
             Bitmap bitmap = BitmapFactory.decodeByteArray(imageBlob, 0, imageBlob.length);
             img_category.setImageBitmap(bitmap);

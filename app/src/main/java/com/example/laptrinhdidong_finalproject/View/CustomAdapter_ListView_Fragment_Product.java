@@ -17,13 +17,13 @@ import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
 
-public class CustomAdapterListViewFragment_Product extends ArrayAdapter {
+public class CustomAdapter_ListView_Fragment_Product extends ArrayAdapter {
 
     Context context;
     int layoutItem;
     ArrayList<Products> productArrayList = new ArrayList<>();
 
-    public CustomAdapterListViewFragment_Product(@NonNull Context context, int layoutItem, @NonNull ArrayList<Products> productArrayList) {
+    public CustomAdapter_ListView_Fragment_Product(@NonNull Context context, int layoutItem, @NonNull ArrayList<Products> productArrayList) {
         super(context, layoutItem, productArrayList);
         this.context = context;
         this.layoutItem = layoutItem;

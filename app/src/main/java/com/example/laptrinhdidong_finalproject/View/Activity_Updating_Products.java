@@ -16,7 +16,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -25,10 +24,9 @@ import android.widget.Toast;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
-import java.io.InputStream;
 import java.util.ArrayList;
 
-public class Activity_UpdateProduct_Admin extends AppCompatActivity {
+public class Activity_Updating_Products extends AppCompatActivity {
 
     private static final String DB_NAME = "drinkingmanager";
     private static final int DB_VERSION = 1;
@@ -55,14 +53,14 @@ public class Activity_UpdateProduct_Admin extends AppCompatActivity {
 
     ArrayList<Products> productArrayList = new ArrayList<>();
     ArrayList<Products> productArrayListResult = new ArrayList<>();
-    CustomAdapterListViewFragment_Product customAdapter;
+    CustomAdapter_ListView_Fragment_Product customAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update_product_admin);
         addControl();
-        productHandler = new ProductsHandler(Activity_UpdateProduct_Admin.this, DB_NAME
+        productHandler = new ProductsHandler(Activity_Updating_Products.this, DB_NAME
         ,null, DB_VERSION);
         productArrayList = productHandler.loadAllDataOfProducts();
         loadDataLV(productArrayList);
@@ -72,7 +70,7 @@ public class Activity_UpdateProduct_Admin extends AppCompatActivity {
 
     void loadDataLV(ArrayList<Products> productArrayList)
     {
-        customAdapter = new CustomAdapterListViewFragment_Product(Activity_UpdateProduct_Admin.this,
+        customAdapter = new CustomAdapter_ListView_Fragment_Product(Activity_Updating_Products.this,
                 R.layout.layout_custom_adapter_lv_fragment_product, productArrayList);
         lvProductForUpdate.setAdapter(customAdapter);
     }
@@ -146,7 +144,7 @@ public class Activity_UpdateProduct_Admin extends AppCompatActivity {
                 Float price = edtInitialPrice.getAlpha();
                 if (id.isEmpty() || idCate.isEmpty() || name.isEmpty() || descrip.isEmpty())
                 {
-                    Toast.makeText(Activity_UpdateProduct_Admin.this, "Please select a product!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Activity_Updating_Products.this, "Please select a product!", Toast.LENGTH_SHORT).show();
                 }else
                 {
                     int flag = 0;
@@ -158,14 +156,14 @@ public class Activity_UpdateProduct_Admin extends AppCompatActivity {
                     }
                     if (flag == 0)
                     {
-                        Toast.makeText(Activity_UpdateProduct_Admin.this, "Data does not exist!!!",
+                        Toast.makeText(Activity_Updating_Products.this, "Data does not exist!!!",
                                 Toast.LENGTH_SHORT).show();
                     }else
                     {
                         Products p = new Products(id, idCate, name, descrip, price,getBytesFromBitmap(image));
                         productHandler.updateRecord(p);
                         productArrayList = productHandler.loadAllDataOfProducts();
-                        customAdapter = new CustomAdapterListViewFragment_Product(Activity_UpdateProduct_Admin.this,
+                        customAdapter = new CustomAdapter_ListView_Fragment_Product(Activity_Updating_Products.this,
                                 R.layout.layout_custom_adapter_lv_fragment_product, productArrayList);
                         lvProductForUpdate.setAdapter(customAdapter);
                     }
