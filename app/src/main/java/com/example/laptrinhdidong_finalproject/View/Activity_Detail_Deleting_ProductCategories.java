@@ -85,7 +85,7 @@ public class Activity_Detail_Deleting_ProductCategories extends AppCompatActivit
         imgDetailPC.setImageBitmap(bitmap);
         tvDetailCateName.setText(pc.getNameCategory());
         tvDetailCateID.setText(pc.getIdCategory());
-        tvDetailCateDescription.setText(pc.getDescriptionCategory());
+//        tvDetailCateDescription.setText(pc.getDescriptionCategory());
 
     }
 
