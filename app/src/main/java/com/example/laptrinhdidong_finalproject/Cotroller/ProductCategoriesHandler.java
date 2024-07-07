@@ -1,8 +1,10 @@
 package com.example.laptrinhdidong_finalproject.Cotroller;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteStatement;
 import android.graphics.Bitmap;
@@ -22,6 +24,7 @@ public class ProductCategoriesHandler extends SQLiteOpenHelper {
     private static final String TABLE_NAME = "ProductCategories";
     private static final String idCategory = "CategoryID";
     private static final String nameCategory = "CategoryName";
+    private static final String descriptionCategory = "CategoryDescription";
     private static final String imageCategory = "CategoryImage";
     private static final String PATH = "/data/data/com.example.laptrinhdidong_finalproject/database/drinkingmanager.db";
 
@@ -44,7 +47,8 @@ public class ProductCategoriesHandler extends SQLiteOpenHelper {
             ProductCategories pc = new ProductCategories();
             pc.setIdCategory(cursor.getString(0));
             pc.setNameCategory(cursor.getString(1));
-            pc.setImageCategory(cursor.getBlob(2));
+            pc.setDescriptionCategory(cursor.getString(2));
+            pc.setImageCategory(cursor.getBlob(3));
             productCategoriesArrayList.add(pc);
         }while (cursor.moveToNext());
         cursor.close();
@@ -63,8 +67,8 @@ public class ProductCategoriesHandler extends SQLiteOpenHelper {
     public void insertNewData(ProductCategories category){
         SQLiteDatabase sqLiteDatabase = SQLiteDatabase.openDatabase(PATH, null, SQLiteDatabase.OPEN_READWRITE);
 //        String insertSQL = "INSERT INTO ProductCategories VALUES " + "(" + "'" + category.getIdCategory() + "','" + category.getNameCategory() + "'," + category.getImageCategory() +")";
-        String insertSQL = "INSERT INTO " + TABLE_NAME + " (" +  idCategory + "," + nameCategory + "," +  imageCategory + ") VALUES (?, ?, ?)";
-        sqLiteDatabase.execSQL(insertSQL, new Object[]{category.getIdCategory(), category.getNameCategory(), category.getImageCategory()});
+        String insertSQL = "INSERT INTO " + TABLE_NAME + " (" +  idCategory + "," + nameCategory + "," + descriptionCategory + "," + imageCategory + ") VALUES (?, ?, ?, ?)";
+        sqLiteDatabase.execSQL(insertSQL, new Object[]{category.getIdCategory(), category.getNameCategory(), category.getDescriptionCategory(), category.getImageCategory()});
         sqLiteDatabase.close();
     }
 
@@ -73,6 +77,30 @@ public class ProductCategoriesHandler extends SQLiteOpenHelper {
         String sql = "DELETE FROM " + TABLE_NAME + " WHERE CategoryID= '" + idCategory + "'";
         sqLiteDatabase.execSQL(sql);
         sqLiteDatabase.close();
+    }
+
+    public boolean updateProductCategor(ProductCategories category) {
+        boolean updated = false;
+        SQLiteDatabase sqLiteDatabase = null;
+        try {
+            sqLiteDatabase = SQLiteDatabase.openDatabase(PATH, null, SQLiteDatabase.CREATE_IF_NECESSARY);
+
+            ContentValues contentValues = new ContentValues();
+            contentValues.put(nameCategory, category.getNameCategory());
+            contentValues.put(descriptionCategory, category.getDescriptionCategory());
+            contentValues.put(imageCategory, category.getImageCategory());
+
+            int kq = sqLiteDatabase.update(TABLE_NAME, contentValues, idCategory + " = ?", new String[]{category.getIdCategory()});
+            updated = kq > 0;
+
+        } catch (SQLiteException e) {
+            e.printStackTrace();
+        } finally {
+            if (sqLiteDatabase != null) {
+                sqLiteDatabase.close();
+            }
+        }
+        return updated;
     }
 
     @Override

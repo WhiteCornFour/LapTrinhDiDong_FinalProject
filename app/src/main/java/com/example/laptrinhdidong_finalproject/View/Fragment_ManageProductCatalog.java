@@ -1,4 +1,4 @@
-package com.example.laptrinhdidong_finalproject.Cotroller;
+package com.example.laptrinhdidong_finalproject.View;
 
 import android.app.Activity;
 import android.app.Dialog;
@@ -29,12 +29,15 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.example.laptrinhdidong_finalproject.Cotroller.ProductCategoriesHandler;
+import com.example.laptrinhdidong_finalproject.Cotroller.Utils;
 import com.example.laptrinhdidong_finalproject.Model.ProductCategories;
 import com.example.laptrinhdidong_finalproject.R;
 import com.example.laptrinhdidong_finalproject.View.Activity_Deleting_ProductCategories;
 import com.example.laptrinhdidong_finalproject.View.Activity_Deleting_Products;
-import com.example.laptrinhdidong_finalproject.View.CustomAdapterListViewFragment_Product;
-import com.example.laptrinhdidong_finalproject.View.CustomListViewCategories;
+import com.example.laptrinhdidong_finalproject.View.CustomAdapter_ListView_Fragment_Product;
+import com.example.laptrinhdidong_finalproject.View.CustomAdapter_ListView_Fragment_ProductCategories;
+import com.example.laptrinhdidong_finalproject.View.CustomAdapter_ListView_Fragment_ProductCategories;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
@@ -51,10 +54,10 @@ public class Fragment_ManageProductCatalog extends Fragment {
     ListView lvCategories;
     Button btnAddCategory, btnConfirmAddCategory, btnCancelAdding, btnDeleteCategory;
     ImageButton btnUploadCategoryImage;
-    EditText edtCategoryID, edtCategoryName;
+    EditText edtCategoryID, edtCategoryName, edtCategoryDescription;
     ImageView imgAddedCategory;
     ArrayList<ProductCategories> categoriesArrayList = new ArrayList<>();
-    CustomListViewCategories customListViewCategories;
+    CustomAdapter_ListView_Fragment_ProductCategories customListViewCategories;
 
     ActivityResultLauncher<Intent> resultLauncher;
 
@@ -110,7 +113,7 @@ public class Fragment_ManageProductCatalog extends Fragment {
     void loadDBCategoryData()
     {
         categoriesArrayList = categoryHandler.loadAllDataOfProductCategories();
-        customListViewCategories = new CustomListViewCategories(getContext(),
+        customListViewCategories = new CustomAdapter_ListView_Fragment_ProductCategories(getContext(),
                 R.layout.layout_gridview_categorymanager, categoriesArrayList);
         lvCategories.setAdapter(customListViewCategories);
     }
@@ -139,6 +142,7 @@ public class Fragment_ManageProductCatalog extends Fragment {
         btnUploadCategoryImage = customView.findViewById(R.id.btnUploadCategoryImage);
         edtCategoryID = customView.findViewById(R.id.edtCategoryID);
         edtCategoryName = customView.findViewById(R.id.edtCategoryName);
+        edtCategoryDescription = customView.findViewById(R.id.edtCategoryDescription);
         imgAddedCategory = customView.findViewById(R.id.imgAddedCategory);
 
         btnUploadCategoryImage.setOnClickListener(v -> {
@@ -149,11 +153,12 @@ public class Fragment_ManageProductCatalog extends Fragment {
         btnConfirmAddCategory.setOnClickListener(v -> {
             String categoryID = edtCategoryID.getText().toString();
             String categoryName = edtCategoryName.getText().toString();
+            String categoryDescription = edtCategoryDescription.getText().toString();
             Bitmap insertImage = Utils.getBitmapFromImageView(imgAddedCategory);
 
             if(!categoryID.isEmpty() && !categoryName.isEmpty())
             {
-                ProductCategories category = new ProductCategories(categoryID, categoryName, Utils.getBytesFromBitmap(insertImage));
+                ProductCategories category = new ProductCategories(categoryID, categoryName, categoryDescription, Utils.getBytesFromBitmap(insertImage));
                 categoryHandler.insertNewData(category);
 
                 loadDBCategoryData();

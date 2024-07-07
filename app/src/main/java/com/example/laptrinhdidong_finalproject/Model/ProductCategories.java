@@ -6,7 +6,7 @@ import java.sql.Blob;
 public class ProductCategories implements Serializable {
     String idCategory;
     String nameCategory;
-//    String descriptionCategory;
+    String descriptionCategory;
     private byte[] imageCategory;
 
     public String getIdCategory() {
@@ -25,6 +25,14 @@ public class ProductCategories implements Serializable {
         this.nameCategory = nameCategory;
     }
 
+    public String getDescriptionCategory() {
+        return descriptionCategory;
+    }
+
+    public void setDescriptionCategory(String descriptionCategory) {
+        this.descriptionCategory = descriptionCategory;
+    }
+
     public byte[] getImageCategory() {
         return imageCategory;
     }
@@ -33,10 +41,10 @@ public class ProductCategories implements Serializable {
         this.imageCategory = imageCategory;
     }
 
-    public ProductCategories(String idCategory, String nameCategory, byte[] imageCategory) {
+    public ProductCategories(String idCategory, String nameCategory, String descriptionCategory, byte[] imageCategory) {
         this.idCategory = idCategory;
         this.nameCategory = nameCategory;
-//        this.descriptionCategory = descriptionCategory;
+        this.descriptionCategory = descriptionCategory;
         this.imageCategory = imageCategory;
     }
 
