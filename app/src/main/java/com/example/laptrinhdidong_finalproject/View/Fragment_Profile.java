@@ -1,5 +1,6 @@
 package com.example.laptrinhdidong_finalproject.View;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -7,6 +8,9 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.laptrinhdidong_finalproject.R;
 
@@ -16,6 +20,10 @@ import com.example.laptrinhdidong_finalproject.R;
  * create an instance of this fragment.
  */
 public class Fragment_Profile extends Fragment {
+
+    ImageView imgProfile;
+    TextView tvNameProfile, tvAccProfile;
+    Button btnLogOutProfile;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -60,7 +68,30 @@ public class Fragment_Profile extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment__profile, container, false);
+        View view = inflater.inflate(R.layout.fragment__profile, container, false);
+        addControl(view);
+
+
+        addEvent();
+        return view;
+    }
+
+    void addControl(View view)
+    {
+        imgProfile = (ImageView) view.findViewById(R.id.imgProfile);
+        tvNameProfile = (TextView) view.findViewById(R.id.tvNameProfile);
+        tvAccProfile = (TextView) view.findViewById(R.id.tvAccProfile);
+        btnLogOutProfile = (Button) view.findViewById(R.id.btnLogOutProfile);
+    }
+
+    void addEvent()
+    {
+        btnLogOutProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), Activity_Login_Customer.class);
+                startActivity(intent);
+            }
+        });
     }
 }
