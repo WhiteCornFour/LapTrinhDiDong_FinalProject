@@ -116,6 +116,13 @@ public class Fragment_ManageProductCatalog extends Fragment {
             Intent intent = new Intent(getContext(), Activity_Deleting_ProductCategories.class);
             startActivity(intent);
         });
+        btnUpdateCategory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(), Activity_Updating_ProductCategories.class);
+                startActivity(intent);
+            }
+        });
     }
 
     void loadDBCategoryData()

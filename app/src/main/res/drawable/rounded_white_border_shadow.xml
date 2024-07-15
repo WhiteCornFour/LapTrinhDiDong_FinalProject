@@ -7,7 +7,7 @@
     <solid android:color="#FFFFFF" />
 
     <!-- Rounded corners -->
-    <corners android:radius="8dp" />
+    <corners android:radius="100dp" />
 
     <!-- Stroke (border) -->
     <stroke

@@ -148,6 +148,57 @@ public class ProductsHandler extends SQLiteOpenHelper {
         return product;
     }
 
+    @SuppressLint("Range")
+    public ArrayList<Products> returnResultForSearchHome(String keySearch) {
+        ArrayList<Products> products = new ArrayList<>();
+        SQLiteDatabase sqLiteDatabase = SQLiteDatabase.openDatabase(PATH, null, SQLiteDatabase.OPEN_READONLY);
+        String sql = "SELECT * FROM " + TABLE_NAME + " WHERE " + idProduct + " LIKE '%" + keySearch +
+                "%' OR " + nameProduct + " LIKE '%" + keySearch + "%'" +
+                " OR " + idCategory + " LIKE '%" + keySearch + "%'" +
+                " OR " + priceProduct + " >= ?";
+        Cursor cursor = sqLiteDatabase.rawQuery(sql, new String[] { keySearch });
+
+        if (cursor != null) {
+            while (cursor.moveToNext()) {
+                Products product = new Products();
+                product.setIdProduct(cursor.getString(0));
+                product.setIdCategory(cursor.getString(1));
+                product.setNameProduct(cursor.getString(2));
+                product.setDescriptionProduct(cursor.getString(3));
+                product.setImageProduct(cursor.getBlob(4));
+                product.setInitialPrice(cursor.getFloat(5));
+                products.add(product);
+            }
+            cursor.close();
+        }
+        sqLiteDatabase.close();
+        return products;
+    }
+
+    @SuppressLint("Range")
+    public ArrayList<Products> returnResultForRecylerView(String cateID) {
+        ArrayList<Products> products = new ArrayList<>();
+        SQLiteDatabase sqLiteDatabase = SQLiteDatabase.openDatabase(PATH, null, SQLiteDatabase.OPEN_READONLY);
+        String sql = "SELECT * FROM " + TABLE_NAME + " WHERE " + idCategory + " = + '"+ cateID +"'";
+        Cursor cursor = sqLiteDatabase.rawQuery(sql, null);
+
+        if (cursor != null) {
+            if (cursor.moveToFirst()) {
+                Products product = new Products();
+                product.setIdProduct(cursor.getString(0));
+                product.setIdCategory(cursor.getString(1));
+                product.setNameProduct(cursor.getString(2));
+                product.setDescriptionProduct(cursor.getString(3));
+                product.setImageProduct(cursor.getBlob(4));
+                product.setInitialPrice(cursor.getFloat(5));
+                products.add(product);
+            }
+            cursor.close();
+        }
+        sqLiteDatabase.close();
+        return products;
+    }
+
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 

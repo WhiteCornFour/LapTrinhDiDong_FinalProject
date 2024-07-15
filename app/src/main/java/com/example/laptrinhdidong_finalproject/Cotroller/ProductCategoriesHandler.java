@@ -136,6 +136,23 @@ public class ProductCategoriesHandler extends SQLiteOpenHelper {
         return productCategories;
     }
 
+    public String returnCategoryName(String id)
+    {
+        String result = "";
+        SQLiteDatabase sqLiteDatabase = SQLiteDatabase.openDatabase(PATH, null, SQLiteDatabase.CREATE_IF_NECESSARY);
+        String sql = "SELECT CategoryName FROM " + TABLE_NAME + " WHERE " + idCategory + " = '" + id + "'";
+        Cursor cursor = sqLiteDatabase.rawQuery(sql, null);
+
+        if (cursor.moveToFirst()) {
+            result = cursor.getString(cursor.getColumnIndex(nameCategory));
+        }
+
+        cursor.close();
+        sqLiteDatabase.close();
+
+        return result;
+    }
+
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
     }

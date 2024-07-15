@@ -190,10 +190,10 @@ public class Activity_Updating_Products extends AppCompatActivity {
             drawable.draw(canvas);
         }
 
-        if (!isImageSizeUnderLimit(bitmap, 100)) {
-            Toast.makeText(this, "Image size is too large! It should be less than 100KB.", Toast.LENGTH_SHORT).show();
-            return null;
-        }
+//        if (!isImageSizeUnderLimit(bitmap, 100)) {
+//            Toast.makeText(this, "Image size is too large! It should be less than 100KB.", Toast.LENGTH_SHORT).show();
+//            return null;
+//        }
 
         return bitmap;
     }
