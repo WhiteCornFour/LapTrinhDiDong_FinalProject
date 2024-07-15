@@ -70,57 +70,16 @@
 
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="11dp"
+        <TextView
+            android:id="@+id/btnCartDelete"
+            android:layout_width="60dp"
+            android:layout_height="25dp"
+            android:gravity="center"
+            android:layout_marginTop="55dp"
             android:layout_marginEnd="20dp"
-            android:orientation="vertical">
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:orientation="horizontal">
-
-                <ImageButton
-                    android:id="@+id/btnCartProductMinusAmount"
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
-                    android:layout_weight="1"
-                    android:background="@color/white"
-                    app:srcCompat="@drawable/ic_minus_amount" />
-
-                <TextView
-                    android:id="@+id/tvCartProductQuantity"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="8dp"
-                    android:text="1"
-                    android:textColor="@color/black"
-                    android:textSize="16sp" />
-
-                <ImageButton
-                    android:id="@+id/btnCartProductPlusAmount"
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
-                    android:layout_weight="1"
-                    android:background="@color/white"
-                    app:srcCompat="@drawable/ic_plus_amount" />
-            </LinearLayout>
-
-            <TextView
-                android:id="@+id/textView56"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:textSize="15sp"
-                android:layout_marginTop="10dp"
-                android:layout_marginStart="10dp"
-                android:textColor="#d1512d"
-                android:text="Delete" />
-
-        </LinearLayout>
+            android:text="Delete"
+            android:textColor="#d1512d"
+            android:textSize="15sp" />
 
     </LinearLayout>
 
