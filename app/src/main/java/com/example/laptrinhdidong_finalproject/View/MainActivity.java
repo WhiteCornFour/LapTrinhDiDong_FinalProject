@@ -29,6 +29,8 @@ public class MainActivity extends AppCompatActivity {
         actionBar=getSupportActionBar();
         bottomNavigationView=(BottomNavigationView) findViewById(R.id.bottom_nav);
         frameFragment=(FrameLayout)findViewById(R.id.frameFragment);
+        Fragment_Home fragmentDF = new Fragment_Home();
+        loadFragment(fragmentDF);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -36,12 +38,12 @@ public class MainActivity extends AppCompatActivity {
                 switch (item.getItemId())
                 {
                     case R.id.navigation_shop:actionBar.setTitle("Shop");
-                    loadFragment(new Fragment_Shop());
-                    return true;
+                        loadFragment(new Fragment_Shop());
+                        return true;
 
                     case R.id.navigation_feedback:actionBar.setTitle("Feedback");
-                    loadFragment(new Fragment_Feedback());
-                    return true;
+                        loadFragment(new Fragment_Feedback());
+                        return true;
 
                     case R.id.navigation_home:actionBar.setTitle("Home");
                         loadFragment(new Fragment_Home());
