@@ -1,10 +1,8 @@
 package com.example.laptrinhdidong_finalproject.View;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -14,13 +12,6 @@ import android.widget.Toast;
 
 import com.example.laptrinhdidong_finalproject.Cotroller.AdminHandler;
 import com.example.laptrinhdidong_finalproject.R;
-
-import java.io.BufferedReader;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
 
 public class Activity_Login_Admin extends Activity {
 
@@ -44,7 +35,7 @@ public class Activity_Login_Admin extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.layout_dangnhap_admin);
+        setContentView(R.layout.layout_login_admin);
         addControl();
         adminHandler = new AdminHandler(Activity_Login_Admin.this, DB_NAME, null, DB_VERSION);
 

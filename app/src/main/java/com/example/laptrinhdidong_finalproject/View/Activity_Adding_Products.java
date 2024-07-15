@@ -195,10 +195,10 @@ public class Activity_Adding_Products extends AppCompatActivity {
             drawable.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
             drawable.draw(canvas);
         }
-        if (!Activity_Updating_Products.isImageSizeUnderLimit(bitmap, 100)) {
-            Toast.makeText(this, "Image size is too large! It should be less than 100KB.", Toast.LENGTH_SHORT).show();
-            return null;
-        }
+//        if (!Activity_Updating_Products.isImageSizeUnderLimit(bitmap, 100)) {
+//            Toast.makeText(this, "Image size is too large! It should be less than 100KB.", Toast.LENGTH_SHORT).show();
+//            return null;
+//        }
         return bitmap;
     }
 
