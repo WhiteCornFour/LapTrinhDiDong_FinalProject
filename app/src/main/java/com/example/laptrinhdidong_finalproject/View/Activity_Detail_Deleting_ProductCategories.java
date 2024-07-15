@@ -85,8 +85,7 @@ public class Activity_Detail_Deleting_ProductCategories extends AppCompatActivit
         imgDetailPC.setImageBitmap(bitmap);
         tvDetailCateName.setText(pc.getNameCategory());
         tvDetailCateID.setText(pc.getIdCategory());
-//        tvDetailCateDescription.setText(pc.getDescriptionCategory());
-
+        tvDetailCateDescription.setText(pc.getDescriptionCategory());
     }
 
     private void setupProductListView() {
@@ -134,6 +133,20 @@ public class Activity_Detail_Deleting_ProductCategories extends AppCompatActivit
         btnDeleteProduct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // Kiểm tra xem có ít nhất một checkbox được chọn hay không
+                boolean anyChecked = false;
+                for (boolean checked : checkedStates) {
+                    if (checked) {
+                        anyChecked = true;
+                        break;
+                    }
+                }
+
+                if (!anyChecked) {
+                    Toast.makeText(Activity_Detail_Deleting_ProductCategories.this, "Please select products to delete", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
                 AlertDialog alertDialog = createAlertDialogDeleteProducts();
                 alertDialog.show();
                 Toast.makeText(Activity_Detail_Deleting_ProductCategories.this, "Delete products selected", Toast.LENGTH_SHORT).show();
@@ -245,9 +258,4 @@ public class Activity_Detail_Deleting_ProductCategories extends AppCompatActivit
         }
     }
 
-//    private void refreshActivity() {
-//        Intent intent = getIntent();
-//        finish();
-//        startActivity(intent);
-//    }
 }

@@ -1,55 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="8dp">
 
-    <ImageView
+    <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/imgProductCate"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:layout_alignParentStart="true"
-        android:layout_centerVertical="true"
-        android:src="@drawable/hinhdouong"
-        android:background="@drawable/circle_background"
-        android:clipToOutline="true"
-        android:scaleType="centerCrop" />
+        app:shapeAppearanceOverlay="@style/Circular"
+        android:scaleType="centerCrop"
+        android:src="@drawable/hinhdouong" />
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toEndOf="@id/imgProductCate"
         android:layout_marginStart="8dp"
+        android:layout_gravity="center"
+        android:layout_weight="2"
         android:orientation="vertical">
 
         <TextView
             android:id="@+id/tvNameProductCate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Tên sản phẩm"
-            android:textStyle="bold"
-            android:textColor="@color/pink"
-            android:textSize="16sp" />
+            android:fontFamily="@font/cardo"
+            android:background="@drawable/rounded_radius_rectangle"
+            android:text="Name Product Category"
+            android:textColor="@color/gold"
+            android:gravity="center"
+            android:textSize="8pt"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/tvIdProductCate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="ID sản phẩm"
-            android:textStyle="italic"
-            android:textSize="12sp"
-
-            android:layout_marginTop="4dp" />
+            android:layout_marginTop="4dp"
+            android:text="ID Product Cartegory"
+            android:textColor="@color/dark_brown"
+            android:gravity="center"
+            android:textSize="6pt" />
 
     </LinearLayout>
 
     <ImageView
-        android:id="@+id/iconMore"
+        android:id="@+id/imageView5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_centerVertical="true"
-        android:src="@drawable/sharp_arrow_forward_ios_24"
-        android:padding="8dp" />
+        android:layout_weight="1"
+        android:layout_gravity="center"
+        app:srcCompat="@drawable/sharp_arrow_forward_ios_24" />
 
-</RelativeLayout>
+</LinearLayout>

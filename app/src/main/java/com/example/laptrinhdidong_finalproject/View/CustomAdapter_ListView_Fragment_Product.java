@@ -48,9 +48,9 @@ public class CustomAdapter_ListView_Fragment_Product extends ArrayAdapter {
         TextView name = (TextView) convertView.findViewById(R.id.tvCTNameProduct);
         name.setText(product.getNameProduct());
         TextView id = (TextView) convertView.findViewById(R.id.tvCTIdProduct);
-        id.setText(product.getIdProduct());
+        id.setText("ID: " + product.getIdProduct());
         TextView price = (TextView) convertView.findViewById(R.id.tvCTInitialPrice);
-        price.setText(String.valueOf(product.getInitialPrice()));
+        price.setText("Price: "+ String.valueOf(product.getInitialPrice()));
 
         return convertView;
     }

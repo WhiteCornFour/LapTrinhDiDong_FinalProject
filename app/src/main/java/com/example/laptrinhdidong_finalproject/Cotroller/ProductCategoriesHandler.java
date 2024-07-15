@@ -1,5 +1,6 @@
 package com.example.laptrinhdidong_finalproject.Cotroller;
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -14,6 +15,7 @@ import androidx.annotation.Nullable;
 
 import com.example.laptrinhdidong_finalproject.Model.Customer;
 import com.example.laptrinhdidong_finalproject.Model.ProductCategories;
+import com.example.laptrinhdidong_finalproject.Model.Products;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -111,6 +113,27 @@ public class ProductCategoriesHandler extends SQLiteOpenHelper {
             }
         }
         return updated;
+    }
+
+    @SuppressLint("Range")
+    public ProductCategories returnResultForSearchCategory(String productCateID) {
+        ProductCategories productCategories = null;
+        SQLiteDatabase sqLiteDatabase = SQLiteDatabase.openDatabase(PATH, null, SQLiteDatabase.OPEN_READONLY);
+        String sql = "SELECT * FROM " + TABLE_NAME + " WHERE " + idCategory + " = '" + productCateID + "'";
+        Cursor cursor = sqLiteDatabase.rawQuery(sql, null);
+
+        if (cursor != null) {
+            if (cursor.moveToFirst()) {
+                productCategories = new ProductCategories();
+                productCategories.setIdCategory(cursor.getString(cursor.getColumnIndex(idCategory)));
+                productCategories.setNameCategory(cursor.getString(cursor.getColumnIndex(nameCategory)));
+                productCategories.setDescriptionCategory(cursor.getString(cursor.getColumnIndex(descriptionCategory)));
+                productCategories.setImageCategory(cursor.getBlob(cursor.getColumnIndex(imageCategory)));
+            }
+            cursor.close();
+        }
+        sqLiteDatabase.close();
+        return productCategories;
     }
 
     @Override

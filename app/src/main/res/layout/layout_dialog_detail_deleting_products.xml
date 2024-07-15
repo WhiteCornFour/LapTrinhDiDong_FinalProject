@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-    android:layout_margin="20dp"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/rounded_top_corners">
+    android:layout_margin="20dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/rounded_top_corners"
+    android:orientation="vertical">
 
     <TextView
-        android:id="@+id/dialogTitle"
+        android:id="@+id/textView51"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/rounded_all_radius_darkblue"
@@ -16,7 +16,7 @@
         android:gravity="center"
         android:padding="5dp"
         android:layout_marginBottom="6dp"
-        android:text="Adding New Category"
+        android:text="Detail Deleting Product"
         android:textColor="@color/white"
         android:textSize="9pt"
         android:textStyle="bold" />
@@ -40,10 +40,11 @@
             android:textSize="7pt" />
 
         <EditText
-            android:id="@+id/edtCategoryID"
+            android:id="@+id/edtDeletingProductID"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
+            android:enabled="false"
             android:fontFamily="@font/cardo" />
     </LinearLayout>
 
@@ -66,8 +67,9 @@
             android:textSize="7pt" />
 
         <EditText
-            android:id="@+id/edtCategoryName"
+            android:id="@+id/edtDeletingProductName"
             android:layout_width="match_parent"
+            android:enabled="false"
             android:layout_height="wrap_content"
             android:fontFamily="@font/cardo" />
     </LinearLayout>
@@ -91,24 +93,25 @@
             android:textSize="7pt" />
 
         <EditText
-            android:id="@+id/edtCategoryDescription"
+            android:id="@+id/edtDeletingProductDescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:fontFamily="@font/cardo"
+            android:enabled="false"
             android:inputType="textMultiLine"
             android:lines="3"
-            android:textColor="@color/black" />
+            android:textColor="@color/black"
+            android:fontFamily="@font/cardo" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         android:gravity="center_vertical"
         android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
         android:orientation="horizontal">
 
         <TextView
@@ -118,20 +121,11 @@
             android:fontFamily="@font/cardo"
             android:text="Image:"
             android:textColor="@color/black"
-            android:textSize="7pt" />
-
-        <ImageButton
-            android:id="@+id/btnUploadCategoryImage"
-            android:layout_width="60dp"
-            android:layout_height="45dp"
-            android:layout_marginStart="10dp"
-            android:backgroundTint="#9E9E9E"
-            app:srcCompat="@drawable/icon_upload" />
-
+            android:textSize="17sp" />
     </LinearLayout>
 
     <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/imgAddedCategory"
+        android:id="@+id/imgDeletingProduct"
         app:strokeColor="@color/dark_blue"
         app:strokeWidth="2dp"
         android:layout_width="100pt"
@@ -151,18 +145,18 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/btnConfirmAddCategory"
+            android:id="@+id/btnConfirmDeleteProduct"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="10dp"
             android:backgroundTint="@color/white"
-            android:textColor="@color/dark_blue"
+            android:textColor="@android:color/holo_red_dark"
             android:textStyle="bold"
             android:fontFamily="@font/cardo"
-            android:text="OK" />
+            android:text="Delete" />
 
         <Button
-            android:id="@+id/btnCancelAdding"
+            android:id="@+id/btnCancelDeleting"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/disabled_color"
@@ -170,5 +164,4 @@
             android:text="Cancel" />
 
     </LinearLayout>
-
 </LinearLayout>

@@ -27,7 +27,7 @@
             android:textSize="22sp"
             android:textColor="#FF8C00"
             android:textStyle="bold"
-            android:text="Mã danh mục" />
+            android:text="ID Catgory" />
 
         <TextView
             android:id="@+id/tvCategoryName"

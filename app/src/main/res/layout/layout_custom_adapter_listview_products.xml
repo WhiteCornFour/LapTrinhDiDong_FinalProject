@@ -2,18 +2,21 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="horizontal"
     android:padding="8dp">
 
-    <ImageView
+    <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/imgDetailDeleteP"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:scaleType="fitCenter"
+        app:shapeAppearanceOverlay="@style/RoundSquare"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:scaleType="centerCrop"
+        android:padding="2dp"
         android:src="@drawable/hinh_anh_dang_nhap"/>
 
     <LinearLayout
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:orientation="vertical"
@@ -23,26 +26,20 @@
             android:id="@+id/tvDetailProductName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="16sp"
-            android:textStyle="bold"
+            android:fontFamily="@font/cardo"
+            android:text="Product Name"
             android:textColor="@color/black"
-            android:text="Tên sản phẩm"/>
+            android:textSize="16sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/tvDetailProductID"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="12sp"
+            android:fontFamily="@font/cardo"
+            android:text="ID: ID001"
             android:textColor="@color/black"
-            android:text="ID: ID001"/>
-
-        <TextView
-            android:id="@+id/tvDetailProductPrice"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="12sp"
-            android:textColor="@android:color/holo_red_dark"
-            android:text="Giá: TextView"/>
+            android:textSize="12sp" />
 
     </LinearLayout>
 
@@ -50,6 +47,7 @@
         android:id="@+id/cbDeleteProduct"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:focusable="false"
         android:layout_gravity="center_vertical"/>
 
 </LinearLayout>

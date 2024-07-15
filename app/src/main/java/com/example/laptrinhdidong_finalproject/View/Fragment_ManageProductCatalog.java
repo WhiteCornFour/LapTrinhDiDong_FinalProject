@@ -52,7 +52,7 @@ public class Fragment_ManageProductCatalog extends Fragment {
     static final String PATH = "/data/data/com.example.laptrinhdidong_finalproject/database/drinkingmanager.db";
     ProductCategoriesHandler categoryHandler;
     ListView lvCategories;
-    Button btnAddCategory, btnConfirmAddCategory, btnCancelAdding, btnDeleteCategory;
+    Button btnAddCategory, btnConfirmAddCategory, btnCancelAdding, btnDeleteCategory, btnUpdateCategory;
     ImageButton btnUploadCategoryImage;
     EditText edtCategoryID, edtCategoryName, edtCategoryDescription;
     ImageView imgAddedCategory;
@@ -98,9 +98,18 @@ public class Fragment_ManageProductCatalog extends Fragment {
         lvCategories = view.findViewById(R.id.lvCategories);
         btnAddCategory = view.findViewById(R.id.btnAddCategory);
         btnDeleteCategory = view.findViewById(R.id.btnDeleteCategory);
+        btnUpdateCategory = view.findViewById(R.id.btnUpdateCategory);
     }
     void addEvent()
     {
+        btnUpdateCategory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), Activity_Updating_ProductCategories.class);
+                startActivity(intent);
+            }
+        });
+
         btnAddCategory.setOnClickListener(v -> showDialog());
 
         btnDeleteCategory.setOnClickListener(v -> {
@@ -113,7 +122,7 @@ public class Fragment_ManageProductCatalog extends Fragment {
     {
         categoriesArrayList = categoryHandler.loadAllDataOfProductCategories();
         customListViewCategories = new CustomAdapter_ListView_Fragment_ProductCategories(getContext(),
-                R.layout.layout_gridview_categorymanager, categoriesArrayList);
+                R.layout.item_product_category, categoriesArrayList);
         lvCategories.setAdapter(customListViewCategories);
     }
     void showDialog()

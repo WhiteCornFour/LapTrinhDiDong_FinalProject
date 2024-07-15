@@ -3,6 +3,8 @@
     <array name="preloaded_fonts" translatable="false">
         <item>@font/abril_fatface</item>
         <item>@font/arsenal</item>
+        <item>@font/averia_sans_libre_light</item>
+        <item>@font/cardo</item>
         <item>@font/lobster</item>
     </array>
 </resources>

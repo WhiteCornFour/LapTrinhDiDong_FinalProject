@@ -2,55 +2,71 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:background="@color/almond"
+    android:layout_height="90dp"
     android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="horizontal"
-        android:layout_marginBottom="10dp">
+        android:gravity="center"
+        android:orientation="horizontal">
 
         <ImageView
             android:id="@+id/imgCTProduct"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            app:srcCompat="@drawable/backgr1" />
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            app:srcCompat="@drawable/hinh_anh_dang_nhap" />
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:orientation="vertical"
             android:layout_marginLeft="5dp">
 
-            <TextView
-                android:id="@+id/tvCTNameProduct"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textSize="10pt"
-                android:textColor="@color/brown"
-                android:textStyle="bold"
-                android:text="Name product" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/tvCTIdProduct"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textSize="7pt"
-                android:textColor="@color/dark_beige"
-                android:text="Id Product" />
+                <TextView
+                    android:id="@+id/tvCTNameProduct"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:fontFamily="@font/cardo"
+                    android:text="Name product"
+                    android:textColor="@color/dark_blue"
+                    android:textSize="10pt"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvCTIdProduct"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/cardo"
+                    android:text="Id Product"
+                    android:textColor="@color/black"
+                    android:gravity="right"
+                    android:paddingRight="10dp"
+                    android:textSize="7pt" />
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/tvCTInitialPrice"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:textSize="7pt"
-                android:textColor="@color/dark_beige"
-                android:text="Initial Price" />
+                android:background="@drawable/price_tag_layout_product"
+                android:fontFamily="@font/cardo"
+                android:text="Initial Price"
+                android:textColor="@color/light_beige"
+                android:gravity="center"
+                android:textSize="7pt" />
+
         </LinearLayout>
 
     </LinearLayout>
