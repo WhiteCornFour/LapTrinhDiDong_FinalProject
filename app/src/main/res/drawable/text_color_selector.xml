@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Trạng thái khi nút được nhấn -->
+    <item android:state_pressed="true">
+        <font-family android:font="@font/cardo" />
+        <android:textColor android:color="@color/gold" />
+    </item>
+    <!-- Trạng thái mặc định -->
+    <item>
+        <font-family android:font="@font/cardo" />
+        <android:textColor android:color="@color/dark_blue" />
+    </item>
+</selector>

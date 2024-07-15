@@ -14,7 +14,17 @@
     <color name="dark_brown">#664229</color>
     <color name="disabled_color">#AFAFAF</color>
     <color name="lavender">#8692F7</color>
+    <color name="ivory">#F9F8F7</color>
+    <color name="almond">#EDEAE4</color>
+    <color name="mist">#ADB8BB</color>
+    <color name="navy">#153147</color>
+    <color name="noir">#232A2F</color>
     <color name="pink">#FF7F7F</color>
+    <color name="gold">#E3C39D</color>
+    <color name="oxford_gold">#A68868</color>
+    <color name="light_blue">#CDD5DB</color>
+    <color name="blue">#4B6382</color>
+    <color name="dark_blue">#071739</color>
 </resources>
 
 

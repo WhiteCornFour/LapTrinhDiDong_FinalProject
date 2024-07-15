@@ -66,6 +66,7 @@ public class Activity_MainPaige_Admin extends AppCompatActivity {
 
         tvTenAD.setText(nameAD);
         tvTKAD.setText("Account: " + us);
+
         setSupportActionBar(toolbar);
         drawerLayout = (DrawerLayout)
                 findViewById(R.id.drawer_layout);
@@ -133,12 +134,12 @@ public class Activity_MainPaige_Admin extends AppCompatActivity {
         });
     }
     // Method to replace fragment in content_frame
-    private void replaceFragment(Fragment fragment) {
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.content_frame, fragment);
-        fragmentTransaction.commit();
-    }
+        private void replaceFragment(Fragment fragment) {
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.content_frame, fragment);
+            fragmentTransaction.commit();
+        }
 }
 
 

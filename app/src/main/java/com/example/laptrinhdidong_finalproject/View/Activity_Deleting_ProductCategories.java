@@ -8,10 +8,13 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 
 import com.example.laptrinhdidong_finalproject.Cotroller.ProductCategoriesHandler;
 import com.example.laptrinhdidong_finalproject.Model.ProductCategories;
+import com.example.laptrinhdidong_finalproject.Model.Products;
 import com.example.laptrinhdidong_finalproject.R;
 
 import java.util.ArrayList;
@@ -29,7 +32,10 @@ public class Activity_Deleting_ProductCategories extends AppCompatActivity {
     private static final String PATH = "/data/data/com.example.laptrinhdidong_finalproject/database/drinkingmanager.db";
 
     ListView lvProductCate;
+    EditText edtSearchDeleteCategoriesBar;
+    Button btnSearchForDeleteCategory;
     ArrayList<ProductCategories> productCategoriesArrayList = new ArrayList<>();
+    ArrayList<ProductCategories> productCategoriesArrayListResult = new ArrayList<>();
     CustomAdapter_ListView_Deleting_ProductCategories adapterListViewProductCate;
     ProductCategoriesHandler productCategoriesHandler;
     SQLiteDatabase sqLiteDatabase;
@@ -48,6 +54,8 @@ public class Activity_Deleting_ProductCategories extends AppCompatActivity {
     }
 
     void addControl() {
+        btnSearchForDeleteCategory = (Button) findViewById(R.id.btnSearchForDeleteCategory);
+        edtSearchDeleteCategoriesBar = (EditText) findViewById(R.id.edtSearchDeleteCategoriesBar);
         lvProductCate = (ListView) findViewById(R.id.lvProductCate);
     }
 
@@ -59,6 +67,24 @@ public class Activity_Deleting_ProductCategories extends AppCompatActivity {
                 Intent intent = new Intent(Activity_Deleting_ProductCategories.this, Activity_Detail_Deleting_ProductCategories.class);
                 intent.putExtra("pc", pc);
                 startActivityForResult(intent, 1);
+            }
+        });
+
+        btnSearchForDeleteCategory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String searchID = edtSearchDeleteCategoriesBar.getText().toString();
+                productCategoriesArrayListResult.clear();
+                ProductCategories productCategoriesResult = productCategoriesHandler.returnResultForSearchCategory(searchID);
+                if (productCategoriesResult == null)
+                {
+                    loadProductCategories();
+                    return;
+                }
+                productCategoriesArrayListResult.add(productCategoriesResult);
+                loadProductCategories();
+                adapterListViewProductCate = new CustomAdapter_ListView_Deleting_ProductCategories(Activity_Deleting_ProductCategories.this, R.layout.layout_custom_adapter_listview_prouductcategories, productCategoriesArrayListResult);
+                lvProductCate.setAdapter(adapterListViewProductCate);
             }
         });
     }

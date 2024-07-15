@@ -37,7 +37,7 @@ public class CustomAdapter_ListView_Fragment_ProductCategories extends ArrayAdap
             convertView = LayoutInflater.from(context).inflate(layoutItem, null);
         }
 
-        ImageView imgCategory = convertView.findViewById(R.id.imgCategory);
+        ImageView imgCategory = convertView.findViewById(R.id.img_category);
         if (category.getImageCategory() != null) {
             Bitmap bitmap = BitmapFactory.decodeByteArray(category.getImageCategory(), 0, category.getImageCategory().length);
             imgCategory.setImageBitmap(bitmap);
@@ -46,12 +46,14 @@ public class CustomAdapter_ListView_Fragment_ProductCategories extends ArrayAdap
             imgCategory.setImageResource(R.drawable.empty_img); // set a placeholder image
         }
 
-        TextView tvCategoryID = convertView.findViewById(R.id.tvCategoryID);
-        tvCategoryID.setText(category.getIdCategory());
+        TextView tvCategoryID = convertView.findViewById(R.id.tv_category_id);
+        tvCategoryID.setText("ID: " +category.getIdCategory());
 
-        TextView tvCategoryName = convertView.findViewById(R.id.tvCategoryName);
+        TextView tvCategoryName = convertView.findViewById(R.id.tv_category_name);
         tvCategoryName.setText(category.getNameCategory());
 
+        TextView tvCategoryDescription = convertView.findViewById(R.id.tv_category_description);
+        tvCategoryDescription.setText( category.getDescriptionCategory());
         return convertView;
     }
 }

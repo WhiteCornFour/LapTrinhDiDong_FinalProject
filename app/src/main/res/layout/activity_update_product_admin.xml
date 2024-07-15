@@ -4,209 +4,262 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/light_blue"
     android:orientation="vertical"
     tools:context=".View.Activity_Updating_Products">
 
-    <TextView
-        android:id="@+id/textView23"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:textSize="13pt"
-        android:gravity="center"
-        android:textStyle="bold"
-        android:textColor="@color/dark_brown"
-        android:layout_marginBottom="15dp"
-        android:text="Update Product" />
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="vertical">
 
         <TextView
-            android:id="@+id/textView24"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:textSize="9pt"
-            android:textColor="@color/brown"
-            android:text="Product ID: " />
-
-        <EditText
-            android:id="@+id/edtProductID"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:textSize="9pt"
-            android:textColor="@color/brown"
-            android:enabled="false"
-            />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/textView25"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:textSize="9pt"
-            android:textColor="@color/brown"
-            android:text="Category ID: " />
-
-        <EditText
-            android:id="@+id/edtCategoryID"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:enabled="false"
-            android:textSize="9pt"
-            android:textColor="@color/brown"
-            />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/textView26"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:textSize="9pt"
-            android:textColor="@color/brown"
-            android:text="Product Name: " />
-
-        <EditText
-            android:id="@+id/edtProductName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:textSize="9pt"
-            android:textColor="@color/brown"
-            />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginTop="10dp">
-
-        <TextView
-            android:id="@+id/textView27"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:text="Product Description: "
-            android:textColor="@color/brown"
-            android:textSize="9pt" />
-
-        <EditText
-            android:id="@+id/edtProductDescription"
+            android:id="@+id/textView23"
             android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:textColor="@color/brown"
-            android:textSize="9pt" />
-    </LinearLayout>
+            android:layout_height="60dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/rounded_below_corner"
+            android:fontFamily="@font/cardo"
+            android:gravity="center"
+            android:text="Updating Products"
+            android:textColor="@color/ivory"
+            android:textSize="12pt"
+            android:textStyle="bold" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/textView28"
-            android:layout_width="200dp"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Initial Price: "
-            android:textColor="@color/brown"
-            android:textSize="9pt" />
+            android:layout_margin="5dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/rounded_top_corners"
+            android:orientation="horizontal">
 
-        <EditText
-            android:id="@+id/edtInitialPrice"
-            android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="130dp"
+                android:layout_height="300dp"
+                android:layout_gravity="center"
+                android:layout_marginRight="5dp"
+                android:orientation="vertical">
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/imgUpdateProduct"
+                    android:layout_width="120dp"
+                    android:layout_height="200dp"
+                    android:layout_gravity="center"
+                    android:layout_margin="5dp"
+                    app:shapeAppearanceOverlay="@style/RoundSquare"
+                    app:srcCompat="@drawable/bobaimg"
+                    app:strokeColor="@color/dark_blue"
+                    app:strokeWidth="2dp" />
+
+                <Button
+                    android:id="@+id/btnImportImageUpdateProduct"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="4pt"
+                    android:backgroundTint="@color/white"
+                    android:textStyle="bold"
+                    android:textColor="@color/dark_blue"
+                    android:fontFamily="@font/cardo"
+                    android:gravity="center"
+                    android:text="Update New IMG"
+                    android:textSize="5pt" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/textView24"
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/cardo"
+                        android:text="Product ID: "
+                        android:textColor="@color/dark_blue"
+                        android:textSize="7pt" />
+
+                    <EditText
+                        android:id="@+id/edtProductID"
+                        android:layout_width="258dp"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:enabled="false"
+                        android:fontFamily="@font/cardo"
+                        android:inputType="textPersonName"
+                        android:textColor="@color/dark_blue" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/textView25"
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/cardo"
+                        android:text="Category ID: "
+                        android:textColor="@color/dark_blue"
+                        android:textSize="7pt" />
+
+                    <EditText
+                        android:id="@+id/edtCategoryID"
+                        android:layout_width="258dp"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:enabled="false"
+                        android:fontFamily="@font/cardo"
+                        android:inputType="textPersonName"
+                        android:textColor="@color/dark_blue" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/textView26"
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/cardo"
+                        android:text="Product Name: "
+                        android:textColor="@color/dark_blue"
+                        android:textSize="7pt" />
+
+                    <EditText
+                        android:id="@+id/edtProductName"
+                        android:layout_width="258dp"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:fontFamily="@font/cardo"
+                        android:inputType="textPersonName"
+                        android:textColor="@color/dark_blue" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/textView28"
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/cardo"
+                        android:text="Initial Price: "
+                        android:textColor="@color/dark_blue"
+                        android:textSize="7pt" />
+
+                    <EditText
+                        android:id="@+id/edtInitialPrice"
+                        android:layout_width="258dp"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:fontFamily="@font/cardo"
+                        android:inputType="textPersonName"
+                        android:textColor="@color/dark_blue" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:textSize="9pt"
-            android:textColor="@color/brown" />
-    </LinearLayout>
+            android:layout_margin="5dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/rounded_top_corners"
+            android:orientation="vertical">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+            <TextView
+                android:id="@+id/textView27"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:fontFamily="@font/cardo"
+                android:text="Product Description: "
+                android:textColor="@color/dark_blue"
+                android:textSize="7pt" />
 
-        <ImageView
-            android:id="@+id/imgUpdateProduct"
-            android:layout_width="130dp"
-            android:layout_height="130dp"
-            app:srcCompat="@drawable/avtadmin" />
+            <EditText
+                android:id="@+id/edtProductDescription"
+                android:layout_width="400dp"
+                android:layout_height="70dp"
+                android:ems="10"
+                android:fontFamily="@font/cardo"
+                android:inputType="textMultiLine"
+                android:lines="3"
+                android:textColor="@color/dark_blue" />
+        </LinearLayout>
 
         <Button
-            android:id="@+id/btnImportImageUpdateProduct"
+            android:id="@+id/btnUpdateProductAD"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/icon_upload"
-            android:drawableTint="@color/white"
-            android:layout_gravity="bottom"
-            android:layout_marginLeft="20dp"
-            android:backgroundTint="@color/beige"
-            android:text="Import Image" />
+            android:layout_gravity="center"
+            android:layout_marginBottom="5dp"
+            android:backgroundTint="@color/white"
+            android:textStyle="bold"
+            android:textColor="@color/dark_blue"
+            android:fontFamily="@font/cardo"
+            android:text="Update Product"
+            android:textSize="7pt" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_margin="5dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/edtSearchForUpdate"
+                android:layout_width="350dp"
+                android:layout_height="40dp"
+                android:background="@drawable/search_bar_bg"
+                android:backgroundTint="@color/almond"
+                android:ems="10"
+                android:fontFamily="@font/cardo"
+                android:hint="Seach products by code...."
+                android:inputType="textPersonName"
+                android:paddingLeft="7dp"
+                android:textColor="@color/dark_blue"
+                android:textSize="7pt"
+                android:textStyle="italic" />
+
+            <Button
+                android:id="@+id/btnSearchForUpdate"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_gravity="right"
+                android:layout_marginBottom="10dp"
+                android:backgroundTint="@color/dark_blue"
+                android:drawableTop="@drawable/sharp_search_24"
+                android:fontFamily="@font/cardo"
+                android:gravity="center"
+                android:textColor="@color/almond" />
+        </LinearLayout>
+
+
+        <ListView
+            android:id="@+id/lvProductForUpdate"
+            android:layout_width="match_parent"
+            android:layout_height="260dp"
+            android:layout_margin="5dp"
+            android:background="@drawable/rounded_top_corners"
+            android:dividerHeight="10.0sp" />
     </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/textView30"
-            android:layout_width="250dp"
-            android:layout_height="wrap_content"
-            android:text="Search products by code: "
-            android:textColor="@color/brown"
-            android:textSize="9pt" />
-
-        <EditText
-            android:id="@+id/edtSearchForUpdate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:textSize="9pt"
-            android:textColor="@color/brown"
-            />
-    </LinearLayout>
-
-    <Button
-        android:id="@+id/btnSearchForUpate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="right"
-        android:backgroundTint="@color/beige"
-        android:text="Search" />
-
-    <Button
-        android:id="@+id/btnUpdateProductAD"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:backgroundTint="@color/beige"
-        android:layout_marginBottom="10dp"
-        android:text="Update Prodcuct" />
-
-    <ListView
-        android:id="@+id/lvProductForUpdate"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:background="@color/beige"
-        />
 </LinearLayout>

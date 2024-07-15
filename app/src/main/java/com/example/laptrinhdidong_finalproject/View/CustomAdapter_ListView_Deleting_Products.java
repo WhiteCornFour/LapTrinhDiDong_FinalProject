@@ -55,9 +55,6 @@ public class CustomAdapter_ListView_Deleting_Products extends ArrayAdapter {
         TextView tvDetailProductID = (TextView) convertView.findViewById(R.id.tvDetailProductID);
         tvDetailProductID.setText(p.getIdProduct());
 
-        TextView tvDetailProductPrice = (TextView) convertView.findViewById(R.id.tvDetailProductPrice);
-        tvDetailProductPrice.setText(String.valueOf(p.getInitialPrice()));
-
         CheckBox cbDeleteProduct = convertView.findViewById(R.id.cbDeleteProduct);
 
         cbDeleteProduct.setChecked(checkedStates[position]);

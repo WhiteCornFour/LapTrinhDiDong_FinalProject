@@ -102,6 +102,14 @@ public class Fragment_ManageProductCatalog extends Fragment {
     }
     void addEvent()
     {
+        btnUpdateCategory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), Activity_Updating_ProductCategories.class);
+                startActivity(intent);
+            }
+        });
+
         btnAddCategory.setOnClickListener(v -> showDialog());
 
         btnDeleteCategory.setOnClickListener(v -> {
@@ -121,7 +129,7 @@ public class Fragment_ManageProductCatalog extends Fragment {
     {
         categoriesArrayList = categoryHandler.loadAllDataOfProductCategories();
         customListViewCategories = new CustomAdapter_ListView_Fragment_ProductCategories(getContext(),
-                R.layout.layout_gridview_categorymanager, categoriesArrayList);
+                R.layout.item_product_category, categoriesArrayList);
         lvCategories.setAdapter(customListViewCategories);
     }
     void showDialog()

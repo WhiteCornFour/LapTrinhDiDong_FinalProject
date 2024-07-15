@@ -47,7 +47,7 @@ public class Activity_Updating_Products extends AppCompatActivity {
     EditText edtProductDescription;
     EditText edtInitialPrice;
     EditText edtSearchForUpdate;
-    Button btnImportImageUpdateProduct, btnSearchForUpate, btnUpdateProductAD;
+    Button btnImportImageUpdateProduct, btnSearchForUpdate, btnUpdateProductAD;
     ImageView imgUpdateProduct;
     ListView lvProductForUpdate;
 
@@ -83,14 +83,14 @@ public class Activity_Updating_Products extends AppCompatActivity {
         edtInitialPrice = (EditText) findViewById(R.id.edtInitialPrice);
         edtSearchForUpdate = (EditText) findViewById(R.id.edtSearchForUpdate);
         btnImportImageUpdateProduct = (Button) findViewById(R.id.btnImportImageUpdateProduct);
-        btnSearchForUpate = (Button) findViewById(R.id. btnSearchForUpate);
+        btnSearchForUpdate = (Button) findViewById(R.id.btnSearchForUpdate);
         btnUpdateProductAD = (Button) findViewById(R.id.btnUpdateProductAD);
         imgUpdateProduct = (ImageView) findViewById(R.id.imgUpdateProduct);
         lvProductForUpdate = (ListView) findViewById(R.id.lvProductForUpdate);
     }
     void addEvent()
     {
-        btnSearchForUpate.setOnClickListener(new View.OnClickListener() {
+        btnSearchForUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String searchID = edtSearchForUpdate.getText().toString();

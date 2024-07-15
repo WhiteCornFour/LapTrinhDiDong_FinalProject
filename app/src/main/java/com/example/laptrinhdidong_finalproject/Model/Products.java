@@ -1,6 +1,8 @@
 package com.example.laptrinhdidong_finalproject.Model;
 
-public class Products {
+import java.io.Serializable;
+
+public class Products implements Serializable {
     String idProduct;
     String idCategory;
     String nameProduct;

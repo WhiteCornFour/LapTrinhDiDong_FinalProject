@@ -4,114 +4,218 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/light_blue"
     android:orientation="vertical"
     tools:context=".View.Activity_Detail_Deleting_ProductCategories">
 
     <LinearLayout
         android:layout_width="400dp"
-        android:layout_height="150dp"
+        android:layout_height="170dp"
         android:layout_margin="5dp"
+        android:background="@drawable/rounded_top_corners"
         android:orientation="horizontal">
 
-        <ImageView
+        <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/imgDetailPC"
-            android:layout_width="140dp"
-            android:layout_height="140dp"
+            app:shapeAppearanceOverlay="@style/Circular"
+            app:strokeColor="@color/dark_blue"
+            app:strokeWidth="3dp"
+            android:padding="4dp"
+            android:layout_width="165dp"
+            android:layout_height="160dp"
             android:layout_gravity="center"
+            android:scaleType="centerCrop"
             app:srcCompat="@drawable/background" />
 
         <LinearLayout
-            android:layout_width="150dp"
-            android:layout_height="140dp"
-            android:layout_margin="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="160dp"
             android:layout_gravity="center"
+            android:layout_margin="5dp"
             android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView30"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/cardo"
+                android:text="Category Name: "
+                android:textColor="@color/dark_blue"
+                android:textSize="6pt"
+                android:textStyle="italic" />
 
             <TextView
                 android:id="@+id/tvDetailCateName"
-                android:layout_width="145dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/cardo"
+                android:background="@drawable/rounded_radius_rectangle"
+                android:text="Carte01"
+                android:textColor="@color/gold"
+                android:gravity="center"
                 android:textSize="8pt"
-                android:textStyle="bold"
-                android:textColor="@color/black"
-                android:text="Carte01" />
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textView31"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/cardo"
+                android:layout_marginTop="10dp"
+                android:text="Category ID: "
+                android:textColor="@color/dark_blue"
+                android:textSize="6pt"
+                android:textStyle="italic" />
 
             <TextView
                 android:id="@+id/tvDetailCateID"
-                android:layout_width="145dp"
-                android:layout_height="70dp"
-                android:textStyle="italic"
-                android:text="ID001" />
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rounded_radius_rectangle"
+                android:textColor="@color/gold"
+                android:gravity="center"
+                android:fontFamily="@font/cardo"
+                android:text="ID001"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/btnDeletePC"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:backgroundTint="@color/white"
+                android:fontFamily="@font/cardo"
+                android:text="Delete Category"
+                android:textColor="@color/dark_blue"
+                android:textStyle="bold"
+                android:textSize="5.5pt" />
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="96dp"
-            android:layout_height="140dp"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:orientation="vertical">
-                <Button
-                    android:id="@+id/btnDeletePC"
-                    android:layout_width="95dp"
-                    android:layout_height="100dp"
-                    android:textSize="4pt"
-                    android:text="Delete Product Categories" />
-        </LinearLayout>
+
 
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/tvDetailCateDescription"
-        android:layout_width="400dp"
-        android:layout_height="120dp"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
         android:layout_margin="5dp"
-        android:text="TextView"
-        android:textSize="6pt" />
+        android:background="@drawable/rounded_top_corners"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textView39"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:fontFamily="@font/cardo"
+            android:text="Description:"
+            android:textColor="@color/dark_blue"
+            android:textSize="6pt"
+            android:textStyle="italic"/>
+
+        <TextView
+            android:id="@+id/tvDetailCateDescription"
+            android:layout_width="400dp"
+            android:layout_height="120dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:textColor="@color/black"
+            android:fontFamily="@font/cardo"
+            android:text="...."
+            android:textSize="6pt" />
+    </LinearLayout>
 
     <LinearLayout
-        android:layout_width="400dp"
-        android:layout_height="50dp"
-        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rounded_top_corners"
+        android:gravity="center"
         android:layout_margin="5dp"
-        android:gravity="center">
-        <Button
-            android:id="@+id/btnCheckAll"
-            android:layout_width="100dp"
-            android:layout_height="45dp"
-            android:layout_margin="5dp"
-            android:textSize="4pt"
-            android:text="Check All" />
+        android:orientation="vertical">
 
-        <Button
-            android:id="@+id/btnClearAll"
-            android:layout_width="100dp"
-            android:layout_height="45dp"
-            android:layout_margin="5dp"
-            android:textSize="4pt"
-            android:text="Clear All" />
+        <TextView
+            android:id="@+id/textView40"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="5dp"
+            android:fontFamily="@font/cardo"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:textSize="9pt"
+            android:background="@drawable/rounded_color_top_almond"
+            android:textStyle="bold"
+            android:text="List of Function" />
 
-        <Button
-            android:id="@+id/btnDeleteProduct"
-            android:layout_width="150dp"
-            android:layout_height="45dp"
-            android:textSize="4pt"
-            android:text="Delete Choosing Product" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center">
+
+            <Button
+                android:id="@+id/btnCheckAll"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/cardo"
+                android:text="Check All"
+                android:backgroundTint="@color/white"
+                android:textColor="@color/dark_blue"
+                android:textStyle="bold"
+                android:layout_margin="5dp"
+                android:textSize="4pt" />
+
+            <Button
+                android:id="@+id/btnClearAll"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/cardo"
+                android:text="Clear All"
+                android:backgroundTint="@color/white"
+                android:textColor="@color/dark_blue"
+                android:textStyle="bold"
+                android:layout_margin="5dp"
+                android:textSize="4pt"  />
+
+            <Button
+                android:id="@+id/btnDeleteProduct"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/cardo"
+                android:text="Delete Choosing Category"
+                android:backgroundTint="@color/white"
+                android:textColor="@color/dark_blue"
+                android:textStyle="bold"
+                android:layout_margin="5dp"
+                android:textSize="4pt"  />
+        </LinearLayout>
     </LinearLayout>
 
     <TextView
         android:id="@+id/textView17"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="9pt"
-        android:textColor="@color/black"
-        android:textStyle="bold"
-        android:layout_margin="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="5dp"
+        android:fontFamily="@font/cardo"
         android:gravity="center"
-        android:text="List Drinking" />
+        android:text="List of Drinking"
+        android:textColor="@color/black"
+        android:textSize="9pt"
+        android:background="@drawable/rounded_color_top_almond"
+        android:textStyle="bold" />
 
     <ListView
         android:id="@+id/lvDetailProductDelete"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:dividerHeight="10.0sp"
+        android:background="@color/almond"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="390dp" />
 
 </LinearLayout>
