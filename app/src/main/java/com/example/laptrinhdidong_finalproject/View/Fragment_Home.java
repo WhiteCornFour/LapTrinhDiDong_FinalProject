@@ -153,7 +153,7 @@ public class Fragment_Home extends Fragment implements OnItemClickListener {
 
     @Override
     public void onItemClick(ProductCategories productCategories) {
-        Toast.makeText(getActivity(), "Selected Category: " + productCategories.getNameCategory(), Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getActivity(), "Selected Category: " + productCategories.getNameCategory(), Toast.LENGTH_SHORT).show();
         String kq = productCategories.getIdCategory();
         productForRecylerView = productHandler.returnResultForRecylerView(kq);
         customAdapter = new CustomAdapterLV_Product_Home(getContext(),
