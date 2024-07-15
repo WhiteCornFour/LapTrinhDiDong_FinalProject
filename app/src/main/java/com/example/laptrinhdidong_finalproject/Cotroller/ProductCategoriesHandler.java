@@ -136,6 +136,7 @@ public class ProductCategoriesHandler extends SQLiteOpenHelper {
         return productCategories;
     }
 
+    @SuppressLint("Range")
     public String returnCategoryName(String id)
     {
         String result = "";
