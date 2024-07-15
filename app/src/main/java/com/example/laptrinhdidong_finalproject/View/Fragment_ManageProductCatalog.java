@@ -52,7 +52,7 @@ public class Fragment_ManageProductCatalog extends Fragment {
     static final String PATH = "/data/data/com.example.laptrinhdidong_finalproject/database/drinkingmanager.db";
     ProductCategoriesHandler categoryHandler;
     ListView lvCategories;
-    Button btnAddCategory, btnConfirmAddCategory, btnCancelAdding, btnDeleteCategory;
+    Button btnAddCategory, btnConfirmAddCategory, btnCancelAdding, btnDeleteCategory, btnUpdateCategory;
     ImageButton btnUploadCategoryImage;
     EditText edtCategoryID, edtCategoryName, edtCategoryDescription;
     ImageView imgAddedCategory;
@@ -98,6 +98,7 @@ public class Fragment_ManageProductCatalog extends Fragment {
         lvCategories = view.findViewById(R.id.lvCategories);
         btnAddCategory = view.findViewById(R.id.btnAddCategory);
         btnDeleteCategory = view.findViewById(R.id.btnDeleteCategory);
+        btnUpdateCategory = view.findViewById(R.id.btnUpdateCategory);
     }
     void addEvent()
     {
@@ -106,6 +107,13 @@ public class Fragment_ManageProductCatalog extends Fragment {
         btnDeleteCategory.setOnClickListener(v -> {
             Intent intent = new Intent(getContext(), Activity_Deleting_ProductCategories.class);
             startActivity(intent);
+        });
+        btnUpdateCategory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(), Activity_Updating_ProductCategories.class);
+                startActivity(intent);
+            }
         });
     }
 

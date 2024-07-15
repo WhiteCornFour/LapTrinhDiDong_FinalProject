@@ -55,7 +55,8 @@ import java.util.ArrayList;
 
             addControl();
             addEvent();
-            productCategoriesHandler = new ProductCategoriesHandler(Activity_Updating_ProductCategories.this, DB_NAME, null, DB_VERSION);
+            productCategoriesHandler = new ProductCategoriesHandler(Activity_Updating_ProductCategories.this,
+                    DB_NAME, null, DB_VERSION);
             categoryList = productCategoriesHandler.loadAllDataOfProductCategories();
             productCategoriesHandler.onCreate(sqLiteDatabase);
 
