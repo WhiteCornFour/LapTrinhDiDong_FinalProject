@@ -31,9 +31,27 @@ public class MainActivity extends AppCompatActivity {
         frameFragment=(FrameLayout)findViewById(R.id.frameFragment);
         Fragment_Home fragmentDF = new Fragment_Home();
         loadFragment(fragmentDF);
+        Intent intent = getIntent();
+        String phone = intent.getExtras().getString("phonenumber");
+        String pass = intent.getExtras().getString("password");
+        String idItem = intent.getStringExtra("idItem");
+
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        Bundle bundle = new Bundle();
+        bundle.putString("phone", phone);
+        bundle.putString("pass", pass);
+
+        fragmentManager.setFragmentResult("customer", bundle);
+
+        if (idItem != null && idItem.equals("Home")) {
+            loadFragment(new Fragment_Home());
+        } else {
+            loadFragment(new Fragment_Home()); // Hoặc fragment mặc định khác
+        }
+
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            public boolean onNavigationItemSelected(@NonNull MenuItem item)     {
                 Fragment fragment;
                 switch (item.getItemId())
                 {
@@ -52,6 +70,7 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.navigation_profile:actionBar.setTitle("Profile");
                         loadFragment(new Fragment_Profile());
                         return true;
+
                 }
                 return false;
             }

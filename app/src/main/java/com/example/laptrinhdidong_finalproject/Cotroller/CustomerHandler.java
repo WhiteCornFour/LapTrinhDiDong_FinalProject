@@ -131,7 +131,24 @@ public class CustomerHandler extends SQLiteOpenHelper {
         //Log.d("Pass", resultPass);
         return resultPass;
     }
+    @SuppressLint("Range")
+    public String getIdCustomer(String phone, String pass)
+    {
+        String result = "";
+        SQLiteDatabase sqLiteDatabase = SQLiteDatabase.openDatabase(PATH, null, SQLiteDatabase.CREATE_IF_NECESSARY);
+        String sql = "SELECT CustomerID FROM " + TABLE_NAME + " WHERE " + phoneCustomer + " = '" + phone + "' AND " + passwordCustomer + " = '" + pass + "'";
+        Cursor cursor = sqLiteDatabase.rawQuery(sql, null);
 
+        if (cursor.moveToFirst()) {
+            result = cursor.getString(cursor.getColumnIndex(idCustomer));
+        }
+
+        cursor.close();
+        sqLiteDatabase.close();
+
+
+        return result;
+    }
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
 

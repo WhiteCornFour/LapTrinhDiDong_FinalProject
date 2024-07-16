@@ -95,6 +95,7 @@
             android:text="Size:" />
 
         <RadioGroup
+            android:id="@+id/rGSize"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
             android:layout_width="match_parent"
@@ -122,9 +123,9 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:gravity="right|center"
+                    android:gravity="end|center"
                     android:textSize="5pt"
-                    android:text="0đ" />
+                    android:text="0$" />
 
                 <RadioButton
                     android:id="@+id/rdbSizeS"
@@ -161,9 +162,9 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:gravity="right|center"
+                    android:gravity="end|center"
                     android:textSize="5pt"
-                    android:text="8.000đ" />
+                    android:text="3$" />
 
                 <RadioButton
                     android:id="@+id/rdbSizeM"
@@ -200,56 +201,18 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:gravity="right|center"
+                    android:gravity="end|center"
                     android:textSize="5pt"
-                    android:text="15.000đ" />
+                    android:text="5$" />
 
                 <RadioButton
                     android:id="@+id/rdbSizeL"
                     android:layout_marginLeft="10dp"
                     android:layout_width="35dp"
                     android:layout_height="match_parent"
-                    android:textSize="6pt"/>
+                    android:textSize="6pt" />
             </LinearLayout>
         </RadioGroup>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="4dp"
-        android:background="@drawable/rounded_top_corners"
-        android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/textView50"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingLeft="3dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginTop="5dp"
-            android:textStyle="bold"
-            android:textColor="@color/black"
-            android:text="Address:" />
-
-        <EditText
-            android:id="@+id/edtAddressOrder"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginTop="5dp"
-            android:paddingLeft="3dp"
-            android:textSize="6pt"
-            android:inputType="textMultiLine"
-            android:lines="3"
-            android:textStyle="italic"
-            android:backgroundTint="@color/dark_brown"
-            android:hint="Your address...."
-            android:gravity="top|start" />
-
-
     </LinearLayout>
 
     <LinearLayout
@@ -268,7 +231,19 @@
             android:textStyle="bold"
             android:paddingLeft="3dp"
             android:layout_gravity="center"
-            android:text="86.000đ" />
+            android:text="0" />
+
+        <TextView
+            android:id="@+id/textView50"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="6pt"
+            android:textColor="@color/black"
+            android:layout_marginLeft="5dp"
+            android:textStyle="bold"
+            android:paddingLeft="3dp"
+            android:layout_gravity="center"
+            android:text="$"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -291,8 +266,10 @@
                 android:layout_height="40dp"
                 android:layout_marginLeft="10pt"
                 android:layout_marginRight="10pt"
+                android:enabled="false"
+                android:textColor="@color/black"
                 android:gravity="center"
-                android:text="0" />
+                android:text="1" />
 
             <Button
                 android:id="@+id/btnPlusQuantity"
@@ -305,7 +282,7 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/btnAddingIntoCart"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/brown"
@@ -313,4 +290,15 @@
         android:layout_marginRight="5dp"
         android:layout_marginTop="5dp"
         android:text="Put in my basket" />
+
+    <Button
+        android:id="@+id/btnCancelAddingCart"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/light_beige"
+        android:textColor="@color/black"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="5dp"
+        android:text="Cancel" />
 </LinearLayout>
