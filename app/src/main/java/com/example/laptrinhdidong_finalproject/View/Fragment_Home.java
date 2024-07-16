@@ -1,23 +1,30 @@
 package com.example.laptrinhdidong_finalproject.View;
 
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentResultListener;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.example.laptrinhdidong_finalproject.Cotroller.CustomerHandler;
 import com.example.laptrinhdidong_finalproject.Cotroller.ProductCategoriesHandler;
+import com.example.laptrinhdidong_finalproject.Model.Customer;
 import com.example.laptrinhdidong_finalproject.Model.ProductCategories;
 import com.example.laptrinhdidong_finalproject.Model.Products;
 import com.example.laptrinhdidong_finalproject.R;
@@ -50,6 +57,9 @@ public class Fragment_Home extends Fragment implements OnItemClickListener {
 
     ArrayList<Products> productForRecylerView = new ArrayList<>();
     CustomAdapterLV_Product_Home customAdapter;
+    String idCus = "";
+    ArrayList<Customer> customerArrayList = new ArrayList<>();
+    CustomerHandler customerHandler;
 
     com.example.laptrinhdidong_finalproject.Cotroller.ProductsHandler productHandler;
 
@@ -72,14 +82,14 @@ public class Fragment_Home extends Fragment implements OnItemClickListener {
         return fragment;
     }
 
-//    @Override
-//    public void onCreate(Bundle savedInstanceState) {
-//        super.onCreateState(savedInstanceState);
-//        if (getArguments() != null) {
-//            mParam1 = getArguments().getString(ARG_PARAM1);
-//            mParam2 = getArguments().getString(ARG_PARAM2);
-//        }
-//    }
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (getArguments() != null) {
+            mParam1 = getArguments().getString(ARG_PARAM1);
+            mParam2 = getArguments().getString(ARG_PARAM2);
+        }
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -93,7 +103,24 @@ public class Fragment_Home extends Fragment implements OnItemClickListener {
 
         productHandler = new com.example.laptrinhdidong_finalproject.Cotroller.ProductsHandler(getContext(),
                 DB_NAME, null, DB_VERSION);
-        loadDataOfListView(productArrayList);
+        productArrayList = productHandler.loadAllDataOfProducts();
+        customAdapter = new CustomAdapterLV_Product_Home(getContext(), R.layout.layout_custom_lv_product_home, productArrayList);
+        lvProductHomeCus.setAdapter(customAdapter);
+
+        customerHandler = new CustomerHandler(getContext(),
+                DB_NAME, null ,DB_VERSION);
+
+        FragmentManager fragmentManager = getParentFragmentManager();
+        fragmentManager.setFragmentResultListener("customer", this, new FragmentResultListener() {
+            @Override
+            public void onFragmentResult(@NonNull String requestKey, @NonNull Bundle result) {
+                String phone = result.getString("phone");
+                String pass = result.getString("pass");
+                Log.d("Phone and pass from bundle is:" ,phone + pass);
+                idCus = customerHandler.getIdCustomer(phone, pass);
+                Log.d("ID Customer from bundle is:" ,idCus);
+            }
+        });
 
         addEvent();
         return view;
@@ -141,6 +168,22 @@ public class Fragment_Home extends Fragment implements OnItemClickListener {
                                 R.layout.layout_custom_lv_product_home, productsForSearch);
                         lvProductHomeCus.setAdapter(customAdapter);
                     }
+                }
+            }
+        });
+
+        lvProductHomeCus.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                if (position >= 0 && position < productArrayList.size()) {
+                    Products product = productArrayList.get(position);
+                    Log.d("product", String.valueOf(product));
+                    Intent intent = new Intent(getActivity(), Activity_Detail_Products_Customer.class);
+                    intent.putExtra("product", product);
+                    intent.putExtra("idCus", idCus);
+                    startActivity(intent);
+                } else {
+                    Log.d("product", "Invalid position: " + position);
                 }
             }
         });
