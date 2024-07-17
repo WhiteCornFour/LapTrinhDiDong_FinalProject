@@ -1,222 +1,239 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@color/white"
+    android:background="@color/light_beige"
     tools:context=".View.Activity_Register_Customer">
 
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:fontFamily="@font/lobster"
-        android:textSize="20pt"
-        android:textColor="@color/dark_brown"
-        android:gravity="center"
-        android:layout_marginTop="90dp"
-        android:text="Thirst Quencher" />
 
-    <TextView
-        android:id="@+id/textView"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/lobster"
-        android:textColor="@color/dark_brown"
-        android:textSize="11pt"
-        android:gravity="center"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="20dp"
-        android:text="Register for Custommer" />
+        android:orientation="vertical">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:orientation="horizontal"
-        android:layout_marginLeft="20dp"
-        android:layout_marginBottom="10dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="25dp">
+
+        <ImageView
+            android:id="@+id/imageView8"
+            android:layout_width="match_parent"
+            android:layout_height="90dp"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
+            android:layout_marginBottom="30dp"
+            app:srcCompat="@drawable/roof" />
+
+        <ImageView
+            android:id="@+id/imageView7"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/beverage_cafe_coffee_cold_drink_icon" />
 
         <TextView
-            android:id="@+id/textView8"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textSize="9pt"
-            android:textColor="@color/dark_beige"
-            android:layout_gravity="center"
-            android:text="Your name:" />
-
-        <EditText
-            android:id="@+id/edtNameReg"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:layout_marginLeft="10dp"
-            android:textColor="@color/dark_brown"
-            />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginBottom="10dp"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/textView12"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textSize="9pt"
-            android:textColor="@color/dark_beige"
-            android:layout_gravity="center"
-            android:text="Email:" />
-
-        <EditText
-            android:id="@+id/edtEmailReg"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:ems="10"
-            android:inputType="textEmailAddress"
-            android:layout_marginLeft="55dp"
-            android:textColor="@color/dark_brown"
-             />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginBottom="10dp"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/textView14"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textSize="9pt"
-            android:textColor="@color/dark_beige"
-            android:layout_gravity="center"
-            android:text="Phone:"  />
-
-        <EditText
-            android:id="@+id/edtPhoneNumberReg"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:layout_marginLeft="45dp"
-            android:textColor="@color/dark_brown" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginBottom="10dp"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/textView10"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Password:"
-            android:textColor="@color/dark_beige"
-            android:layout_gravity="center"
-            android:textSize="9pt" />
-
-        <EditText
-            android:id="@+id/edtPassReg"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_weight="1"
-            android:ems="10"
-            android:inputType="textPassword"
-            android:textColor="@color/dark_brown" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginBottom="10dp"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/textView11"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Comfirm:"
-            android:textColor="@color/dark_beige"
-            android:layout_gravity="center"
-            android:textSize="9pt" />
-
-        <EditText
-            android:id="@+id/edtPassComfReg"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="24dp"
-            android:layout_weight="1"
-            android:ems="10"
-            android:inputType="textPassword"
-            android:textColor="@color/dark_brown" />
-    </LinearLayout>
-
-    <Button
-        android:id="@+id/btnRegis"
-        android:layout_width="200dp"
-        android:layout_height="50dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="20dp"
-        android:backgroundTint="@color/beige"
-        android:text="Register"
-        android:textSize="8pt"
-        android:textColor="@color/white" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/tvHaveAcc"
-            android:layout_width="wrap_content"
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:layout_gravity="center"
-            android:textColor="@color/dark_brown"
-            android:layout_marginLeft="40dp"
-            android:textSize="7pt"
-            android:text="Already Have An Account" />
+            android:fontFamily="@font/alata"
+            android:text="Since 2024"/>
 
         <TextView
-            android:id="@+id/tvForgotPass"
-            android:layout_width="wrap_content"
+            android:id="@+id/textView4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/alata"
+            android:gravity="center"
+            android:text="BOBA THE BAR"
+            android:layout_marginBottom="40dp"
+            android:textColor="@color/dark_brown"
+            android:textSize="18pt"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:gravity="center"
-            android:textColor="@color/dark_brown"
-            android:layout_marginLeft="30dp"
-            android:textSize="7pt"
-            android:text="Forgot Password" />
-    </LinearLayout>
+            android:background="@drawable/rounded_haflradius_border_shadow"
+            android:orientation="vertical">
 
-</LinearLayout>
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:layout_marginTop="50dp"
+                android:layout_marginBottom="17pt"
+                android:fontFamily="@font/alata"
+                android:gravity="center"
+                android:text="Register for having some boba!"
+                android:textColor="@color/dark_black"
+                android:textSize="15pt"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:gravity="center"
+                android:layout_margin="10dp"
+                android:orientation="vertical">
+
+                <EditText
+                    android:id="@+id/edtNameReg"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/custom_input"
+                    android:fontFamily="@font/alata"
+                    android:drawableStart="@drawable/custom_person_icon"
+                    android:drawablePadding="12dp"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp"
+                    android:ems="10"
+                    android:textColor="@color/dark_black"
+                    android:inputType="textPersonName"
+                    android:hint="Your name"
+                    tools:ignore="SpeakableTextPresentCheck">
+
+                </EditText>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:gravity="center"
+                android:layout_margin="10dp"
+                android:orientation="vertical">
+
+                <EditText
+                    android:id="@+id/edtEmailReg"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/custom_input"
+                    android:fontFamily="@font/alata"
+                    android:drawableStart="@drawable/custom_email_icon"
+                    android:drawablePadding="12dp"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp"
+                    android:textColor="@color/dark_black"
+                    android:ems="10"
+                    android:hint="Email"
+                    android:inputType="textEmailAddress"
+                    tools:ignore="SpeakableTextPresentCheck" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:gravity="center"
+                android:layout_margin="10dp"
+                android:orientation="vertical">
+
+                <EditText
+                    android:id="@+id/edtPhoneNumberReg"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/custom_input"
+                    android:fontFamily="@font/alata"
+                    android:drawableStart="@drawable/custom_phone_icon"
+                    android:drawablePadding="12dp"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp"
+                    android:textColor="@color/dark_black"
+                    android:ems="10"
+                    android:hint="Phone number"
+                    android:inputType="number"
+                    tools:ignore="SpeakableTextPresentCheck" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:gravity="center"
+                android:layout_margin="10dp"
+                android:orientation="vertical">
+
+                <EditText
+                    android:id="@+id/edtPassReg"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/custom_input"
+                    android:fontFamily="@font/alata"
+                    android:drawableStart="@drawable/custom_lock_icon"
+                    android:drawablePadding="12dp"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp"
+                    android:textColor="@color/dark_black"
+                    android:ems="10"
+                    android:hint="Password"
+                    android:inputType="textPassword"
+                    tools:ignore="SpeakableTextPresentCheck" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:gravity="center"
+                android:layout_margin="10dp"
+                android:orientation="vertical">
+
+                <EditText
+                    android:id="@+id/edtPassComfReg"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/custom_input"
+                    android:fontFamily="@font/alata"
+                    android:drawableStart="@drawable/custom_eye_icon"
+                    android:drawablePadding="12dp"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp"
+                    android:textColor="@color/dark_black"
+                    android:ems="10"
+                    android:hint="Confirm password"
+                    android:inputType="textPassword"
+                    tools:ignore="SpeakableTextPresentCheck" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btnRegis"
+                android:layout_width="275dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:padding="10dp"
+                android:layout_marginTop="70dp"
+                android:layout_marginBottom="8pt"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:fontFamily="@font/alata"
+                android:backgroundTint="@color/dark_brown"
+                android:text="Register" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="15dp"
+                android:gravity="center"
+                android:layout_marginBottom="40dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tvHaveAcc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:fontFamily="@font/alata"
+                    android:textColor="@color/dark_black"
+                    android:text="Already have an account?" />
+
+                <TextView
+                    android:id="@+id/tvForgotPass"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:fontFamily="@font/alata"
+                    android:textStyle="bold"
+                    android:textColor="@color/dark_black"
+                    android:text=" Forgot password?" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

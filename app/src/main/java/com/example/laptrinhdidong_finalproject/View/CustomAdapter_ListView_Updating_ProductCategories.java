@@ -18,7 +18,7 @@ import java.util.ArrayList;
 public class CustomAdapter_ListView_Updating_ProductCategories extends BaseAdapter {
 
      ImageView img_category;
-     Context context;
+     Context   context;
      ArrayList<ProductCategories> categories;
 
     public CustomAdapter_ListView_Updating_ProductCategories(Context context, ArrayList<ProductCategories> categories) {
@@ -48,7 +48,6 @@ public class CustomAdapter_ListView_Updating_ProductCategories extends BaseAdapt
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             view = inflater.inflate(R.layout.item_product_category, null);
         }
-
 
         TextView tvCategoryId = view.findViewById(R.id.tv_category_id);
         TextView tvCategoryName = view.findViewById(R.id.tv_category_name);

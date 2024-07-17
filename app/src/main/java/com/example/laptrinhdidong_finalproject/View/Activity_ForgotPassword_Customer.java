@@ -38,7 +38,7 @@ public class Activity_ForgotPassword_Customer extends AppCompatActivity {
     EditText edt_username_customer;
     String generatedOtp;
 
-    TextView tvBackPass, tv_sign_in_qmk_customer;
+    TextView tvBackPass, tv_sign_in_qmk_customer, tv_qmk_customer;
     CustomerHandler customerHandler;
 
     SQLiteDatabase sqLiteDatabase;
@@ -49,6 +49,7 @@ public class Activity_ForgotPassword_Customer extends AppCompatActivity {
         setContentView(R.layout.activity_forgotpasswordcustomers);
 
         addControl();
+        tv_qmk_customer.setText("Opps !!!" + "\nForgot your password ?");
         customerHandler = new CustomerHandler(Activity_ForgotPassword_Customer.this,
                 DB_NAME, null, DB_VERSION);
         customerHandler.onCreate(sqLiteDatabase);
@@ -57,6 +58,7 @@ public class Activity_ForgotPassword_Customer extends AppCompatActivity {
         Intent intent = getIntent();
         String kq = intent.getStringExtra("backPass");
         tvBackPass.setText("Your password: " + kq);
+
     }
 
     void addControl() {
@@ -64,6 +66,7 @@ public class Activity_ForgotPassword_Customer extends AppCompatActivity {
         edt_username_customer = findViewById(R.id.edt_username_customer);
         tvBackPass = (TextView) findViewById(R.id.tvBackPass);
         tv_sign_in_qmk_customer = (TextView) findViewById(R.id.tv_sign_in_qmk_customer);
+        tv_qmk_customer = findViewById(R.id.tv_qmk_customer);
     }
 
     void addEvent() {
