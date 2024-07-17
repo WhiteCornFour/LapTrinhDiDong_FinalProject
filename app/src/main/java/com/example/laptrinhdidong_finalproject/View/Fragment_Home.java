@@ -1,6 +1,7 @@
 package com.example.laptrinhdidong_finalproject.View;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 
@@ -58,7 +59,7 @@ public class Fragment_Home extends Fragment implements OnItemClickListener {
 
     ArrayList<Products> productForRecylerView = new ArrayList<>();
     CustomAdapterLV_Product_Home customAdapter;
-    public static String idCus = "";
+    public static String Cusid;
     ArrayList<Customer> customerArrayList = new ArrayList<>();
     CustomerHandler customerHandler;
 
@@ -90,6 +91,8 @@ public class Fragment_Home extends Fragment implements OnItemClickListener {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("CustomerPrefs", getContext().MODE_PRIVATE);
+        Cusid = sharedPreferences.getString("idCus", "");
     }
 
     @Override
@@ -118,8 +121,7 @@ public class Fragment_Home extends Fragment implements OnItemClickListener {
                 String phone = result.getString("phone");
                 String pass = result.getString("pass");
                 Log.d("Phone and pass from bundle is:" ,phone + pass);
-                idCus = customerHandler.getIdCustomer(phone, pass);
-                Log.d("ID Customer from bundle is:" ,idCus);
+                Log.d("ID Customer from bundle is:" ,Cusid);
             }
         });
 
@@ -128,7 +130,7 @@ public class Fragment_Home extends Fragment implements OnItemClickListener {
     }
 
     public static String getIdCus() {
-        return idCus;
+        return Cusid;
     }
 
     void loadDataOfRecylerView() {
@@ -185,7 +187,7 @@ public class Fragment_Home extends Fragment implements OnItemClickListener {
                     Log.d("product", String.valueOf(product));
                     Intent intent = new Intent(getActivity(), Activity_Detail_Products_Customer.class);
                     intent.putExtra("product", product);
-                    intent.putExtra("idCus", idCus);
+                    intent.putExtra("idCus", Cusid);
                     startActivity(intent);
                 } else {
                     Log.d("product", "Invalid position: " + position);

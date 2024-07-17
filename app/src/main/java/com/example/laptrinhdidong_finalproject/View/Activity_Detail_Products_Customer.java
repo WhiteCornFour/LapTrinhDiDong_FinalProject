@@ -17,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.laptrinhdidong_finalproject.Cotroller.CartItemsHandler;
+import com.example.laptrinhdidong_finalproject.Cotroller.CartsHandler;
 import com.example.laptrinhdidong_finalproject.Cotroller.CustomerHandler;
 import com.example.laptrinhdidong_finalproject.Model.CartItems;
 import com.example.laptrinhdidong_finalproject.Model.Customer;
@@ -30,16 +31,6 @@ import java.util.Set;
 
 public class Activity_Detail_Products_Customer extends AppCompatActivity {
 
-    private static final String DB_NAME = "drinkingmanager";
-    private static final int DB_VERSION = 1;
-
-    private static final String TABLE_NAME = "Customers";
-    private static final String idCustomer = "CustomerID";
-    private static final String nameCustomer = "CustomerName";
-    private static final String emailCustomer = "CustomerEmail";
-    private static final String phoneCustomer = "PhoneNumber";
-    private static final String passwordCustomer = "LoginPassword";
-    private static final String PATH = "/data/data/com.example.laptrinhdidong_finalproject/database/drinkingmanager.db";
     ImageView imgBackGroundDetail;
     TextView tvProductName, tvProductPrice, tvProductDescription, tvTotalOrder, tvProductQuantity;
     RadioButton rdbSizeS, rdbSizeM, rdbSizeL;
@@ -55,14 +46,10 @@ public class Activity_Detail_Products_Customer extends AppCompatActivity {
     String idCus = "";
     String idPro = "";
     public static String idCart = "";
-    ArrayList<Customer> customerArrayList = new ArrayList<>();
-    CustomerHandler customerHandler;
     private static final int CART_ID_LENGTH = 10; // Độ dài của mã giỏ hàng
     private static final String PREFS_NAME = "CartPrefs";
     private static final String CART_ID_KEY = "cart_id";
     private static final Set<String> generatedIDs = new HashSet<>(); // Để lưu các mã đã tạo
-
-    ArrayList<CartItems> cartItemsArrayList = new ArrayList<>();
     CartItemsHandler cartItemsHandler;
 
     @Override
@@ -91,22 +78,12 @@ public class Activity_Detail_Products_Customer extends AppCompatActivity {
         idCus = intent.getStringExtra("idCus");
         //tao ma cart moi chi khi ma cart chua duoc tao
         SharedPreferences sharedPreferences = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
-        idCart = sharedPreferences.getString(CART_ID_KEY, null);
-        if (idCart == null || idCart.isEmpty()) {
-            idCart = generateUniqueCartID();
-            saveCartIDToLocal(idCart);
-        }
+        idCart = CartsHandler.getCustomerCartID();
         Log.d("ID Customer from Detail bundle is:" ,idCus);
-        Log.d("ID Cart from Detail bundle is:" ,idCart);
+//        Log.d("ID Cart from Detail bundle is:" ,idCart);
         addEvent();
     }
 
-    private void saveCartIDToLocal(String cartID) {
-        SharedPreferences sharedPreferences = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString(CART_ID_KEY, cartID);
-        editor.apply();
-    }
 
     public static String generateUniqueCartID() {
         String newID;

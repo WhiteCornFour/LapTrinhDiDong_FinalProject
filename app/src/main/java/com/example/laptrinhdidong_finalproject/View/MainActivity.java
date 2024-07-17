@@ -14,6 +14,7 @@ import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
+import com.example.laptrinhdidong_finalproject.Cotroller.CartItemsHandler;
 import com.example.laptrinhdidong_finalproject.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -57,9 +58,18 @@ public class MainActivity extends AppCompatActivity {
                 Fragment fragment;
                 switch (item.getItemId())
                 {
-                    case R.id.navigation_shop:actionBar.setTitle("Shop");
-                        loadFragment(new Fragment_Cart());
+                    case R.id.navigation_shop:
+                        actionBar.setTitle("Shop");
+                    {
+                        CartItemsHandler cartItemsHandler = new CartItemsHandler(getApplicationContext());
+                        int itemsNum = cartItemsHandler.getGetItemCount();
+                        if (itemsNum == 0) {
+                            loadFragment(new Fragment_EmptyCart());
+                        } else {
+                            loadFragment(new Fragment_Cart());
+                        }
                         return true;
+                    }
 
                     case R.id.navigation_feedback:actionBar.setTitle("Feedback");
                         loadFragment(new Fragment_Feedback());

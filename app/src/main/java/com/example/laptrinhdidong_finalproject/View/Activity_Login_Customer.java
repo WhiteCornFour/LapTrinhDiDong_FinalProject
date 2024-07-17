@@ -67,6 +67,13 @@ public class Activity_Login_Customer extends AppCompatActivity {
                     Intent intent = new Intent(Activity_Login_Customer.this, MainActivity.class);
                     intent.putExtra("phonenumber", phone);
                     intent.putExtra("password", password);
+                    //day Cus ID xuong local storage
+                    String idCus = customerHandler.getIdCustomer(phone, password);
+                    SharedPreferences sharedPreferences = getSharedPreferences("CustomerPrefs", MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putString("idCus", idCus);
+                    editor.apply();
+
                     startActivity(intent);
                     resetEdt();
                 } else {

@@ -119,6 +119,10 @@ public class CartItemsHandler extends SQLiteOpenHelper {
         return totalSum;
     }
 
+    public int getGetItemCount() {
+        return loadCartItemsData().size();
+    }
+
     @Override
     public void onCreate(SQLiteDatabase db) {
 
