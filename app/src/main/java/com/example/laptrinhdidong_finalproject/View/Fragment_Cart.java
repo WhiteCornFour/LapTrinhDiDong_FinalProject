@@ -1,14 +1,26 @@
 package com.example.laptrinhdidong_finalproject.View;
 
+import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.ListView;
+import android.widget.TextView;
 
+import com.example.laptrinhdidong_finalproject.Cotroller.CartItemsHandler;
+import com.example.laptrinhdidong_finalproject.Cotroller.CartsHandler;
+import com.example.laptrinhdidong_finalproject.Model.CartItems;
 import com.example.laptrinhdidong_finalproject.R;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -16,7 +28,12 @@ import com.example.laptrinhdidong_finalproject.R;
  * create an instance of this fragment.
  */
 public class Fragment_Cart extends Fragment {
-
+    ListView lvCartProduct;
+    TextView tvTotalCart;
+    Button btnOrderCart;
+    ArrayList<CartItems> itemsArrayList = new ArrayList<>();
+    CustomAdapter_ListView_Cart cartAdapter;
+    CartItemsHandler cartItemsHandler;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -47,7 +64,6 @@ public class Fragment_Cart extends Fragment {
         fragment.setArguments(args);
         return fragment;
     }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,11 +72,33 @@ public class Fragment_Cart extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_cart, container, false);
+        View view = inflater.inflate(R.layout.fragment_cart, container, false);
+        addControl(view);
+        setDisplayCart();
+        return view;
     }
+    void addControl(View view)
+    {
+        lvCartProduct = view.findViewById(R.id.lvCartProduct);
+        tvTotalCart = view.findViewById(R.id.tvTotalCart);
+        btnOrderCart = view.findViewById(R.id.btnOrderCart);
+    }
+    public void setDisplayCart()
+    {
+        cartItemsHandler = new CartItemsHandler(getActivity());
+        tvTotalCart.setText(String.valueOf(cartItemsHandler.sumTotalForCarts()));
+        itemsArrayList = cartItemsHandler.loadCartItemsData();
+        if (itemsArrayList.size() == 0)
+        {
+            btnOrderCart.setText("No item available in cart!");
+            btnOrderCart.setEnabled(false);
+            return;
+        }
+        cartAdapter = new CustomAdapter_ListView_Cart(getActivity(), R.layout.layout_custom_listview_cart, itemsArrayList);
+        lvCartProduct.setAdapter(cartAdapter);
+    }
+
 }

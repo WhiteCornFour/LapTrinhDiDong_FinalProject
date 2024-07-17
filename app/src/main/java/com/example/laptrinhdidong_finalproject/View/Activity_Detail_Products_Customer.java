@@ -1,10 +1,6 @@
 package com.example.laptrinhdidong_finalproject.View;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentResultListener;
-import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -14,17 +10,15 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.laptrinhdidong_finalproject.Cotroller.CartsHandler;
+import com.example.laptrinhdidong_finalproject.Cotroller.CartItemsHandler;
 import com.example.laptrinhdidong_finalproject.Cotroller.CustomerHandler;
-import com.example.laptrinhdidong_finalproject.Cotroller.ProductsHandler;
-import com.example.laptrinhdidong_finalproject.Model.Carts;
+import com.example.laptrinhdidong_finalproject.Model.CartItems;
 import com.example.laptrinhdidong_finalproject.Model.Customer;
 import com.example.laptrinhdidong_finalproject.Model.Products;
 import com.example.laptrinhdidong_finalproject.R;
@@ -68,8 +62,8 @@ public class Activity_Detail_Products_Customer extends AppCompatActivity {
     private static final String CART_ID_KEY = "cart_id";
     private static final Set<String> generatedIDs = new HashSet<>(); // Để lưu các mã đã tạo
 
-    ArrayList<Carts> cartsArrayList = new ArrayList<>();
-    CartsHandler cartsHandler;
+    ArrayList<CartItems> cartItemsArrayList = new ArrayList<>();
+    CartItemsHandler cartItemsHandler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,7 +71,7 @@ public class Activity_Detail_Products_Customer extends AppCompatActivity {
         setContentView(R.layout.activity_detail_products_customer);
         addControl();
 
-        cartsHandler = new CartsHandler(this,DB_NAME, null, DB_VERSION);
+        cartItemsHandler = new CartItemsHandler(this);
 
         //lay chi tiet san pham tu Fragment Home
         Intent intent = getIntent();
@@ -247,12 +241,11 @@ public class Activity_Detail_Products_Customer extends AppCompatActivity {
             public void onClick(View v) {
                 String cartId = idCart;
                 String productId = idPro;
-                String customerId = idCus;
                 String sizeProduct = sizeValue;
                 int productQuantity = Integer.parseInt(tvProductQuantity.getText().toString());
                 double cartUnitPrice = Double.parseDouble(tvTotalOrder.getText().toString());
-                Carts carts = new Carts(cartId, customerId, productId, sizeProduct, productQuantity, cartUnitPrice);
-                cartsHandler.insertRecordIntoCartsTable(carts);
+                CartItems cartItems = new CartItems(cartId, productId, sizeProduct, productQuantity, cartUnitPrice);
+                cartItemsHandler.insertRecordIntoCartsTable(cartItems);
                 Toast.makeText(Activity_Detail_Products_Customer.this, "Adding cart successful!!", Toast.LENGTH_SHORT).show();
 //                loadFragment(new Fragment_Home());
                 returnToHomeFragment();

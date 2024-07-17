@@ -12,6 +12,8 @@ import androidx.annotation.Nullable;
 import com.example.laptrinhdidong_finalproject.Model.Products;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ProductsHandler extends SQLiteOpenHelper {
 
@@ -59,6 +61,25 @@ public class ProductsHandler extends SQLiteOpenHelper {
         }
         sqLiteDatabase.close();
         return productsArrayList;
+    }
+    public static Map<String, Products> getProductInfoMap() {
+        Map<String, Products> productInfoMap = new HashMap<>();
+        SQLiteDatabase sqLiteDatabase = SQLiteDatabase.openDatabase(PATH, null, SQLiteDatabase.OPEN_READONLY);
+        String sql = "SELECT ProductID, ProductName, ProductImage FROM Products";
+        Cursor cursor = sqLiteDatabase.rawQuery(sql, null);
+
+        if (cursor != null) {
+            while (cursor.moveToNext()) {
+                String productID = cursor.getString(cursor.getColumnIndexOrThrow("ProductID"));
+                String productName = cursor.getString(cursor.getColumnIndexOrThrow("ProductName"));
+                byte[] productImage = cursor.getBlob(cursor.getColumnIndexOrThrow("ProductImage"));
+                Products productInfo = new Products(productName, productImage);
+                productInfoMap.put(productID, productInfo);
+            }
+            cursor.close();
+        }
+        sqLiteDatabase.close();
+        return productInfoMap;
     }
 
     public void updateRecord(Products p) {

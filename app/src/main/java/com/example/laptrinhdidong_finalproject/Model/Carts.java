@@ -1,71 +1,30 @@
 package com.example.laptrinhdidong_finalproject.Model;
 
 public class Carts {
-    String cartId;
-    String customerId;
-    String productId;
-    String productSize;
-    int productQuantity;
-    double cartUnitPrice;
+    String cartID;
+    String customerID;
 
-    public Carts(String cartId, String customerId, String productId, String productSize, int productQuantity, double cartUnitPrice) {
-        this.cartId = cartId;
-        this.customerId = customerId;
-        this.productId = productId;
-        this.productSize = productSize;
-        this.productQuantity = productQuantity;
-        this.cartUnitPrice = cartUnitPrice;
-    }
-
-
-    public double getCartUnitPrice() {
-        return cartUnitPrice;
-    }
-
-    public void setCartUnitPrice(double cartUnitPrice) {
-        this.cartUnitPrice = cartUnitPrice;
-    }
-
-    public String getCartId() {
-        return cartId;
-    }
-
-    public void setCartId(String cartId) {
-        this.cartId = cartId;
-    }
-
-    public String getCustomerId() {
-        return customerId;
-    }
-
-    public void setCustomerId(String customerId) {
-        this.customerId = customerId;
-    }
-
-    public String getProductId() {
-        return productId;
-    }
-
-    public void setProductId(String productId) {
-        this.productId = productId;
-    }
-
-    public String getProductSize() {
-        return productSize;
-    }
-
-    public void setProductSize(String productSize) {
-        this.productSize = productSize;
-    }
-
-    public int getProductQuantity() {
-        return productQuantity;
-    }
-
-    public void setProductQuantity(int productQuantity) {
-        this.productQuantity = productQuantity;
+    public Carts(String cartID, String customerID) {
+        this.cartID = cartID;
+        this.customerID = customerID;
     }
 
     public Carts() {
+    }
+
+    public String getCartID() {
+        return cartID;
+    }
+
+    public void setCartID(String cartID) {
+        this.cartID = cartID;
+    }
+
+    public String getCustomerID() {
+        return customerID;
+    }
+
+    public void setCustomerID(String customerID) {
+        this.customerID = customerID;
     }
 }
