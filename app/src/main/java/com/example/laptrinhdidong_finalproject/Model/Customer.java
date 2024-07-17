@@ -10,6 +10,11 @@ public class Customer {
     public Customer() {
     }
 
+    public Customer(String nameCustomer, String phoneCustomer) {
+        this.nameCustomer = nameCustomer;
+        this.phoneCustomer = phoneCustomer;
+    }
+
     public Customer(String idCustomer, String nameCustomer, String emailCustomer, String phoneCustomer, String passwordCustomer) {
         this.idCustomer = idCustomer;
         this.nameCustomer = nameCustomer;

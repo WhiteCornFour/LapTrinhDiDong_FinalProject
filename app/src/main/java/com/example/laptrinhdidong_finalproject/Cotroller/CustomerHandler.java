@@ -10,8 +10,11 @@ import android.util.Log;
 import androidx.annotation.Nullable;
 
 import com.example.laptrinhdidong_finalproject.Model.Customer;
+import com.example.laptrinhdidong_finalproject.Model.Products;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class CustomerHandler extends SQLiteOpenHelper {
     private static final String DB_NAME = "drinkingmanager";
@@ -55,6 +58,26 @@ public class CustomerHandler extends SQLiteOpenHelper {
         //Log.d("SQL_INSERT_STATEMENT", sql1);
         sqLiteDatabase.execSQL(sql1);
         sqLiteDatabase.close();
+    }
+
+    public static Map<String, Customer> getCustomerInfoMap() {
+        Map<String, Customer> customerInfoMap = new HashMap<>();
+        SQLiteDatabase sqLiteDatabase = SQLiteDatabase.openDatabase(PATH, null, SQLiteDatabase.OPEN_READONLY);
+        String sql = "SELECT CustomerID, CustomerName, PhoneNumber FROM Customers";
+        Cursor cursor = sqLiteDatabase.rawQuery(sql, null);
+
+        if (cursor != null) {
+            while (cursor.moveToNext()) {
+                String customerID = cursor.getString(cursor.getColumnIndexOrThrow("CustomerID"));
+                String customerName = cursor.getString(cursor.getColumnIndexOrThrow("CustomerName"));
+                String customerPhone = cursor.getString(cursor.getColumnIndexOrThrow("PhoneNumber"));
+                Customer customerInfo = new Customer(customerName, customerPhone);
+                customerInfoMap.put(customerID, customerInfo);
+            }
+            cursor.close();
+        }
+        sqLiteDatabase.close();
+        return customerInfoMap;
     }
 
     public boolean validateLogin(String phone, String password) {
