@@ -100,7 +100,7 @@ public class Activity_Register_Customer extends AppCompatActivity {
                                     Toast.LENGTH_SHORT).show();
                             break;
                         } else {
-                            Customer c = new Customer(id, name, mail, sdt, pass);
+                            Customer c = new Customer(id, name, mail, sdt, pass, null);
                             customerHandler.insertRecordIntoCustomerTable(c);
                             resetEdt();
                             Toast.makeText(Activity_Register_Customer.this, "Registered successfully!!!", Toast.LENGTH_LONG).show();

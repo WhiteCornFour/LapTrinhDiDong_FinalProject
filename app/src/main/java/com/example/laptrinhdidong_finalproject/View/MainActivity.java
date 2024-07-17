@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = getIntent();
         String phone = intent.getExtras().getString("phonenumber");
         String pass = intent.getExtras().getString("password");
+
         String idItem = intent.getStringExtra("idItem");
 
         FragmentManager fragmentManager = getSupportFragmentManager();
@@ -47,7 +48,11 @@ public class MainActivity extends AppCompatActivity {
 
         if (idItem != null && idItem.equals("Home")) {
             loadFragment(new Fragment_Home());
-        } else {
+        } else if (idItem != null && idItem.equals("Profile"))
+        {
+            loadFragment(new Fragment_Profile());
+        }
+        else {
             loadFragment(new Fragment_Home()); // Hoặc fragment mặc định khác
         }
 

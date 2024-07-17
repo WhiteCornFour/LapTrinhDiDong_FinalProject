@@ -1,10 +1,16 @@
 package com.example.laptrinhdidong_finalproject.View;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentResultListener;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +18,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.laptrinhdidong_finalproject.Cotroller.CustomerHandler;
+import com.example.laptrinhdidong_finalproject.Model.Customer;
 import com.example.laptrinhdidong_finalproject.R;
 
 /**
@@ -21,10 +29,16 @@ import com.example.laptrinhdidong_finalproject.R;
  */
 public class Fragment_Profile extends Fragment {
 
+    private static final String DB_NAME = "drinkingmanager";
+    private static final int DB_VERSION = 1;
     ImageView imgProfile;
-    TextView tvNameProfile, tvAccProfile;
+    TextView tvNameProfile, tvAccProfile, tvEdit;
     Button btnLogOutProfile;
 
+    String idCus = "";
+
+    Customer customer;
+    CustomerHandler customerHandler;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -70,8 +84,20 @@ public class Fragment_Profile extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment__profile, container, false);
         addControl(view);
-
-
+        customerHandler = new CustomerHandler(getActivity(), DB_NAME, null, DB_VERSION);
+        idCus = Fragment_Home.getIdCus();
+        customer = customerHandler.loadInfOfOnePerson(idCus);
+        tvNameProfile.setText(customer.getNameCustomer());
+        tvAccProfile.setText(customer.getEmailCustomer());
+        Bitmap bitmap = BitmapFactory.decodeByteArray(customer.getCustomerImage(),
+                0, customer.getCustomerImage().length);
+        if (bitmap == null)
+        {
+            imgProfile.setImageResource(R.drawable.avtadmin);
+        }
+        else {
+            imgProfile.setImageBitmap(bitmap);
+        }
         addEvent();
         return view;
     }
@@ -82,6 +108,7 @@ public class Fragment_Profile extends Fragment {
         tvNameProfile = (TextView) view.findViewById(R.id.tvNameProfile);
         tvAccProfile = (TextView) view.findViewById(R.id.tvAccProfile);
         btnLogOutProfile = (Button) view.findViewById(R.id.btnLogOutProfile);
+        tvEdit = (TextView) view.findViewById(R.id.tvEdit);
     }
 
     void addEvent()
@@ -90,6 +117,14 @@ public class Fragment_Profile extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), Activity_Login_Customer.class);
+                startActivity(intent);
+            }
+        });
+        tvEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), Activity_Detail_Profile_Cus.class);
+                intent.putExtra("customer", customer);
                 startActivity(intent);
             }
         });

@@ -11,14 +11,14 @@
         android:background="@drawable/rounded_white_border"
         android:orientation="horizontal">
 
-        <ImageView
+        <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/imgCartProduct"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_gravity="center_vertical"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="15dp"
-            android:scaleType="centerCrop"
+            app:shapeAppearanceOverlay="@style/Circular"
             android:src="@drawable/espresso" />
 
         <LinearLayout
