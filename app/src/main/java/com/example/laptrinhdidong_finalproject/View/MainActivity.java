@@ -17,6 +17,7 @@ import android.widget.TextView;
 import com.example.laptrinhdidong_finalproject.Cotroller.CartItemsHandler;
 import com.example.laptrinhdidong_finalproject.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationBarView;
 
 public class MainActivity extends AppCompatActivity {
     ActionBar actionBar;
@@ -27,42 +28,38 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        actionBar=getSupportActionBar();
-        bottomNavigationView=(BottomNavigationView) findViewById(R.id.bottom_nav);
-        frameFragment=(FrameLayout)findViewById(R.id.frameFragment);
+        actionBar = getSupportActionBar();
+        bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_nav);
+        frameFragment = (FrameLayout) findViewById(R.id.frameFragment);
         Fragment_Home fragmentDF = new Fragment_Home();
         loadFragment(fragmentDF);
         Intent intent = getIntent();
-        String phone = intent.getExtras().getString("phonenumber");
-        String pass = intent.getExtras().getString("password");
 
-        String idItem = intent.getStringExtra("idItem");
+        // nếu load từ 1 nơi khác không có put intent thì sẽ lỗi null object reference
+        if (intent != null && intent.getExtras() != null) {
+            String phone = intent.getExtras().getString("phonenumber");
+            String pass = intent.getExtras().getString("password");
+            String idItem = intent.getStringExtra("idItem");
 
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        Bundle bundle = new Bundle();
-        bundle.putString("phone", phone);
-        bundle.putString("pass", pass);
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            Bundle bundle = new Bundle();
+            bundle.putString("phone", phone);
+            bundle.putString("pass", pass);
+            fragmentManager.setFragmentResult("customer", bundle);
 
-        fragmentManager.setFragmentResult("customer", bundle);
-
-        actionBar = getSupportActionBar();
-
-        if (idItem != null && idItem.equals("Home")) {
-            loadFragment(new Fragment_Home());
-        } else if (idItem != null && idItem.equals("Profile"))
-        {
-            loadFragment(new Fragment_Profile());
-        }
-        else {
-            loadFragment(new Fragment_Home()); // Hoặc fragment mặc định khác
+            actionBar = getSupportActionBar();
+            if (idItem != null && idItem.equals("Home")) {
+                loadFragment(new Fragment_Home());
+            } else {
+                loadFragment(new Fragment_Home()); // Hoặc fragment mặc định khác
+            }
         }
 
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+        bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item)     {
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 Fragment fragment;
-                switch (item.getItemId())
-                {
+                switch (item.getItemId()) {
                     case R.id.navigation_shop:
                         actionBar.setTitle("Shop");
                     {
@@ -76,15 +73,18 @@ public class MainActivity extends AppCompatActivity {
                         return true;
                     }
 
-                    case R.id.navigation_feedback:actionBar.setTitle("Feedback");
+                    case R.id.navigation_feedback:
+                        actionBar.setTitle("Feedback");
                         loadFragment(new Fragment_Feedback());
                         return true;
 
-                    case R.id.navigation_home:actionBar.setTitle("Home");
+                    case R.id.navigation_home:
+                        actionBar.setTitle("Home");
                         loadFragment(new Fragment_Home());
                         return true;
 
-                    case R.id.navigation_profile:actionBar.setTitle("Profile");
+                    case R.id.navigation_profile:
+                        actionBar.setTitle("Profile");
                         loadFragment(new Fragment_Profile());
                         return true;
 
@@ -95,11 +95,10 @@ public class MainActivity extends AppCompatActivity {
         actionBar.setTitle("Shop");
     }
 
-    public void loadFragment(androidx.fragment.app.Fragment fragment)
-    {
+    public void loadFragment(androidx.fragment.app.Fragment fragment) {
         FragmentManager fm = getSupportFragmentManager();
-        FragmentTransaction ft= fm.beginTransaction();
-        ft.replace(R.id.frameFragment,fragment);
+        FragmentTransaction ft = fm.beginTransaction();
+        ft.replace(R.id.frameFragment, fragment);
         ft.commit();
     }
 

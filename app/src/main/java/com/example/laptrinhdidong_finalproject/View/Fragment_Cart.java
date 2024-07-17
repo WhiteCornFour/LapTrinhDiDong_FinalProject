@@ -64,6 +64,7 @@ public class Fragment_Cart extends Fragment {
         fragment.setArguments(args);
         return fragment;
     }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,27 +73,28 @@ public class Fragment_Cart extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_cart, container, false);
         addControl(view);
         setDisplayCart();
+        addEvent();
         return view;
     }
-    void addControl(View view)
-    {
+
+    void addControl(View view) {
         lvCartProduct = view.findViewById(R.id.lvCartProduct);
         tvTotalCart = view.findViewById(R.id.tvTotalCart);
         btnOrderCart = view.findViewById(R.id.btnOrderCart);
     }
-    public void setDisplayCart()
-    {
+
+    public void setDisplayCart() {
         cartItemsHandler = new CartItemsHandler(getActivity());
         tvTotalCart.setText(String.valueOf(cartItemsHandler.sumTotalForCarts()));
         itemsArrayList = cartItemsHandler.loadCartItemsData();
-        if (itemsArrayList.size() == 0)
-        {
+        if (itemsArrayList.size() == 0) {
             btnOrderCart.setText("No item available in cart!");
             btnOrderCart.setEnabled(false);
             return;
@@ -101,4 +103,10 @@ public class Fragment_Cart extends Fragment {
         lvCartProduct.setAdapter(cartAdapter);
     }
 
+    void addEvent() {
+        btnOrderCart.setOnClickListener(v -> {
+            Intent intent = new Intent(getActivity(), Activity_Payment_Customer.class);
+            startActivity(intent);
+        });
+    }
 }

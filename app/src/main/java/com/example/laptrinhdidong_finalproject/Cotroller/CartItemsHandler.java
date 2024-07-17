@@ -26,6 +26,7 @@ public class CartItemsHandler extends SQLiteOpenHelper {
     private static final String quantityProduct = "ProductQuantity";
     private static final String cartUnitPrice = "CartUnitPrice";
     private static final String PATH = "/data/data/com.example.laptrinhdidong_finalproject/database/drinkingmanager.db";
+    String cartID;
     public CartItemsHandler(@Nullable Context context) {
         super(context, DB_NAME, null, DB_VERSION);
     }
@@ -33,7 +34,7 @@ public class CartItemsHandler extends SQLiteOpenHelper {
     public ArrayList<CartItems> loadCartItemsData()
     {
         ArrayList<CartItems> cartItems = new ArrayList<>();
-        String cartID = CartsHandler.getCustomerCartID();
+        cartID = CartsHandler.getCustomerCartID();
         if (cartID == null)
         {
             return cartItems;
@@ -61,40 +62,21 @@ public class CartItemsHandler extends SQLiteOpenHelper {
         return cartItems;
     }
 
-    public static ArrayList<Products> getProductImgAndName() {
-        ArrayList<Products> productsArrayList = new ArrayList<>();
-        String cartID = CartsHandler.getCustomerCartID();
-        SQLiteDatabase sqLiteDatabase = SQLiteDatabase.openDatabase(PATH, null, SQLiteDatabase.OPEN_READONLY);
-        String sql = "SELECT ci.*, p.ProductName, p.ProductImage FROM CartItems ci " +
-                "JOIN Products p ON ci.ProductID = p.ProductID " +
-                "WHERE ci.CartID = ?";
-        Cursor cursor = sqLiteDatabase.rawQuery(sql, new String[]{cartID});
-
-        if (cursor.moveToFirst()) {
-            do{
-                String productName = cursor.getString(cursor.getColumnIndexOrThrow("ProductName"));
-                byte[] productImage = cursor.getBlob(cursor.getColumnIndexOrThrow("ProductImage"));
-
-                Products product = new Products();
-                product.setNameProduct(productName);
-                product.setImageProduct(productImage);
-
-                productsArrayList.add(product);
-            }while (cursor.moveToNext());
-        }
-        cursor.close();
+    public void deleteListCart()
+    {
+        SQLiteDatabase sqLiteDatabase = SQLiteDatabase.openDatabase(PATH, null, SQLiteDatabase.OPEN_READWRITE);
+        String sql = "DELETE FROM " + TABLE_NAME + " WHERE CartID = '" + cartID + "'";
+        sqLiteDatabase.execSQL(sql);
         sqLiteDatabase.close();
-        return productsArrayList;
     }
 
     public void insertRecordIntoCartsTable(CartItems cr)
     {
-        SQLiteDatabase sqLiteDatabase = SQLiteDatabase.openDatabase(PATH, null, SQLiteDatabase.CREATE_IF_NECESSARY);
+        SQLiteDatabase sqLiteDatabase = SQLiteDatabase.openDatabase(PATH, null, SQLiteDatabase.OPEN_READWRITE);
         String sql1 = "INSERT OR IGNORE INTO " + TABLE_NAME + " ("
                 + idCart + ", "+ idProduct+", "+ sizeProduct +", "+ quantityProduct+", "+ cartUnitPrice+") " +
                 "Values "
-                + "('" + cr.getCartId() + "','" + cr.getProductId()+"','"+ cr.getProductSize() +"', '" + cr.getCartUnitPrice() + "', '"+ cr.getCartUnitPrice() +"')";
-//        Log.d("SQL_CARTS_INSERT", sql1);
+                + "('" + cr.getCartId() + "','" + cr.getProductId()+"','"+ cr.getProductSize() +"', '" + cr.getProductQuantity() + "', '"+ cr.getCartUnitPrice() +"')";
         sqLiteDatabase.execSQL(sql1);
         sqLiteDatabase.close();
     }
