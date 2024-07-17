@@ -57,7 +57,7 @@ public class Fragment_Home extends Fragment implements OnItemClickListener {
 
     ArrayList<Products> productForRecylerView = new ArrayList<>();
     CustomAdapterLV_Product_Home customAdapter;
-    String idCus = "";
+    public static String idCus = "";
     ArrayList<Customer> customerArrayList = new ArrayList<>();
     CustomerHandler customerHandler;
 
@@ -124,6 +124,10 @@ public class Fragment_Home extends Fragment implements OnItemClickListener {
 
         addEvent();
         return view;
+    }
+
+    public static String getIdCus() {
+        return idCus;
     }
 
     void loadDataOfRecylerView() {

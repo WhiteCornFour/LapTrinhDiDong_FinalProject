@@ -18,7 +18,6 @@ import java.util.ArrayList;
 
 public class CustomAdapter_ListView_Fragment_ProductCategories extends ArrayAdapter {
     Context context;
-
     int layoutItem;
     ArrayList<ProductCategories> arrayList;
 

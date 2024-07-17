@@ -27,15 +27,6 @@ public class Activity_Login_Customer extends AppCompatActivity {
     private static final String DB_NAME = "drinkingmanager";
     private static final int DB_VERSION = 1;
 
-    private static final String TABLE_NAME = "Customer";
-    private static final String idCustomer = "idCustomer";
-    private static final String nameCustomer = "nameCustomer";
-    private static final String emailCustomer = "emailCustomer";
-    private static final String phoneCustomer = "phoneCustomer";
-    private static final String accountCustomer = "accountCustomer";
-    private static final String passwordCustomer = "passwordCustomer";
-    private static final String PATH = "/data/data/com.example.laptrinhdidong_finalproject/database/drinkingmanager.db";
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

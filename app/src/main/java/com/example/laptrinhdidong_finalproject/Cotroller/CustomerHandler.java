@@ -16,7 +16,6 @@ import java.util.ArrayList;
 public class CustomerHandler extends SQLiteOpenHelper {
     private static final String DB_NAME = "drinkingmanager";
     private static final int DB_VERSION = 1;
-
     private static final String TABLE_NAME = "Customers";
     private static final String idCustomer = "CustomerID";
     private static final String nameCustomer = "CustomerName";
@@ -24,7 +23,7 @@ public class CustomerHandler extends SQLiteOpenHelper {
     private static final String phoneCustomer = "PhoneNumber";
     private static final String passwordCustomer = "LoginPassword";
     private static final String PATH = "/data/data/com.example.laptrinhdidong_finalproject/database/drinkingmanager.db";
-
+    
     public CustomerHandler(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
         super(context, DB_NAME, factory, DB_VERSION);
     }
@@ -142,11 +141,8 @@ public class CustomerHandler extends SQLiteOpenHelper {
         if (cursor.moveToFirst()) {
             result = cursor.getString(cursor.getColumnIndex(idCustomer));
         }
-
         cursor.close();
         sqLiteDatabase.close();
-
-
         return result;
     }
     @Override

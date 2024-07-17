@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
                 switch (item.getItemId())
                 {
                     case R.id.navigation_shop:actionBar.setTitle("Shop");
-                        loadFragment(new Fragment_Shop());
+                        loadFragment(new Fragment_Cart());
                         return true;
 
                     case R.id.navigation_feedback:actionBar.setTitle("Feedback");
