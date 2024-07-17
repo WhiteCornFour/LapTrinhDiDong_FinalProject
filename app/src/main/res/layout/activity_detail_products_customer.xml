@@ -256,7 +256,7 @@
                 android:id="@+id/btnMinusQuantity"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:backgroundTint="@color/brown"
+                android:backgroundTint="@color/orange"
                 android:text="-"
                 android:textSize="5pt" />
 
@@ -275,7 +275,7 @@
                 android:id="@+id/btnPlusQuantity"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:backgroundTint="@color/brown"
+                android:backgroundTint="@color/orange"
                 android:text="+"
                 android:textSize="5pt" />
         </LinearLayout>
@@ -285,7 +285,7 @@
         android:id="@+id/btnAddingIntoCart"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/brown"
+        android:backgroundTint="@color/orange"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
         android:layout_marginTop="5dp"

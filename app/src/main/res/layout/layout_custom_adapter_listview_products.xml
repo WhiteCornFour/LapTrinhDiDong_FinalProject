@@ -8,12 +8,12 @@
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/imgDetailDeleteP"
-        app:shapeAppearanceOverlay="@style/RoundSquare"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:scaleType="centerCrop"
         android:padding="2dp"
-        android:src="@drawable/hinh_anh_dang_nhap"/>
+        android:scaleType="centerCrop"
+        android:src="@drawable/hinh_anh_dang_nhap"
+        app:shapeAppearanceOverlay="@style/RoundSquare" />
 
     <LinearLayout
         android:layout_width="wrap_content"

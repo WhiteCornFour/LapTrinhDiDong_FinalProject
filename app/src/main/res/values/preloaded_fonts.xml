@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <array name="preloaded_fonts" translatable="false">
+        <item>@font/abhaya_libre</item>
         <item>@font/abril_fatface</item>
+        <item>@font/alata</item>
+        <item>@font/antic_slab</item>
         <item>@font/arsenal</item>
         <item>@font/averia_sans_libre_light</item>
+        <item>@font/black_han_sans</item>
         <item>@font/cardo</item>
         <item>@font/lobster</item>
     </array>

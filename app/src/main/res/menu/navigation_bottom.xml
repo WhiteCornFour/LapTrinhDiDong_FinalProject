@@ -3,18 +3,19 @@
     >
     <item
         android:id="@+id/navigation_home"
-        android:icon="@drawable/home_ic_icon"
+        android:icon="@drawable/custom_home_icon"
         android:title="@string/title_home" />
     <item
         android:id="@+id/navigation_shop"
-        android:icon="@drawable/cart_shopping_icon"
+        android:icon="@drawable/custom_shoppingcart_icon"
         android:title="@string/title_shop" />
     <item
         android:id="@+id/navigation_feedback"
-        android:icon="@drawable/email_letter_mail_message_icon"
+        android:icon="@drawable/custom_feedback_icon"
         android:title="@string/title_feedback" />
     <item
         android:id="@+id/navigation_profile"
-        android:icon="@drawable/customer_user_userphoto_account_person_icon"
+        android:icon="@drawable/custom_profile_icon"
+        android:iconTint="@color/white"
         android:title="@string/title_profile" />
 </menu>

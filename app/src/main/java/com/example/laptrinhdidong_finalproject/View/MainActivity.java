@@ -43,6 +43,8 @@ public class MainActivity extends AppCompatActivity {
 
         fragmentManager.setFragmentResult("customer", bundle);
 
+        actionBar = getSupportActionBar();
+
         if (idItem != null && idItem.equals("Home")) {
             loadFragment(new Fragment_Home());
         } else {

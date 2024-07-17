@@ -6,19 +6,21 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".View.MainActivity">
+
     <FrameLayout
         android:id="@+id/frameFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/light_beige">
+
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottom_nav"
             android:layout_width="match_parent"
             android:layout_height="56dp"
             android:layout_gravity="bottom"
             app:menu="@menu/navigation_bottom"
-            android:background="@color/light_beige"
-            app:itemTextColor="@color/nav_item_color"
-            app:itemIconTint="@color/nav_item_color" />
-        </FrameLayout>
+            android:background="@color/white"
+            app:itemRippleColor="@color/orange"
+            app:itemBackground="@drawable/nav_item_background" />
+    </FrameLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
