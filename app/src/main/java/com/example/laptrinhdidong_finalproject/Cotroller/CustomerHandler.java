@@ -10,6 +10,7 @@ import android.util.Log;
 import androidx.annotation.Nullable;
 
 import com.example.laptrinhdidong_finalproject.Model.Customer;
+import com.example.laptrinhdidong_finalproject.Model.Products;
 
 import java.util.ArrayList;
 
@@ -22,6 +23,8 @@ public class CustomerHandler extends SQLiteOpenHelper {
     private static final String emailCustomer = "CustomerEmail";
     private static final String phoneCustomer = "PhoneNumber";
     private static final String passwordCustomer = "LoginPassword";
+
+    private static final String customerImage = "CustomerImage";
     private static final String PATH = "/data/data/com.example.laptrinhdidong_finalproject/database/drinkingmanager.db";
     
     public CustomerHandler(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
@@ -49,9 +52,9 @@ public class CustomerHandler extends SQLiteOpenHelper {
     {
         SQLiteDatabase sqLiteDatabase = SQLiteDatabase.openDatabase(PATH, null, SQLiteDatabase.CREATE_IF_NECESSARY);
         String sql1 = "INSERT OR IGNORE INTO " + TABLE_NAME + " ("
-                + idCustomer + ", " + nameCustomer + ", "+ emailCustomer +", "+ phoneCustomer +", "+ passwordCustomer +") " +
+                + idCustomer + ", " + nameCustomer + ", "+ emailCustomer +", "+ phoneCustomer +", "+ passwordCustomer +", "+ customerImage + ") " +
                 "Values "
-                + "('" + c.getIdCustomer() + "','" + c.getNameCustomer() + "', '"+ c.getEmailCustomer() +"','"+ c.getPhoneCustomer() +"', '"+ c.getPasswordCustomer() +"')";
+                + "('" + c.getIdCustomer() + "','" + c.getNameCustomer() + "', '"+ c.getEmailCustomer() +"','"+ c.getPhoneCustomer() +"', '"+ c.getPasswordCustomer() +"', '"+ c.getCustomerImage() + "')";
         //Log.d("SQL_INSERT_STATEMENT", sql1);
         sqLiteDatabase.execSQL(sql1);
         sqLiteDatabase.close();
@@ -144,6 +147,43 @@ public class CustomerHandler extends SQLiteOpenHelper {
         cursor.close();
         sqLiteDatabase.close();
         return result;
+    }
+
+    public Customer loadInfOfOnePerson(String id)
+    {
+        Customer customer = null;
+        SQLiteDatabase sqLiteDatabase = SQLiteDatabase.openDatabase(PATH, null, SQLiteDatabase.CREATE_IF_NECESSARY);
+        String sql = "SELECT * FROM " + TABLE_NAME + " WHERE " + idCustomer + " = '" + id + "'";
+        Cursor cursor = sqLiteDatabase.rawQuery(sql, null);
+        if (cursor != null) {
+            if (cursor.moveToFirst()) {
+                customer = new Customer();
+                customer.setIdCustomer(cursor.getString(0));
+                customer.setNameCustomer(cursor.getString(1));
+                customer.setEmailCustomer(cursor.getString(2));
+                customer.setPhoneCustomer(cursor.getString(3));
+                customer.setPasswordCustomer(cursor.getString(4));
+                customer.setCustomerImage(cursor.getBlob(5));
+            }
+            cursor.close();
+        }
+        sqLiteDatabase.close();
+        return  customer;
+    }
+    public void updateRecord(Customer p) {
+        SQLiteDatabase sqLiteDatabase = SQLiteDatabase.openDatabase(PATH, null, SQLiteDatabase.CREATE_IF_NECESSARY);
+
+        // Delete existing record based on ProductID
+        String deleteSQL = "DELETE FROM " + TABLE_NAME + " WHERE " + idCustomer + " = ?";
+        sqLiteDatabase.execSQL(deleteSQL, new Object[]{p.getIdCustomer()});
+
+        // Insert new record
+        String insertSQL = "INSERT INTO " + TABLE_NAME + " (" +
+                idCustomer + ", " + nameCustomer + ", " + emailCustomer + ", " +
+                phoneCustomer + ", " + passwordCustomer + ", " + customerImage + ") VALUES (?, ?, ?, ?, ?, ?)";
+        sqLiteDatabase.execSQL(insertSQL, new Object[]{p.getIdCustomer(), p.getNameCustomer(), p.getEmailCustomer(),
+                p.getPhoneCustomer(), p.getPasswordCustomer(), p.getCustomerImage()});
+        sqLiteDatabase.close();
     }
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {

@@ -18,13 +18,16 @@
         android:theme="@style/Theme.LapTrinhDiDong_FinalProject"
         tools:targetApi="31">
         <activity
+            android:name=".View.Activity_Detail_Profile_Cus"
+            android:exported="false" />
+        <activity
             android:name=".View.Activity_Paying_Orders"
             android:exported="false"
-            android:theme="@style/Theme.LapTrinhDiDong_FinalProject"/>
+            android:theme="@style/Theme.LapTrinhDiDong_FinalProject" />
         <activity
             android:name=".View.Activity_Adding_Products"
             android:exported="false"
-            android:theme="@style/Theme.LapTrinhDiDong_FinalProject"/>
+            android:theme="@style/Theme.LapTrinhDiDong_FinalProject" />
         <activity
             android:name=".View.Activity_Deleting_Products"
             android:exported="false"
@@ -44,7 +47,7 @@
         <activity
             android:name=".View.Activity_Detail_Products_Customer"
             android:exported="false"
-            android:theme="@style/Theme.LapTrinhDiDong_FinalProject.NoActionBar"/>
+            android:theme="@style/Theme.LapTrinhDiDong_FinalProject.NoActionBar" />
         <activity
             android:name=".View.Activity_OTPGetPassword_Customer"
             android:exported="false"
@@ -57,7 +60,6 @@
             android:name=".View.Activity_Updating_ProductCategories"
             android:exported="false"
             android:theme="@style/Theme.LapTrinhDiDong_FinalProject" />
-
         <activity
             android:name=".View.MainActivity"
             android:exported="false"
@@ -77,9 +79,10 @@
         <activity
             android:name=".View.Activity_Login_Customer"
             android:exported="true"
-            android:theme="@style/Theme.LapTrinhDiDong_FinalProject.NoActionBar" >
+            android:theme="@style/Theme.LapTrinhDiDong_FinalProject.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

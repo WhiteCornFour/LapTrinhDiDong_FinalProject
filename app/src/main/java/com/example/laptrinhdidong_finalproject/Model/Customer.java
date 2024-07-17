@@ -1,21 +1,34 @@
 package com.example.laptrinhdidong_finalproject.Model;
 
-public class Customer {
+import java.io.Serializable;
+
+public class Customer implements Serializable {
     String idCustomer;
     String nameCustomer;
     String emailCustomer;
     String phoneCustomer;
     String passwordCustomer;
+    byte[] customerImage;
+
+    public byte[] getCustomerImage() {
+        return customerImage;
+    }
+
+    public void setCustomerImage(byte[] customerImage) {
+        this.customerImage = customerImage;
+    }
 
     public Customer() {
     }
 
-    public Customer(String idCustomer, String nameCustomer, String emailCustomer, String phoneCustomer, String passwordCustomer) {
+    public Customer(String idCustomer, String nameCustomer, String emailCustomer, String phoneCustomer,
+                    String passwordCustomer, byte[] customerImage) {
         this.idCustomer = idCustomer;
         this.nameCustomer = nameCustomer;
         this.emailCustomer = emailCustomer;
         this.phoneCustomer = phoneCustomer;
         this.passwordCustomer = passwordCustomer;
+        this.customerImage = customerImage;
     }
 
     public String getIdCustomer() {
