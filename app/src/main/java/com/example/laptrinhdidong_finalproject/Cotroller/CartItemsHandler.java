@@ -33,22 +33,29 @@ public class CartItemsHandler extends SQLiteOpenHelper {
     {
         ArrayList<CartItems> cartItems = new ArrayList<>();
         String cartID = CartsHandler.getCustomerCartID();
+        if (cartID == null)
+        {
+            return cartItems;
+        }
         SQLiteDatabase sqLiteDatabase = SQLiteDatabase.openDatabase(PATH, null, SQLiteDatabase.OPEN_READONLY);
         String sql = "SELECT * FROM " + TABLE_NAME + " WHERE " + idCart + " = ?";
         Cursor cursor = sqLiteDatabase.rawQuery(sql, new String[]{cartID});
-        if(cursor.moveToFirst())
+        if (cursor != null)
         {
-            do{
-                CartItems item = new CartItems();
-                item.setCartId(cursor.getString(1));
-                item.setProductId(cursor.getString(2));
-                item.setProductSize(cursor.getString(3));
-                item.setProductQuantity(cursor.getInt(4));
-                item.setCartUnitPrice(cursor.getDouble(5));
-                cartItems.add(item);
-            }while (cursor.moveToNext());
+            if(cursor.moveToFirst())
+            {
+                do{
+                    CartItems item = new CartItems();
+                    item.setCartId(cursor.getString(1));
+                    item.setProductId(cursor.getString(2));
+                    item.setProductSize(cursor.getString(3));
+                    item.setProductQuantity(cursor.getInt(4));
+                    item.setCartUnitPrice(cursor.getDouble(5));
+                    cartItems.add(item);
+                }while (cursor.moveToNext());
+            }
+            cursor.close();
         }
-        cursor.close();
         sqLiteDatabase.close();
         return cartItems;
     }
@@ -89,6 +96,27 @@ public class CartItemsHandler extends SQLiteOpenHelper {
 //        Log.d("SQL_CARTS_INSERT", sql1);
         sqLiteDatabase.execSQL(sql1);
         sqLiteDatabase.close();
+    }
+    public Double sumTotalForCarts()
+    {
+        String cartID = CartsHandler.getCustomerCartID();
+        if (cartID == null)
+        {
+            return 0.0;
+        }
+        Double totalSum = 0.0;
+        SQLiteDatabase sqLiteDatabase = SQLiteDatabase.openDatabase(PATH, null, SQLiteDatabase.OPEN_READONLY);
+        String sql = "SELECT SUM(" + cartUnitPrice + ") FROM " + TABLE_NAME + " WHERE " + idCart + " = ?";
+        Cursor cursor = sqLiteDatabase.rawQuery(sql, new String[]{cartID});
+
+        if (cursor != null) {
+            if (cursor.moveToFirst()) {
+                totalSum = cursor.getDouble(0);
+            }
+            cursor.close();
+        }
+        sqLiteDatabase.close();
+        return totalSum;
     }
 
     @Override

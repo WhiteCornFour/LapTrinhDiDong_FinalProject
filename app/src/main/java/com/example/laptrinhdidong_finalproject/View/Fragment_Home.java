@@ -5,6 +5,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentResultListener;
@@ -207,4 +208,5 @@ public class Fragment_Home extends Fragment implements OnItemClickListener {
                 R.layout.layout_custom_lv_product_home, productForRecylerView);
         lvProductHomeCus.setAdapter(customAdapter);
     }
+
 }

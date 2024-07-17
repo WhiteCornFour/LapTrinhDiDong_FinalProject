@@ -34,15 +34,16 @@ public class CartsHandler extends SQLiteOpenHelper {
 
         SQLiteDatabase sqLiteDatabase = SQLiteDatabase.openDatabase(PATH, null, SQLiteDatabase.OPEN_READONLY);
         String cusID = Fragment_Home.getIdCus();
-
         // Truy vấn SQL sử dụng tham số để tránh SQL Injection
         String sql = "SELECT CartID FROM " + TABLE_NAME + " WHERE " + customerID + " = ?";
         Cursor cursor = sqLiteDatabase.rawQuery(sql, new String[]{cusID});
-
-        if (cursor.moveToFirst()) {
-            result = cursor.getString(cursor.getColumnIndex(cartID));
+        if (cursor != null)
+        {
+            if (cursor.moveToFirst()) {
+                result = cursor.getString(cursor.getColumnIndex(cartID));
+            }
+            cursor.close();
         }
-        cursor.close();
         sqLiteDatabase.close();
 
         return result;
