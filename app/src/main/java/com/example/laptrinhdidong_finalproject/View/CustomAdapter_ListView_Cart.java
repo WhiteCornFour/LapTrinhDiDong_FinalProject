@@ -26,7 +26,7 @@ public class CustomAdapter_ListView_Cart extends ArrayAdapter {
     Context context;
     int layoutItem;
     ArrayList<CartItems> itemsArrayList = new ArrayList<>();
-    private Map<String, Products> productInfoMap = ProductsHandler.getProductInfoMap();
+    private final Map<String, Products> productInfoMap = ProductsHandler.getProductInfoMap();
 
     public CustomAdapter_ListView_Cart(@NonNull Context context, int resource, @NonNull ArrayList<CartItems> cartItems) {
         super(context, resource, cartItems);
