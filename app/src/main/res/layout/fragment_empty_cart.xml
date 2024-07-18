@@ -62,7 +62,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="15dp"
-            android:backgroundTint="#F89745"
+            android:backgroundTint="@color/light_orange"
             android:text="Back to Home"
             android:textColor="@android:color/white" />
 
