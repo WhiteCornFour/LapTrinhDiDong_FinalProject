@@ -4,6 +4,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import androidx.annotation.Nullable;
 
@@ -62,23 +63,21 @@ public class RevenueHandler extends SQLiteOpenHelper {
     {
         ArrayList<Revenue> revenueArrayList = new ArrayList<>();
         SQLiteDatabase sqLiteDatabase = SQLiteDatabase.openDatabase(PATH, null, SQLiteDatabase.CREATE_IF_NECESSARY);
-        Cursor cursor = sqLiteDatabase.rawQuery("Select * from " + TABLE_NAME
-                +" WHERE Month = + '"+ monthNow + "'", null);
-        cursor.moveToFirst();
+        String sql = "SELECT * FROM " + TABLE_NAME + " WHERE " + month + " = + '"+ 5 +"'";
+        Cursor cursor = sqLiteDatabase.rawQuery(sql, null);
         if (cursor != null) {
-            if (cursor.moveToFirst()) {
-                do {
+            while (cursor.moveToNext()) {
                     Revenue revenue = new Revenue();
                     revenue.setRevenueID(cursor.getString(0));
                     revenue.setYear(cursor.getInt(1));
                     revenue.setMonth(cursor.getInt(2));
                     revenue.setTotalRevenue(cursor.getDouble(3));
                     revenueArrayList.add(revenue);
-                } while (cursor.moveToNext());
             }
             cursor.close();
         }
         sqLiteDatabase.close();
+        Log.d("revenueArrayList" , String.valueOf(revenueArrayList));
         return revenueArrayList;
     }
     public ArrayList<Revenue> returnResultForSearch(String m, String y)

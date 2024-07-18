@@ -123,6 +123,7 @@ public class Fragment_Profile extends Fragment {
         tvEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Log.d("Fragment_Profile", "Edit button clicked");
                 Intent intent = new Intent(getActivity(), Activity_Detail_Profile_Cus.class);
                 intent.putExtra("customer", customer);
                 startActivity(intent);

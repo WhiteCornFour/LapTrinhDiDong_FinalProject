@@ -71,6 +71,8 @@ public class Fragment_Home extends Fragment implements OnItemClickListener {
     private String mParam1;
     private String mParam2;
 
+    private boolean isCategorySelected = false;
+
     public Fragment_Home() {
         // Required empty public constructor
     }
@@ -124,7 +126,6 @@ public class Fragment_Home extends Fragment implements OnItemClickListener {
                 Log.d("ID Customer from bundle is:" ,Cusid);
             }
         });
-
         addEvent();
         return view;
     }
@@ -202,13 +203,17 @@ public class Fragment_Home extends Fragment implements OnItemClickListener {
     }
 
     @Override
-    public void onItemClick(ProductCategories productCategories) {
-        //Toast.makeText(getActivity(), "Selected Category: " + productCategories.getNameCategory(), Toast.LENGTH_SHORT).show();
-        String kq = productCategories.getIdCategory();
-        productForRecylerView = productHandler.returnResultForRecylerView(kq);
-        customAdapter = new CustomAdapterLV_Product_Home(getContext(),
-                R.layout.layout_custom_lv_product_home, productForRecylerView);
-        lvProductHomeCus.setAdapter(customAdapter);
+    public void onItemClick(ProductCategories productCategory) {
+        if (isCategorySelected) {
+            loadDataOfListView(productArrayList);
+            isCategorySelected = false;
+        } else {
+            String kq = productCategory.getIdCategory();
+            productForRecylerView = productHandler.returnResultForRecylerView(kq);
+            customAdapter = new CustomAdapterLV_Product_Home(getContext(),
+                    R.layout.layout_custom_lv_product_home, productForRecylerView);
+            lvProductHomeCus.setAdapter(customAdapter);
+            isCategorySelected = true;
+        }
     }
-
 }

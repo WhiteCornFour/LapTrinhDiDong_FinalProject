@@ -92,24 +92,16 @@ public class Activity_Detail_Profile_Cus extends AppCompatActivity {
                 String pass = edtPassPro.getText().toString();
                 Bitmap image = getBitmapFromImageView(imgCusPro);
                 if (image == null) {
-                    return; // Stop execution if image size is too large
+                    Toast.makeText(Activity_Detail_Profile_Cus.this, "Please select an image.", Toast.LENGTH_SHORT).show();
+                    return; // Stop execution if image is null
                 }
-                if (id.isEmpty() || name.isEmpty() || email.isEmpty() || phone.isEmpty() || pass.isEmpty())
-                {
-                    Toast.makeText(Activity_Detail_Profile_Cus.this, "Please enter complete information",
-                            Toast.LENGTH_SHORT).show();
-                    return;
-                }else
-                {
-
+                if (validateInputs(name, pass, email)) {
                     Customer c = new Customer(id, name, email, phone, pass, getBytesFromBitmap(image));
-                    if (c.equals(customer))
-                    {
+                    if (c.equals(customer)) {
                         return;
-                    }else {
+                    } else {
                         customerHandler.updateRecord(c);
-                        Toast.makeText(Activity_Detail_Profile_Cus.this, "Update successful!",
-                                Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Activity_Detail_Profile_Cus.this, "Update successful!", Toast.LENGTH_SHORT).show();
                     }
                 }
             }
@@ -124,8 +116,10 @@ public class Activity_Detail_Profile_Cus extends AppCompatActivity {
     }
     private void returnToHomeFragment() {
         Intent intent = new Intent(Activity_Detail_Profile_Cus.this,
-                MainActivity.class);        intent.putExtra("idItem", "Profile");
+                MainActivity.class);
+        intent.putExtra("idItem", "Profile");
         startActivity(intent);
+        finish();
     }
     public Bitmap getBitmapFromImageView(ImageView imageView) {
         Drawable drawable = imageView.getDrawable();
@@ -180,4 +174,23 @@ public class Activity_Detail_Profile_Cus extends AppCompatActivity {
             }
         }
     }
+    public boolean validateInputs(String name, String password, String email) {
+        if (name.trim().isEmpty()) {
+            Toast.makeText(this, "Input Your Name!", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        // Kiểm tra password có hơn 8 ký tự
+        if (password.trim().isEmpty() || password.trim().length() <= 8) {
+            Toast.makeText(this, "Password must have at least 8 letters", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        // Kiểm tra email có đúng cấu trúc
+        String emailPattern = "[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}";
+        if (email.trim().isEmpty() || !email.trim().matches(emailPattern)) {
+            Toast.makeText(this, "Incorrect Email!", Toast.LENGTH_LONG).show();
+            return false;
+        }
+        return true;
+    }
+
 }

@@ -204,7 +204,7 @@ public class ProductsHandler extends SQLiteOpenHelper {
         Cursor cursor = sqLiteDatabase.rawQuery(sql, null);
 
         if (cursor != null) {
-            if (cursor.moveToFirst()) {
+            while (cursor.moveToNext()) {
                 Products product = new Products();
                 product.setIdProduct(cursor.getString(0));
                 product.setIdCategory(cursor.getString(1));
