@@ -3,21 +3,18 @@ package com.example.laptrinhdidong_finalproject.View;
 import android.content.Intent;
 import android.os.Bundle;
 
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.laptrinhdidong_finalproject.Cotroller.CartItemsHandler;
-import com.example.laptrinhdidong_finalproject.Cotroller.CartsHandler;
 import com.example.laptrinhdidong_finalproject.Model.CartItems;
 import com.example.laptrinhdidong_finalproject.R;
 
@@ -29,6 +26,7 @@ import java.util.ArrayList;
  * create an instance of this fragment.
  */
 public class Fragment_Cart extends Fragment {
+//    private static final int CONFIRM_ORDER_REQUEST_CODE = 1;
     ListView lvCartProduct;
     TextView tvTotalCart;
     Button btnOrderCart;
@@ -80,8 +78,8 @@ public class Fragment_Cart extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_cart, container, false);
         addControl(view);
-        setDisplayCart();
         addEvent();
+        setDisplayCart();
         return view;
     }
 
@@ -90,7 +88,16 @@ public class Fragment_Cart extends Fragment {
         tvTotalCart = view.findViewById(R.id.tvTotalCart);
         btnOrderCart = view.findViewById(R.id.btnOrderCart);
     }
-
+    void addEvent() {
+        btnOrderCart.setOnClickListener(v -> {
+            Intent intent = new Intent(getActivity(), Activity_Payment_Customer.class);
+            startActivity(intent);
+//            FragmentManager fragmentManager = getParentFragmentManager();
+//            Bundle bundle = new Bundle();
+//            bundle.putInt("CONFIRM_ORDER_REQUEST_CODE", CONFIRM_ORDER_REQUEST_CODE);
+//            fragmentManager.setFragmentResult("sendBundle", bundle);
+        });
+    }
     public void setDisplayCart() {
         cartItemsHandler = new CartItemsHandler(getActivity());
         tvTotalCart.setText(String.valueOf(cartItemsHandler.sumTotalForCarts()));
@@ -102,13 +109,6 @@ public class Fragment_Cart extends Fragment {
         }
         cartAdapter = new CustomAdapter_ListView_Cart(getActivity(), R.layout.layout_custom_listview_cart, itemsArrayList, this);
         lvCartProduct.setAdapter(cartAdapter);
-    }
-
-    void addEvent() {
-        btnOrderCart.setOnClickListener(v -> {
-            Intent intent = new Intent(getActivity(), Activity_Payment_Customer.class);
-            startActivity(intent);
-        });
     }
     public void switchToEmptyFragment() {
         FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
