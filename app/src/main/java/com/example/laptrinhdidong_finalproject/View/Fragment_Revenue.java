@@ -37,7 +37,7 @@ public class Fragment_Revenue extends Fragment {
     ImageView imgRF;
     ListView lvRevenueByYear;
     ArrayAdapter<String> arrayAdapter;
-
+    ArrayAdapter<String> adapter;
     ArrayList<String> stringArrayListMonth = new ArrayList<>();
     ArrayList<String> stringArrayListYear = new ArrayList<>();
     ArrayList<String> dataForSearch = new ArrayList<>();
@@ -73,7 +73,6 @@ public class Fragment_Revenue extends Fragment {
                 loadDataListView();
             }
         });
-
         spinnerMonth.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -88,13 +87,11 @@ public class Fragment_Revenue extends Fragment {
                     }
                 }
             }
-
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
                 // Do nothing
             }
         });
-
         spinnerYear.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -109,13 +106,11 @@ public class Fragment_Revenue extends Fragment {
                     }
                 }
             }
-
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
                 // Do nothing
             }
         });
-
         btnFilterYear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -139,9 +134,10 @@ public class Fragment_Revenue extends Fragment {
     }
 
     void loadDataListView() {
-        dataLV = getDataListView(revenueHandler.loadAllDataOfRevenueMonth());
-        arrayAdapter = new ArrayAdapter<>(getActivity(), com.google.android.material.R.layout.support_simple_spinner_dropdown_item, dataLV);
-        lvRevenueByYear.setAdapter(arrayAdapter);
+        dataLV = getDataListView(revenueHandler.loadAllDataOfRevenue());
+        Log.d("DatalV", String.valueOf(dataLV));
+        adapter = new ArrayAdapter<>(getActivity(), com.google.android.material.R.layout.support_simple_spinner_dropdown_item, dataLV);
+        lvRevenueByYear.setAdapter(adapter);
     }
 
     ArrayList<String> getDataMonth(ArrayList<Revenue> revenueArrayList) {
