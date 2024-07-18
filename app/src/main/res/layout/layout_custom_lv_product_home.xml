@@ -8,13 +8,14 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
+        android:layout_margin="10dp"
         android:orientation="horizontal">
 
-        <ImageView
+        <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/imgHome"
             android:layout_width="100dp"
             android:layout_height="100dp"
+            app:shapeAppearanceOverlay="@style/RoundSquare"
             app:srcCompat="@drawable/backgr1" />
 
         <LinearLayout
