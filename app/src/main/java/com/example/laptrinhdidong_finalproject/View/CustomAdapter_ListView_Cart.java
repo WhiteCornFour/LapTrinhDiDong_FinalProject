@@ -3,12 +3,14 @@ package com.example.laptrinhdidong_finalproject.View;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -40,8 +42,7 @@ public class CustomAdapter_ListView_Cart extends ArrayAdapter {
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         CartItems items = itemsArrayList.get(position);
         Products productInfo = productInfoMap.get(items.getProductId());
-        if(convertView == null)
-        {
+        if (convertView == null) {
             convertView = LayoutInflater.from(context).inflate(layoutItem, null);
         }
 
@@ -50,6 +51,7 @@ public class CustomAdapter_ListView_Cart extends ArrayAdapter {
         TextView tvItemPrice = convertView.findViewById(R.id.tvCartProductPrice);
         TextView tvItemSize = convertView.findViewById(R.id.tvCartProductSize);
         TextView tvItemQuantity = convertView.findViewById(R.id.tvCartProductQuantity);
+        TextView btnCartDelete = convertView.findViewById(R.id.btnCartDelete);
 
         if (productInfo != null) {
             // Gán hình ảnh sản phẩm nếu có, nếu không gán hình ảnh mặc định
@@ -70,6 +72,15 @@ public class CustomAdapter_ListView_Cart extends ArrayAdapter {
         tvItemPrice.setText(String.valueOf(items.getCartUnitPrice()));
         tvItemSize.setText(items.getProductSize());
         tvItemQuantity.setText(String.valueOf(items.getProductQuantity()));
+
+        btnCartDelete.setOnClickListener(v -> {
+            CartItemsHandler cartItemsHandler = new CartItemsHandler(context);
+            if (productInfo != null) {
+                cartItemsHandler.deleteOneSingleCartItem(productInfo.getIdProduct(), items.getProductSize());
+                itemsArrayList.remove(position);
+                notifyDataSetChanged();
+            }
+        });
 
         return convertView;
     }
