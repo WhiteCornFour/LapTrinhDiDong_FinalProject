@@ -1,7 +1,7 @@
 package com.example.laptrinhdidong_finalproject.Model;
 
 public class CustomerFeedbacks {
-    int feedbackID;
+    String feedbackID;
     String customerID;
     String feedbackContent;
     String feedbackTime;
@@ -10,18 +10,18 @@ public class CustomerFeedbacks {
 
     }
 
-    public CustomerFeedbacks(int feedbackID, String customerID, String feedbackContent, String feedbackTime) {
+    public CustomerFeedbacks(String feedbackID, String customerID, String feedbackContent, String feedbackTime) {
         this.feedbackID = feedbackID;
         this.customerID = customerID;
         this.feedbackContent = feedbackContent;
         this.feedbackTime = feedbackTime;
     }
 
-    public int getFeedbackID() {
+    public String getFeedbackID() {
         return feedbackID;
     }
 
-    public void setFeedbackID(int feedbackID) {
+    public void setFeedbackID(String feedbackID) {
         this.feedbackID = feedbackID;
     }
 

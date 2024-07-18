@@ -6,78 +6,57 @@ import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 import com.example.laptrinhdidong_finalproject.Cotroller.CustomerFeedbackHandler;
+import com.example.laptrinhdidong_finalproject.Cotroller.CustomerHandler;
+import com.example.laptrinhdidong_finalproject.Cotroller.ProductsHandler;
 import com.example.laptrinhdidong_finalproject.Model.Customer;
 import com.example.laptrinhdidong_finalproject.Model.CustomerFeedbacks;
+import com.example.laptrinhdidong_finalproject.Model.Products;
 import com.example.laptrinhdidong_finalproject.R;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class CustomAdapter_ListView_FeedBack_Customer extends BaseAdapter {
+public class CustomAdapter_ListView_FeedBack_Customer extends ArrayAdapter {
 
     Context context;
-    List<CustomerFeedbacks> feedbackList;
-    List<Customer> CustomerList;
-    LayoutInflater layoutInflater;
-    Map<String, Customer> customerInfoMap;
-    CustomerFeedbackHandler customerFeedbackHandler;
-
-    public CustomAdapter_ListView_FeedBack_Customer(Context context, List<CustomerFeedbacks> feedbackList, List<Customer> customerList, LayoutInflater layoutInflater) {
+    int layoutItem;
+    ArrayList<CustomerFeedbacks> customerFeedbacks = new ArrayList<>();
+    private Map<String, Customer> cusInFor = CustomerHandler.getCustomerInfoMap();
+    public CustomAdapter_ListView_FeedBack_Customer(@NonNull Context context, int layoutItem, @NonNull ArrayList<CustomerFeedbacks> customerFeedbacks) {
+        super(context, layoutItem, customerFeedbacks);
         this.context = context;
-        this.feedbackList = feedbackList;
-        this.CustomerList = customerList;
-        this.layoutInflater = layoutInflater;
+        this.layoutItem = layoutItem;
+        this.customerFeedbacks = customerFeedbacks;
     }
-
-
+    @NonNull
     @Override
-    public int getCount() {
-        return (feedbackList != null) ? feedbackList.size() : 0;
-    }
-
-    @Override
-    public Object getItem(int position) {
-        return (feedbackList != null && position < feedbackList.size()) ? feedbackList.get(position) : null;
-    }
-
-    @Override
-    public long getItemId(int position) {
-        return position;
-    }
-
-    @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        if (convertView == null) {
-            convertView = layoutInflater
-                    .inflate(R.layout.layout_custom_adapter_listview_feedback
-                            ,parent, false);
+    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+        CustomerFeedbacks ct = customerFeedbacks.get(position);
+        Customer cusInfor = cusInFor.get(ct.getCustomerID());
+        if (convertView == null)
+        {
+            convertView = LayoutInflater.from(context).inflate(layoutItem, null);
         }
 
-        if (feedbackList != null && position < feedbackList.size()) {
-            CustomerFeedbacks feedback = feedbackList.get(position);
-
-            TextView tvFeedbackName = convertView.findViewById(R.id.tv_customer_name);
-
-
-            TextView tvFeedbackTime = convertView.findViewById(R.id.tv_feedback_time);
-            tvFeedbackTime.setText(feedback.getFeedbackTime());
-
-            TextView tvFeedbackContent = convertView.findViewById(R.id.tv_feedback_content);
-            tvFeedbackContent.setText(feedback.getFeedbackContent());
-
-            // Tìm kiếm thông tin của khách hàng tương ứng với feedback này
-            String customerID = feedback.getCustomerID();
-            String customerName = "";
-            if (customerInfoMap != null && customerInfoMap.containsKey(customerID)) {
-                customerName = customerInfoMap.get(customerID).getNameCustomer();
-            }
-            tvFeedbackName.setText(customerName);
+        TextView tv_customer_name = convertView.findViewById(R.id.tv_customer_name);
+        if (cusInfor != null)
+        {
+            tv_customer_name.setText(cusInfor.getNameCustomer());
         }
+        TextView tv_feedback_time = convertView.findViewById(R.id.tv_feedback_time);
+        tv_feedback_time.setText(ct.getFeedbackTime());
+        TextView tv_feedback_content = convertView.findViewById(R.id.tv_feedback_content);
+        tv_feedback_content.setText(ct.getFeedbackContent());
 
         return convertView;
     }

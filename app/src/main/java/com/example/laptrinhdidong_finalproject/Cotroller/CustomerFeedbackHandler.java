@@ -12,8 +12,11 @@ import androidx.annotation.Nullable;
 
 import com.example.laptrinhdidong_finalproject.Model.Customer;
 import com.example.laptrinhdidong_finalproject.Model.CustomerFeedbacks;
+import com.example.laptrinhdidong_finalproject.Model.Products;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class CustomerFeedbackHandler extends SQLiteOpenHelper {
     private static final String DB_NAME = "drinkingmanager";
@@ -29,9 +32,6 @@ public class CustomerFeedbackHandler extends SQLiteOpenHelper {
     public CustomerFeedbackHandler(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
         super(context, DB_NAME, factory, DB_VERSION);
     }
-
-
-
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
@@ -69,9 +69,6 @@ public class CustomerFeedbackHandler extends SQLiteOpenHelper {
 
         return feedbackID;
     }
-
-
-
     public ArrayList<CustomerFeedbacks> loadAllFeedbacks() {
         ArrayList<CustomerFeedbacks> feedbacksList = new ArrayList<>();
         SQLiteDatabase sqLiteDatabase = SQLiteDatabase.openDatabase(PATH, null, SQLiteDatabase.OPEN_READONLY);
@@ -79,10 +76,10 @@ public class CustomerFeedbackHandler extends SQLiteOpenHelper {
         if (cursor.moveToFirst()) {
             do {
                 CustomerFeedbacks feedback = new CustomerFeedbacks(
-                        cursor.getInt(0),
-                        cursor.getString(1),
-                        cursor.getString(2),
-                        cursor.getString(3)
+                    cursor.getString(0),
+                    cursor.getString(1),
+                    cursor.getString(2),
+                    cursor.getString(3)
                 );
                 feedbacksList.add(feedback);
             } while (cursor.moveToNext());
@@ -91,11 +88,10 @@ public class CustomerFeedbackHandler extends SQLiteOpenHelper {
         sqLiteDatabase.close();
         return feedbacksList;
     }
-
-    public void deleteFeedback(int feedbackID) {
+    public void deleteFeedback(String feedbackID) {
         SQLiteDatabase sqLiteDatabase = SQLiteDatabase.openDatabase(PATH, null, SQLiteDatabase.CREATE_IF_NECESSARY);
         String sql = "DELETE FROM " + TABLE_NAME + " WHERE " + idFeedback + " = '" + feedbackID + "'";
-        Log.d("sql delete cmt",sql);
+        Log.d("sql delete cmt", sql);
         sqLiteDatabase.execSQL(sql);
         sqLiteDatabase.close();
     }
@@ -114,7 +110,23 @@ public class CustomerFeedbackHandler extends SQLiteOpenHelper {
 
         sqLiteDatabase.close();
     }
+    public static Map<String, Customer> getCustomerInfoMap() {
+        Map<String, Customer> cusInfoMap = new HashMap<>();
+        SQLiteDatabase sqLiteDatabase = SQLiteDatabase.openDatabase(PATH, null, SQLiteDatabase.OPEN_READONLY);
+        String sql = "SELECT CustomerName FROM Customers";
+        Cursor cursor = sqLiteDatabase.rawQuery(sql, null);
 
+        if (cursor != null) {
+            while (cursor.moveToNext()) {
+                String nameCus = cursor.getString(cursor.getColumnIndexOrThrow("CustomerName"));
+                Customer customer = new Customer(nameCus);
+                cusInfoMap.put(nameCus, customer);
+            }
+            cursor.close();
+        }
+        sqLiteDatabase.close();
+        return cusInfoMap;
+    }
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int oldVersion, int newVersion) {
 
