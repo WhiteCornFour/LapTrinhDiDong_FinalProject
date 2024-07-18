@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -99,7 +100,7 @@ public class Fragment_Cart extends Fragment {
             btnOrderCart.setEnabled(false);
             return;
         }
-        cartAdapter = new CustomAdapter_ListView_Cart(getActivity(), R.layout.layout_custom_listview_cart, itemsArrayList);
+        cartAdapter = new CustomAdapter_ListView_Cart(getActivity(), R.layout.layout_custom_listview_cart, itemsArrayList, this);
         lvCartProduct.setAdapter(cartAdapter);
     }
 
@@ -108,5 +109,11 @@ public class Fragment_Cart extends Fragment {
             Intent intent = new Intent(getActivity(), Activity_Payment_Customer.class);
             startActivity(intent);
         });
+    }
+    public void switchToEmptyFragment() {
+        FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
+        transaction.replace(R.id.frameFragment, new Fragment_EmptyCart());
+        transaction.addToBackStack(null);
+        transaction.commit();
     }
 }

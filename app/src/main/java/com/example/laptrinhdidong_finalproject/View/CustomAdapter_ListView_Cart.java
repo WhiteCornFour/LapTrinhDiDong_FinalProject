@@ -28,13 +28,15 @@ public class CustomAdapter_ListView_Cart extends ArrayAdapter {
     Context context;
     int layoutItem;
     ArrayList<CartItems> itemsArrayList = new ArrayList<>();
+    Fragment_Cart fragmentCart;
     private final Map<String, Products> productInfoMap = ProductsHandler.getProductInfoMap();
 
-    public CustomAdapter_ListView_Cart(@NonNull Context context, int resource, @NonNull ArrayList<CartItems> cartItems) {
+    public CustomAdapter_ListView_Cart(@NonNull Context context, int resource, @NonNull ArrayList<CartItems> cartItems, Fragment_Cart fragmentCart) {
         super(context, resource, cartItems);
         this.context = context;
         this.layoutItem = resource;
         this.itemsArrayList = cartItems;
+        this.fragmentCart = fragmentCart;
     }
 
     @NonNull
@@ -79,6 +81,11 @@ public class CustomAdapter_ListView_Cart extends ArrayAdapter {
                 cartItemsHandler.deleteOneSingleCartItem(productInfo.getIdProduct(), items.getProductSize());
                 itemsArrayList.remove(position);
                 notifyDataSetChanged();
+
+                if(itemsArrayList.isEmpty())
+                {
+                    fragmentCart.switchToEmptyFragment();
+                }
             }
         });
 
