@@ -150,10 +150,10 @@ public class Activity_Payment_Customer extends AppCompatActivity {
         tvConfirmTotal.setText(String.valueOf(orderTotal));
 
         btnConfirmOrder.setOnClickListener(v -> {
-            // 3. Sao chép dữ liệu từ cart items qua order detail
+            // Sao chép dữ liệu từ cart items qua order detail
             ArrayList<CartItems> orderItems = cartItemsHandler.loadCartItemsData();
             orderDetailsHandler.insertNewOrderDetails(newOrderID, orderItems);
-            cartItemsHandler.deleteCartItems(); // 4. Xóa items trong cartItems
+            cartItemsHandler.deleteCartItems(); // Xóa items trong cartItems
 
 
             // Nếu orders và order details được tạo, cart items xóa thành công
