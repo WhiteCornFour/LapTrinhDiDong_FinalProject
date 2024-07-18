@@ -88,8 +88,8 @@ public class Activity_Payment_Customer extends AppCompatActivity {
                 String shippingAddress = edtShippingAddress.getText().toString().trim();
 
                 Orders newOrder = new Orders(cartID, orderDate, shippingAddress, orderTotal);
-                newOrderID = ordersHandler.insertNewOrder(newOrder);
-                newOrder.setOrderID(newOrderID);
+                newOrderID = ordersHandler.insertNewOrder(newOrder); // lấy id của order vừa thêm
+                newOrder.setOrderID(newOrderID); // gán id cho order vừa thêm
 
                 showConfirmDialog();
             } else {
@@ -155,10 +155,12 @@ public class Activity_Payment_Customer extends AppCompatActivity {
             orderDetailsHandler.insertNewOrderDetails(newOrderID, orderItems);
             cartItemsHandler.deleteCartItems(); // Xóa items trong cartItems
 
-
             // Nếu orders và order details được tạo, cart items xóa thành công
             confirmOrderDialog.dismiss();
             Toast.makeText(this, "Order successful.\nYour order will be delivered to you as soon as possible.", Toast.LENGTH_SHORT).show();
+
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
         });
         btnCancelConfirm.setOnClickListener(v -> {
             ordersHandler.deleteOrder(newOrderID);
