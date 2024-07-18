@@ -21,6 +21,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -44,7 +45,7 @@ public class Fragment_Home extends Fragment implements OnItemClickListener {
     private static final int DB_VERSION = 1;
 
     EditText edtSearchHome;
-    Button btnSearchHome;
+    ImageView imgSearchHome;
     RecyclerView recyclerViewHome;
     ListView lvProductHomeCus;
 
@@ -156,11 +157,11 @@ public class Fragment_Home extends Fragment implements OnItemClickListener {
         recyclerViewHome = view.findViewById(R.id.recyclerViewHome);
         lvProductHomeCus = view.findViewById(R.id.lvProductHomeCus);
         edtSearchHome = view.findViewById(R.id.edtSearchHome);
-        btnSearchHome = view.findViewById(R.id.btnSearchHome);
+        imgSearchHome = view.findViewById(R.id.imgSearchHome);
     }
 
     void addEvent() {
-        btnSearchHome.setOnClickListener(new View.OnClickListener() {
+        imgSearchHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String st = edtSearchHome.getText().toString();

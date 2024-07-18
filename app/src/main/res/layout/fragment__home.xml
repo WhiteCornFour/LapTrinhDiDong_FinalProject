@@ -47,18 +47,14 @@
             android:hint="What shall we deliver?"/>
 
 
-        <Button
-            android:id="@+id/btnSearchHome"
+        <ImageView
+            android:id="@+id/imgSearchHome"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:drawableLeft="@drawable/search_strong_icon"
+            android:src="@drawable/baseline_search_24"
             android:layout_gravity="center"
-            android:layout_marginRight="8dp"
-            android:backgroundTint="@color/white"
-            android:background="@null"
             android:paddingLeft="20dp"
-            android:paddingRight="20dp"
-            android:text=""/>
+            android:paddingRight="20dp"/>
     </LinearLayout>
 
     <LinearLayout

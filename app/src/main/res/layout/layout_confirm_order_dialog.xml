@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:text="Confirm your order"
-        android:background="@drawable/rounded_border_dark_orange"
+        android:background="@drawable/light_rounded_orange_border"
         android:fontFamily="@font/alata"
         android:textColor="@color/white"
         android:textSize="22sp"
@@ -129,7 +129,7 @@
             android:layout_height="wrap_content"
             android:text="Confirm"
             android:fontFamily="@font/alata"
-            android:backgroundTint="@color/orange"
+            android:backgroundTint="@color/light_orange"
             android:textColor="@android:color/white" />
     </LinearLayout>
 </LinearLayout>
