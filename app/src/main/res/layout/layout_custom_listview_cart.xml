@@ -15,6 +15,7 @@
             android:id="@+id/imgCartProduct"
             android:layout_width="60dp"
             android:layout_height="60dp"
+
             android:layout_gravity="center_vertical"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="15dp"

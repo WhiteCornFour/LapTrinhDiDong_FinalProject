@@ -10,6 +10,7 @@
         android:id="@+id/imgRecyler"
         android:layout_width="80dp"
         android:layout_height="80dp"
+        android:background="@color/dark_brown"
         app:shapeAppearanceOverlay="@style/Circular"
         app:srcCompat="@drawable/avtadmin" />
 
@@ -18,6 +19,7 @@
         android:layout_width="70dp"
         android:layout_height="40dp"
         android:layout_gravity="center"
+        android:gravity="center"
         android:textColor="@color/dark_brown"
         android:textStyle="bold"
         android:text="Category" />

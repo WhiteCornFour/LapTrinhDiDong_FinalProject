@@ -78,7 +78,7 @@
         android:layout_marginRight="6dp"
         android:id="@+id/lvProductCate"
         android:layout_width="match_parent"
-        android:layout_height="400dp"
+        android:layout_height="match_parent"
         android:dividerHeight="10.0sp"
         android:background="@color/almond" />
 

@@ -8,24 +8,31 @@
     android:background="#DDDDDD"
     tools:context=".View.Activity_Detail_Products_Customer">
 
-    <TextView
-        android:id="@+id/textView38"
-        android:layout_width="match_parent"
-        android:layout_height="12dp"
-        android:background="@color/beige"/>
 
-    <ImageView
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_margin="10dp"
+        android:textSize="13pt"
+        android:textColor="@color/light_beige"
+        android:textStyle="bold"
+        android:background="@drawable/rounded_darkbrown_radius_rectangle"
+        android:fontFamily="@font/alata"
+        android:text="THE BAR DRINKS" />
+
+    <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/imgBackGroundDetail"
         android:layout_width="match_parent"
-        android:layout_height="140dp"
+        android:layout_height="300dp"
+        android:layout_margin="10dp"
+        android:padding="8dp"
+        android:scaleType="centerCrop"
+        app:shapeAppearanceOverlay="@style/RoundSquare"
         app:srcCompat="@drawable/hinh_anh_dang_nhap"
-        android:scaleType="centerCrop" />
-
-    <TextView
-        android:id="@+id/textView31"
-        android:layout_width="match_parent"
-        android:layout_height="12dp"
-        android:background="@color/beige" />
+        app:strokeColor="@color/dark_brown"
+        app:strokeWidth="3pt"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -37,32 +44,47 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginTop="5dp">
+            android:layout_margin="5dp">
 
             <TextView
                 android:id="@+id/tvProductName"
-                android:layout_width="0dp"
-                android:layout_height="50dp"
-                android:layout_weight="2"
-                android:paddingLeft="3dp"
-                android:text="Trà sưa hoàng kim"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/alata"
+                android:text="Boba"
                 android:textColor="@color/black"
                 android:textSize="9pt"
                 android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/tvProductPrice"
-                android:layout_width="0dp"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:gravity="right"
+                android:paddingLeft="3dp"
                 android:paddingRight="10dp"
-                android:text="55.000đ"
-                android:textColor="@color/black"
-                android:textSize="6pt"
-                android:textStyle="bold" />
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tvProductPrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/alata"
+                    android:paddingRight="2dp"
+                    android:text="4.5"
+                    android:textColor="@color/black"
+                    android:textSize="9pt"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/textView60"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="$"
+                    android:textColor="@color/black"
+                    android:textSize="9pt"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
         </LinearLayout>
 
         <TextView
@@ -71,7 +93,9 @@
             android:layout_height="24dp"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
+            android:layout_marginBottom="10dp"
             android:paddingLeft="3dp"
+            android:fontFamily="@font/alata"
             android:text="Trà vị sữa" />
     </LinearLayout>
 
@@ -112,6 +136,7 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="4"
+                    android:fontFamily="@font/alata"
                     android:textColor="@color/black"
                     android:paddingLeft="3dp"
                     android:textSize="6pt"
@@ -121,6 +146,7 @@
                 <TextView
                     android:id="@+id/textView45"
                     android:layout_width="0dp"
+                    android:fontFamily="@font/alata"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="end|center"
@@ -150,6 +176,7 @@
                     android:id="@+id/textView46"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
+                    android:fontFamily="@font/alata"
                     android:layout_weight="4"
                     android:textColor="@color/black"
                     android:paddingLeft="3dp"
@@ -163,12 +190,14 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="end|center"
+                    android:fontFamily="@font/alata"
                     android:textSize="5pt"
                     android:text="3$" />
 
                 <RadioButton
                     android:id="@+id/rdbSizeM"
                     android:layout_marginLeft="10dp"
+                    android:fontFamily="@font/alata"
                     android:layout_width="35dp"
                     android:layout_height="match_parent"
                     android:textSize="6pt" />
@@ -188,6 +217,7 @@
                 <TextView
                     android:id="@+id/textView48"
                     android:layout_width="0dp"
+                    android:fontFamily="@font/alata"
                     android:layout_height="match_parent"
                     android:layout_weight="4"
                     android:textColor="@color/black"
@@ -199,6 +229,7 @@
                 <TextView
                     android:id="@+id/textView49"
                     android:layout_width="0dp"
+                    android:fontFamily="@font/alata"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="end|center"
@@ -226,6 +257,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="6pt"
+            android:fontFamily="@font/alata"
             android:textColor="@color/black"
             android:layout_marginLeft="5dp"
             android:textStyle="bold"
@@ -238,10 +270,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="6pt"
+            android:fontFamily="@font/alata"
             android:textColor="@color/black"
-            android:layout_marginLeft="5dp"
+            android:layout_marginLeft="2dp"
             android:textStyle="bold"
-            android:paddingLeft="3dp"
             android:layout_gravity="center"
             android:text="$"/>
 
@@ -256,7 +288,8 @@
                 android:id="@+id/btnMinusQuantity"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:backgroundTint="@color/orange"
+                android:backgroundTint="@color/dark_brown"
+                android:textColor="@color/light_beige"
                 android:text="-"
                 android:textSize="5pt" />
 
@@ -269,13 +302,15 @@
                 android:enabled="false"
                 android:textColor="@color/black"
                 android:gravity="center"
+                android:fontFamily="@font/alata"
                 android:text="1" />
 
             <Button
                 android:id="@+id/btnPlusQuantity"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:backgroundTint="@color/orange"
+                android:backgroundTint="@color/dark_brown"
+                android:textColor="@color/light_beige"
                 android:text="+"
                 android:textSize="5pt" />
         </LinearLayout>
@@ -285,7 +320,8 @@
         android:id="@+id/btnAddingIntoCart"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/orange"
+        android:backgroundTint="@color/dark_brown"
+        android:textColor="@color/light_beige"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
         android:layout_marginTop="5dp"

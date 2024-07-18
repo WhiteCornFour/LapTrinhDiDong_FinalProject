@@ -12,8 +12,9 @@
         android:gravity="center"
         android:orientation="horizontal">
 
-        <ImageView
+        <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/imgCTProduct"
+            app:shapeAppearanceOverlay="@style/RoundSquare"
             android:layout_width="80dp"
             android:layout_height="80dp"
             app:srcCompat="@drawable/hinh_anh_dang_nhap" />

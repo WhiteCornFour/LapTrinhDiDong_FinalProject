@@ -42,7 +42,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:background="@drawable/rounded_dark_orange_border"
+        android:background="@drawable/rounded_border_dark_orange"
         android:padding="16dp"
         android:layout_marginBottom="16dp"
         android:layout_marginStart="15dp"
@@ -62,7 +62,9 @@
                 android:layout_height="wrap_content"
                 android:text="John Doe"
                 android:textSize="18sp"
-                android:textColor="@color/black"
+                android:paddingLeft="8dp"
+                android:fontFamily="@font/alata"
+                android:textColor="@color/white"
                 android:textStyle="bold" />
 
             <TextView
@@ -71,7 +73,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:textSize="18sp"
-                android:textColor="@color/black"
+                android:paddingLeft="8dp"
+                android:fontFamily="@font/alata"
+                android:textColor="@color/white"
                 android:textStyle="bold"
                 android:text="0123456789" />
 
@@ -88,14 +92,18 @@
                 android:layout_height="wrap_content"
                 android:paddingBottom="5dp"
                 android:textSize="18sp"
-                android:textColor="@color/black"
+                android:paddingLeft="8dp"
+                android:fontFamily="@font/alata"
+                android:textColor="@color/white"
                 android:text="Shipping Address" />
 
             <EditText
                 android:id="@+id/edtShippingAddress"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
-                android:background="@android:drawable/edit_text"
+                android:paddingStart="12dp"
+                android:fontFamily="@font/alata"
+                android:background="@drawable/custom_input"
                 android:hint="Enter your address" />
         </LinearLayout>
 
@@ -117,7 +125,10 @@
             android:id="@+id/lvPayItems"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:scrollbars="none"/>
+            android:layout_weight="1"
+            android:dividerHeight="2dp"
+            android:divider="@color/dark_brown"
+            android:scrollbars="none" />
     </LinearLayout>
 
     <LinearLayout
@@ -140,6 +151,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Total"
+                android:paddingLeft="8dp"
+                android:fontFamily="@font/alata"
                 android:textColor="@color/black"
                 android:textSize="18sp" />
 
@@ -150,6 +163,7 @@
                 android:layout_weight="1"
                 android:gravity="end"
                 android:text="0"
+                android:fontFamily="@font/alata"
                 android:textColor="@color/black"
                 android:textSize="18sp"
                 android:textStyle="bold" />
@@ -159,6 +173,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="$"
+                android:layout_marginLeft="2dp"
+                android:fontFamily="@font/alata"
                 android:textColor="@color/black"
                 android:textSize="18sp" />
 
@@ -171,7 +187,9 @@
             android:layout_marginStart="25dp"
             android:layout_marginTop="15dp"
             android:layout_marginEnd="25dp"
-            android:backgroundTint="#F89745"
+            android:fontFamily="@font/alata"
+            android:textStyle="bold"
+            android:backgroundTint="@color/orange"
             android:text="Complete Order" />
 
     </LinearLayout>
