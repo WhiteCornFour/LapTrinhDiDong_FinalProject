@@ -46,6 +46,7 @@ public class Activity_Detail_Deleting_ProductCategories extends AppCompatActivit
     ArrayList<Products> productsArrayList = new ArrayList<>();
     CustomAdapter_ListView_Deleting_Products adapterListViewProducts;
     ProductsHandler productsHandler;
+
     SQLiteDatabase sqLiteDatabase;
     boolean[] checkedStates;
 

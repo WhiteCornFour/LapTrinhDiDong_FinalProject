@@ -10,6 +10,10 @@ public class Customer implements Serializable {
     String passwordCustomer;
     byte[] customerImage;
 
+    public Customer(String nameCus) {
+        this.nameCustomer = nameCus;
+    }
+
     public byte[] getCustomerImage() {
         return customerImage;
     }
