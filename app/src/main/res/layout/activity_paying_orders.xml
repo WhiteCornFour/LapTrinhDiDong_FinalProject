@@ -18,6 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
+            android:fontFamily="@font/alata"
             android:gravity="left"
             android:paddingLeft="5dp"
             android:textSize="8pt"
@@ -33,6 +34,7 @@
                 android:id="@+id/textView59"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/alata"
                 android:text="Your name: " />
 
             <EditText
@@ -40,6 +42,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:enabled="false"
+                android:fontFamily="@font/alata"
                 android:ems="10"
                 android:inputType="textPersonName"/>
         </LinearLayout>
@@ -54,6 +57,7 @@
                 android:id="@+id/textView61"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/alata"
                 android:text="Address: " />
 
             <EditText
@@ -62,8 +66,7 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="textMultiLine"
-                android:lines="3"
-                />
+                android:lines="3"/>
         </LinearLayout>
 
     </LinearLayout>
@@ -80,6 +83,7 @@
             android:layout_height="wrap_content"
             android:textColor="@color/black"
             android:gravity="left"
+            android:fontFamily="@font/alata"
             android:paddingLeft="5dp"
             android:textSize="8pt"
             android:text="List Orders" />
@@ -87,7 +91,10 @@
         <ListView
             android:id="@+id/lvCartInPayment"
             android:layout_width="match_parent"
-            android:layout_height="500dp" />
+            android:layout_height="500dp"
+            android:layout_weight="1"
+            android:dividerHeight="2dp"
+            android:divider="@color/dark_brown"/>
     </LinearLayout>
 
 </LinearLayout>

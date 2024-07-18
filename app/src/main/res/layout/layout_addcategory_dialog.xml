@@ -133,7 +133,7 @@
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/imgAddedCategory"
         app:strokeColor="@color/dark_blue"
-        app:strokeWidth="2dp"
+        app:strokeWidth="3dp"
         android:layout_width="100pt"
         android:layout_height="100pt"
         android:layout_marginLeft="10dp"

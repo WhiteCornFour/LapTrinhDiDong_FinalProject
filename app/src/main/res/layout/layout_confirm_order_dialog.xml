@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="260dp"
+    android:layout_height="300dp"
     android:orientation="vertical"
     android:padding="16dp"
     android:background="@android:color/white">
@@ -12,10 +12,12 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:text="Confirm your order"
-        android:textColor="#ED953C"
+        android:background="@drawable/rounded_border_dark_orange"
+        android:fontFamily="@font/alata"
+        android:textColor="@color/white"
         android:textSize="22sp"
-        android:textStyle="bold"
-        android:paddingBottom="16dp" />
+        android:padding="10dp"
+        android:textStyle="bold"/>
 
     <!-- User Information -->
     <LinearLayout
@@ -29,28 +31,52 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="John Doe"
+            android:fontFamily="@font/alata"
             android:textColor="@android:color/black"
             android:textSize="18sp"
             android:textStyle="bold"
             android:paddingBottom="4dp" />
+
+        <!-- Horizontal line -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray"
+            android:layout_marginBottom="8dp"/>
 
         <TextView
             android:id="@+id/tvConfirmPhone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="0123456789"
+            android:fontFamily="@font/alata"
             android:textColor="@android:color/black"
             android:textSize="16sp"
             android:paddingBottom="4dp" />
+
+        <!-- Horizontal line -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray"
+            android:layout_marginBottom="8dp"/>
 
         <TextView
             android:id="@+id/tvConfirmAddress"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="You address, District, City"
+            android:fontFamily="@font/alata"
             android:textColor="@android:color/black"
             android:textSize="16sp"
             android:paddingBottom="16dp" />
+
+        <!-- Horizontal line -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray"
+            android:layout_marginBottom="8dp"/>
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -61,6 +87,7 @@
                 android:id="@+id/textView8"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/alata"
                 android:textColor="@android:color/black"
                 android:textSize="18sp"
                 android:textStyle="bold"
@@ -71,6 +98,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="$45.00"
+                android:fontFamily="@font/alata"
                 android:textColor="@android:color/black"
                 android:textSize="18sp"
                 android:textStyle="bold" />
@@ -90,6 +118,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Cancel"
+            android:fontFamily="@font/alata"
             android:backgroundTint="@android:color/darker_gray"
             android:textColor="@android:color/black"
             android:layout_marginEnd="8dp" />
@@ -99,7 +128,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Confirm"
-            android:backgroundTint="#faa44d"
+            android:fontFamily="@font/alata"
+            android:backgroundTint="@color/orange"
             android:textColor="@android:color/white" />
     </LinearLayout>
 </LinearLayout>

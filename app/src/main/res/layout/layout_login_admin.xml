@@ -18,14 +18,14 @@
             android:layout_height="90dp"
             android:adjustViewBounds="true"
             android:scaleType="fitCenter"
-            android:layout_marginBottom="30dp"
-            app:srcCompat="@drawable/roof" />
+            android:src="@drawable/roof" />
 
         <ImageView
             android:id="@+id/imageView7"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:srcCompat="@drawable/beverage_cafe_coffee_cold_drink_icon" />
+            android:layout_marginTop="40dp"
+            android:src="@drawable/beverage_cafe_coffee_cold_drink_icon" />
 
         <TextView
             android:id="@+id/textView2"
@@ -40,20 +40,19 @@
         android:id="@+id/textView19"
         android:layout_width="match_parent"
         android:layout_height="70dp"
-        android:fontFamily="@font/alata"
-        android:textSize="18pt"
-        android:textColor="@color/dark_brown"
-        android:gravity="center"
-        android:textStyle="bold"
         android:layout_marginBottom="20dp"
-        android:text="BOBA THE BAR" />
+        android:fontFamily="@font/alata"
+        android:gravity="center"
+        android:text="BOBA THE BAR"
+        android:textColor="@color/dark_brown"
+        android:textSize="18pt"
+        android:textStyle="bold" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/rounded_haflradius_border_shadow"
         android:orientation="vertical">
-
 
         <TextView
             android:id="@+id/textView20"
@@ -93,7 +92,6 @@
             android:textColor="@color/dark_brown"
             android:hint="Enter your password"
             android:inputType="textPassword" />
-
 
         <Button
             android:id="@+id/btnLoginAD"
