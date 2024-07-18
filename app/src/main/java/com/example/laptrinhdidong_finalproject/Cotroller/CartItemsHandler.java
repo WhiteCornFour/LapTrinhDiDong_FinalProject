@@ -62,7 +62,14 @@ public class CartItemsHandler extends SQLiteOpenHelper {
     public void deleteCartItems()
     {
         SQLiteDatabase sqLiteDatabase = SQLiteDatabase.openDatabase(PATH, null, SQLiteDatabase.OPEN_READWRITE);
-        String sql = "DELETE FROM " + TABLE_NAME + " WHERE CartID = '" + cartID + "'";
+        String sql = "DELETE FROM " + TABLE_NAME + " WHERE ProductID = '" + cartID + "'";
+        sqLiteDatabase.execSQL(sql);
+        sqLiteDatabase.close();
+    }
+    public void deleteOneSingleCartItem(String prId, String prSize)
+    {
+        SQLiteDatabase sqLiteDatabase = SQLiteDatabase.openDatabase(PATH, null, SQLiteDatabase.OPEN_READWRITE);
+        String sql = "DELETE FROM " + TABLE_NAME + " WHERE ProductID = '" + prId + "' AND ProductSize = '" + prSize + "'" ;
         sqLiteDatabase.execSQL(sql);
         sqLiteDatabase.close();
     }

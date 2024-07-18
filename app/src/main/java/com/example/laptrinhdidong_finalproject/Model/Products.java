@@ -67,7 +67,8 @@ public class Products implements Serializable {
         this.imageProduct = imageProduct;
     }
 
-    public Products(String nameProduct, byte[] imageProduct) {
+    public Products(String idProduct, String nameProduct, byte[] imageProduct) {
+        this.idProduct = idProduct;
         this.nameProduct = nameProduct;
         this.imageProduct = imageProduct;
     }

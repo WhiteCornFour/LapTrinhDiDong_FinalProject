@@ -73,7 +73,7 @@ public class ProductsHandler extends SQLiteOpenHelper {
                 String productID = cursor.getString(cursor.getColumnIndexOrThrow("ProductID"));
                 String productName = cursor.getString(cursor.getColumnIndexOrThrow("ProductName"));
                 byte[] productImage = cursor.getBlob(cursor.getColumnIndexOrThrow("ProductImage"));
-                Products productInfo = new Products(productName, productImage);
+                Products productInfo = new Products(productID, productName, productImage);
                 productInfoMap.put(productID, productInfo);
             }
             cursor.close();
