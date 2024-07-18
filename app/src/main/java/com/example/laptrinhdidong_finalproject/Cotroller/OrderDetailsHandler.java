@@ -9,7 +9,9 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
+import com.example.laptrinhdidong_finalproject.Model.CartItems;
 import com.example.laptrinhdidong_finalproject.Model.OrderDetails;
+import com.example.laptrinhdidong_finalproject.Model.Orders;
 
 import java.util.ArrayList;
 
@@ -25,8 +27,8 @@ public class OrderDetailsHandler extends SQLiteOpenHelper {
     private static final String unitPrice = "UnitPrice";
     private static final String PATH = "/data/data/com.example.laptrinhdidong_finalproject/database/drinkingmanager.db";
 
-    public OrderDetailsHandler(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
-        super(context, DB_NAME, factory, DB_VERSION);
+    public OrderDetailsHandler(@Nullable Context context) {
+        super(context, DB_NAME, null, DB_VERSION);
     }
 
     @Override
@@ -53,10 +55,13 @@ public class OrderDetailsHandler extends SQLiteOpenHelper {
         return orderDetailsArrayList;
     }
 
-    public void insertNewOrderDetail(OrderDetails orderDetail) {
+    public void insertNewOrderDetails(String idOrder, ArrayList<CartItems> cartItemofOrder) {
         SQLiteDatabase sqLiteDatabase = SQLiteDatabase.openDatabase(PATH, null, SQLiteDatabase.OPEN_READWRITE);
-        String insertSQL = "INSERT INTO " + TABLE_NAME + " (" + orderID + "," + productID + "," + cartID + "," + size + "," + quantity + "," + unitPrice + ") VALUES (?, ?, ?, ?, ?, ?)";
-        sqLiteDatabase.execSQL(insertSQL, new Object[]{orderDetail.getOrderID(), orderDetail.getProductID(), orderDetail.getCartID(), orderDetail.getSize(), orderDetail.getQuantity(), orderDetail.getUnitPrice()});
+        for (int i = 0; i < cartItemofOrder.size(); i++) {
+            CartItems item = cartItemofOrder.get(i);
+            String insertSQL = "INSERT INTO " + TABLE_NAME + " (" + orderID + "," + productID + "," + cartID + "," + size + "," + quantity + "," + unitPrice + ") VALUES (?, ?, ?, ?, ?, ?)";
+            sqLiteDatabase.execSQL(insertSQL, new Object[]{idOrder, item.getProductId(), item.getCartId(), item.getProductSize(), item.getProductQuantity(), item.getCartUnitPrice()});
+        }
         sqLiteDatabase.close();
     }
 

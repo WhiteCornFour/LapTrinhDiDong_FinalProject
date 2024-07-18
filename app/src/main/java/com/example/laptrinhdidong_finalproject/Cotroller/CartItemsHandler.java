@@ -19,14 +19,12 @@ public class CartItemsHandler extends SQLiteOpenHelper {
 
     private static final String TABLE_NAME = "CartItems";
     private static final String idCart = "CartID";
-
-    private static final String idCustomer = "CustomerID";
     private static final String idProduct = "ProductID";
     private static final String sizeProduct = "ProductSize";
     private static final String quantityProduct = "ProductQuantity";
     private static final String cartUnitPrice = "CartUnitPrice";
     private static final String PATH = "/data/data/com.example.laptrinhdidong_finalproject/database/drinkingmanager.db";
-    String cartID;
+    String cartID = CartsHandler.getCustomerCartID();
     public CartItemsHandler(@Nullable Context context) {
         super(context, DB_NAME, null, DB_VERSION);
     }
@@ -34,7 +32,6 @@ public class CartItemsHandler extends SQLiteOpenHelper {
     public ArrayList<CartItems> loadCartItemsData()
     {
         ArrayList<CartItems> cartItems = new ArrayList<>();
-        cartID = CartsHandler.getCustomerCartID();
         if (cartID == null)
         {
             return cartItems;
@@ -62,7 +59,7 @@ public class CartItemsHandler extends SQLiteOpenHelper {
         return cartItems;
     }
 
-    public void deleteListCart()
+    public void deleteCartItems()
     {
         SQLiteDatabase sqLiteDatabase = SQLiteDatabase.openDatabase(PATH, null, SQLiteDatabase.OPEN_READWRITE);
         String sql = "DELETE FROM " + TABLE_NAME + " WHERE CartID = '" + cartID + "'";

@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
@@ -18,16 +19,22 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.laptrinhdidong_finalproject.Cotroller.CartItemsHandler;
+import com.example.laptrinhdidong_finalproject.Cotroller.CartsHandler;
 import com.example.laptrinhdidong_finalproject.Cotroller.CustomerHandler;
+import com.example.laptrinhdidong_finalproject.Cotroller.OrderDetailsHandler;
+import com.example.laptrinhdidong_finalproject.Cotroller.OrdersHandler;
 import com.example.laptrinhdidong_finalproject.Cotroller.ProductsHandler;
 import com.example.laptrinhdidong_finalproject.Cotroller.Utils;
 import com.example.laptrinhdidong_finalproject.Model.CartItems;
 import com.example.laptrinhdidong_finalproject.Model.Carts;
 import com.example.laptrinhdidong_finalproject.Model.Customer;
+import com.example.laptrinhdidong_finalproject.Model.Orders;
 import com.example.laptrinhdidong_finalproject.Model.ProductCategories;
 import com.example.laptrinhdidong_finalproject.Model.Products;
 import com.example.laptrinhdidong_finalproject.R;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Map;
 
@@ -40,14 +47,20 @@ public class Activity_Payment_Customer extends AppCompatActivity {
     ArrayList<CartItems> itemsArrayList = new ArrayList<>();
     CustomAdapter_ListView_Payment paymentAdapter;
     CartItemsHandler cartItemsHandler;
-    private Map<String, Customer> customerInfoMap = CustomerHandler.getCustomerInfoMap();
-    Customer customer = customerInfoMap.get(Fragment_Home.getIdCus());
+    OrdersHandler ordersHandler;
+    OrderDetailsHandler orderDetailsHandler;
+    private final Map<String, Customer> customerInfoMap = CustomerHandler.getCustomerInfoMap();
+    String cusID = Fragment_Home.getIdCus();
+    Customer customer = customerInfoMap.get(cusID);
     double orderTotal = 0.0f;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_payment_customer);
+        cartItemsHandler = new CartItemsHandler(Activity_Payment_Customer.this);
+        ordersHandler = new OrdersHandler(Activity_Payment_Customer.this);
+        orderDetailsHandler = new OrderDetailsHandler(Activity_Payment_Customer.this);
         addControl();
         addEvent();
         displayPayInfor();
@@ -62,10 +75,22 @@ public class Activity_Payment_Customer extends AppCompatActivity {
         btnOrderCart = findViewById(R.id.btnOrderCart);
         btnBackToCart = findViewById(R.id.btnBackToCart);
     }
+    String newOrderID = "";
 
     void addEvent() {
         btnOrderCart.setOnClickListener(v -> {
             if (!edtShippingAddress.getText().toString().isEmpty()) {
+                LocalDateTime now = LocalDateTime.now();
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
+                String cartID = CartsHandler.getCustomerCartID();
+                String orderDate = now.format(formatter);
+                String shippingAddress = edtShippingAddress.getText().toString().trim();
+
+                Orders newOrder = new Orders(cartID, orderDate, shippingAddress, orderTotal);
+                newOrderID = ordersHandler.insertNewOrder(newOrder);
+                newOrder.setOrderID(newOrderID);
+
                 showConfirmDialog();
             } else {
                 Toast.makeText(this, "Please fill in your address", Toast.LENGTH_SHORT).show();
@@ -78,9 +103,7 @@ public class Activity_Payment_Customer extends AppCompatActivity {
         });
     }
 
-
     void displayPayInfor() {
-        cartItemsHandler = new CartItemsHandler(Activity_Payment_Customer.this);
         itemsArrayList = cartItemsHandler.loadCartItemsData();
         paymentAdapter = new CustomAdapter_ListView_Payment(Activity_Payment_Customer.this, R.layout.layout_custom_listview_payment, itemsArrayList);
         lvPayItems.setAdapter(paymentAdapter);
@@ -127,13 +150,18 @@ public class Activity_Payment_Customer extends AppCompatActivity {
         tvConfirmTotal.setText(String.valueOf(orderTotal));
 
         btnConfirmOrder.setOnClickListener(v -> {
-            // sao chép dữ liệu từ cart items qua order detail
+            // 3. Sao chép dữ liệu từ cart items qua order detail
+            ArrayList<CartItems> orderItems = cartItemsHandler.loadCartItemsData();
+            orderDetailsHandler.insertNewOrderDetails(newOrderID, orderItems);
+            cartItemsHandler.deleteCartItems(); // 4. Xóa items trong cartItems
 
-            // nếu orders và order details được tạo, cart items xóa thành công
+
+            // Nếu orders và order details được tạo, cart items xóa thành công
             confirmOrderDialog.dismiss();
             Toast.makeText(this, "Order successful.\nYour order will be delivered to you as soon as possible.", Toast.LENGTH_SHORT).show();
         });
         btnCancelConfirm.setOnClickListener(v -> {
+            ordersHandler.deleteOrder(newOrderID);
             confirmOrderDialog.dismiss();
         });
     }

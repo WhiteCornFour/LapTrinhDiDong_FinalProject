@@ -73,6 +73,7 @@ public class Activity_Detail_Products_Customer extends AppCompatActivity {
         tvProductName.setText(pr.getNameProduct());
         tvProductDescription.setText(pr.getDescriptionProduct());
         tvProductPrice.setText(String.valueOf(pr.getInitialPrice()));
+        tvTotalOrder.setText(String.valueOf(pr.getInitialPrice()));
         idPro = pr.getIdProduct();
         price = pr.getInitialPrice();
         idCus = intent.getStringExtra("idCus");
@@ -221,6 +222,7 @@ public class Activity_Detail_Products_Customer extends AppCompatActivity {
                 String sizeProduct = sizeValue;
                 int productQuantity = Integer.parseInt(tvProductQuantity.getText().toString());
                 double cartUnitPrice = Double.parseDouble(tvTotalOrder.getText().toString());
+                // cardID là auto increment
                 CartItems cartItems = new CartItems(cartId, productId, sizeProduct, productQuantity, cartUnitPrice);
                 cartItemsHandler.insertRecordIntoCartsTable(cartItems);
                 Toast.makeText(Activity_Detail_Products_Customer.this, "Adding cart successful!!", Toast.LENGTH_SHORT).show();

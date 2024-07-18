@@ -1,5 +1,6 @@
 package com.example.laptrinhdidong_finalproject.Cotroller;
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -22,14 +23,13 @@ public class OrdersHandler extends SQLiteOpenHelper {
     private static final String TABLE_NAME = "Orders";
     private static final String orderID = "OrderID";
     private static final String cartID = "CartID";
-    private static final String customerID = "CustomerID";
     private static final String orderDate = "OrderDate";
     private static final String shipAddress = "ShipAddress";
     private static final String orderTotal = "OrderTotal";
     private static final String PATH = "/data/data/com.example.laptrinhdidong_finalproject/database/drinkingmanager.db";
 
-    public OrdersHandler(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
-        super(context, DB_NAME, factory, DB_VERSION);
+    public OrdersHandler(@Nullable Context context) {
+        super(context, DB_NAME, null, DB_VERSION);
     }
 
     @Override
@@ -45,10 +45,9 @@ public class OrdersHandler extends SQLiteOpenHelper {
             Orders order = new Orders();
             order.setOrderID(cursor.getString(0));
             order.setCartID(cursor.getString(1));
-            order.setCustomerID(cursor.getString(2));
-            order.setOrderDate(cursor.getString(3));
-            order.setShipAddress(cursor.getString(4));
-            order.setOrderTotal(cursor.getDouble(5));
+            order.setOrderDate(cursor.getString(2));
+            order.setShipAddress(cursor.getString(3));
+            order.setOrderTotal(cursor.getDouble(4));
             ordersArrayList.add(order);
         } while (cursor.moveToNext());
         cursor.close();
@@ -56,33 +55,31 @@ public class OrdersHandler extends SQLiteOpenHelper {
         return ordersArrayList;
     }
 
-    public static String generateOrderID() {
+    private String generateOrderID() {
         // Lấy ngày và giờ hiện tại
         LocalDateTime now = LocalDateTime.now();
-
-        // Định dạng ngày giờ
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMddHHmmss");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMddHHmmss"); // Định dạng ngày giờ
         String formattedDateTime = now.format(formatter);
 
         // Tạo số ngẫu nhiên từ 1000 đến 9999
         Random random = new Random();
         int randomNumber = random.nextInt(9000) + 1000;
 
-        // Kết hợp ngày giờ và số ngẫu nhiên để tạo mã MKH
-        String maOrder = "Ord" + formattedDateTime + randomNumber;
-
-        return maOrder;
+        return "Ord" + formattedDateTime + randomNumber;
     }
 
-    public void insertNewOrder(Orders order) {
+    public String insertNewOrder(Orders order) {
+        String generatedID = generateOrderID();
         SQLiteDatabase sqLiteDatabase = SQLiteDatabase.openDatabase(PATH, null, SQLiteDatabase.OPEN_READWRITE);
-        String insertSQL = "INSERT INTO " + TABLE_NAME + " (" + orderID + "," + cartID + "," + customerID + "," + orderDate + "," + shipAddress + "," + orderTotal + ") VALUES (?, ?, ?, ?, ?, ?)";
-        sqLiteDatabase.execSQL(insertSQL, new Object[]{generateOrderID(), order.getCartID(), order.getCustomerID(), order.getOrderDate(), order.getShipAddress(), order.getOrderTotal()});
+        String insertSQL = "INSERT INTO " + TABLE_NAME + " (" + orderID + "," + cartID + "," + orderDate + "," + shipAddress + "," + orderTotal + ") VALUES (?, ?, ?, ?, ?)";
+        sqLiteDatabase.execSQL(insertSQL, new Object[]{generatedID, order.getCartID(), order.getOrderDate(), order.getShipAddress(), order.getOrderTotal()});
         sqLiteDatabase.close();
+
+        return generatedID;
     }
 
     public void deleteOrder(String orderID) {
-        SQLiteDatabase sqLiteDatabase = SQLiteDatabase.openDatabase(PATH, null, SQLiteDatabase.CREATE_IF_NECESSARY);
+        SQLiteDatabase sqLiteDatabase = SQLiteDatabase.openDatabase(PATH, null, SQLiteDatabase.OPEN_READWRITE);
         String sql = "DELETE FROM " + TABLE_NAME + " WHERE OrderID= '" + orderID + "'";
         sqLiteDatabase.execSQL(sql);
         sqLiteDatabase.close();
@@ -92,11 +89,10 @@ public class OrdersHandler extends SQLiteOpenHelper {
         boolean updated = false;
         SQLiteDatabase sqLiteDatabase = null;
         try {
-            sqLiteDatabase = SQLiteDatabase.openDatabase(PATH, null, SQLiteDatabase.CREATE_IF_NECESSARY);
+            sqLiteDatabase = SQLiteDatabase.openDatabase(PATH, null, SQLiteDatabase.OPEN_READWRITE);
 
             ContentValues contentValues = new ContentValues();
             contentValues.put(cartID, order.getCartID());
-            contentValues.put(customerID, order.getCustomerID());
             contentValues.put(orderDate, order.getOrderDate());
             contentValues.put(shipAddress, order.getShipAddress());
             contentValues.put(orderTotal, order.getOrderTotal());
