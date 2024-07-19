@@ -118,38 +118,44 @@ public class Activity_Adding_Products extends AppCompatActivity {
         btnAddingProducts.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String idPro = edtAddingIDProducts.getText().toString();
+                String idPro = edtAddingIDProducts.getText().toString().trim();
                 String idCate = CateIDFromSpinner;
-                String namePro = edtAddingNameProducts.getText().toString();
-                String desPro = edtAddingDescriptionProducts.getText().toString();
+                String namePro = edtAddingNameProducts.getText().toString().trim();
+                String desPro = edtAddingDescriptionProducts.getText().toString().trim();
                 Bitmap image = getBitmapFromImageView(imgAddingProducts);
-                if (image == null) {
-                    return; // Stop execution if image size is too large
-                }
-                Float pricePro = Float.parseFloat(edtAddingPriceProducts.getText().toString());
 
-                if (idPro.isEmpty() || idCate.isEmpty() || namePro.isEmpty() || desPro.isEmpty()) {
+                if (idPro.isEmpty() || idCate.isEmpty() || namePro.isEmpty() || desPro.isEmpty() || image == null) {
                     Toast.makeText(Activity_Adding_Products.this, "Please fill in all the blanks before submitting!!!", Toast.LENGTH_LONG).show();
-                } else {
-                    boolean isExisting = false;
-                    for (Products product : productsArrayList) {
-                        if (product.getIdProduct().equals(idPro)) {
-                            Toast.makeText(Activity_Adding_Products.this, "This ID Product has existed! Try another ID!!!", Toast.LENGTH_SHORT).show();
-                            isExisting = true;
-                            break;
-                        }
+                    return;
+                }
+
+                Float pricePro = 0.0f;
+                try {
+                    pricePro = Float.parseFloat(edtAddingPriceProducts.getText().toString().trim());
+                } catch (NumberFormatException e) {
+                    Toast.makeText(Activity_Adding_Products.this, "Please enter a valid price!!!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                boolean isExisting = false;
+                for (Products product : productsArrayList) {
+                    if (product.getIdProduct().equals(idPro)) {
+                        Toast.makeText(Activity_Adding_Products.this, "This ID Product has existed! Try another ID!!!", Toast.LENGTH_SHORT).show();
+                        isExisting = true;
+                        break;
                     }
-                    if (!isExisting) {
-                        Products pc = new Products(idPro, idCate, namePro, desPro, pricePro, getBytesFromBitmap(image));
-                        productsHandler.insertProducts(pc);
-                        Toast.makeText(Activity_Adding_Products.this, "Adding Success", Toast.LENGTH_SHORT).show();
-                        // Cập nhật danh sách sản phẩm sau khi thêm thành công
-                        productsArrayList.add(pc);
-                        productsArrayList = productsHandler.loadAllDataOfProducts();
-                        customAdapterListViewFragment_product = new CustomAdapter_ListView_Fragment_Product(Activity_Adding_Products.this, R.layout.layout_custom_adapter_lv_fragment_product, productsArrayList);
-                        lvProductForAdding.setAdapter(customAdapterListViewFragment_product);
-                        resetEdt();
-                    }
+                }
+
+                if (!isExisting) {
+                    Products pc = new Products(idPro, idCate, namePro, desPro, pricePro, getBytesFromBitmap(image));
+                    productsHandler.insertProducts(pc);
+                    Toast.makeText(Activity_Adding_Products.this, "Adding Success", Toast.LENGTH_SHORT).show();
+                    // Cập nhật danh sách sản phẩm sau khi thêm thành công
+                    productsArrayList.add(pc);
+                    productsArrayList = productsHandler.loadAllDataOfProducts();
+                    customAdapterListViewFragment_product = new CustomAdapter_ListView_Fragment_Product(Activity_Adding_Products.this, R.layout.layout_custom_adapter_lv_fragment_product, productsArrayList);
+                    lvProductForAdding.setAdapter(customAdapterListViewFragment_product);
+                    resetEdt();
                 }
             }
         });
