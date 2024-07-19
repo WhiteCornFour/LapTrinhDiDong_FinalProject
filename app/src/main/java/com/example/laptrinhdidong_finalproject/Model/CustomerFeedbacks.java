@@ -17,6 +17,16 @@ public class CustomerFeedbacks {
         this.feedbackTime = feedbackTime;
     }
 
+    public CustomerFeedbacks(String customerID, String feedbackContent, String feedbackTime) {
+        this.customerID = customerID;
+        this.feedbackContent = feedbackContent;
+        this.feedbackTime = feedbackTime;
+        this.feedbackID = generateFeedbackID(customerID);
+    }
+
+    private String generateFeedbackID(String customerID){
+        return "F" + customerID;
+    }
     public String getFeedbackID() {
         return feedbackID;
     }

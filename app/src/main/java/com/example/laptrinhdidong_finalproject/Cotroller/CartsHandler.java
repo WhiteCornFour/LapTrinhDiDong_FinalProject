@@ -1,6 +1,7 @@
 package com.example.laptrinhdidong_finalproject.Cotroller;
 
 import android.annotation.SuppressLint;
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -9,6 +10,8 @@ import android.util.Log;
 
 import androidx.annotation.Nullable;
 
+import com.example.laptrinhdidong_finalproject.Model.Carts;
+import com.example.laptrinhdidong_finalproject.Model.Customer;
 import com.example.laptrinhdidong_finalproject.View.Fragment_Home;
 
 public class CartsHandler extends SQLiteOpenHelper {
@@ -44,6 +47,18 @@ public class CartsHandler extends SQLiteOpenHelper {
         sqLiteDatabase.close();
 
         return result;
+    }
+
+    public void insertNewCart(Carts c)
+    {
+        SQLiteDatabase sqLiteDatabase = SQLiteDatabase.openDatabase(PATH, null, SQLiteDatabase.OPEN_READWRITE);
+
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("CartID", c.getCartID()); // Automatically generated CartID
+        contentValues.put("CustomerID", c.getCustomerID());
+
+        // Using insertWithOnConflict method to handle ON CONFLICT DO NOTHING
+        sqLiteDatabase.insertWithOnConflict(TABLE_NAME, null, contentValues, SQLiteDatabase.CONFLICT_IGNORE);
     }
 
     @Override

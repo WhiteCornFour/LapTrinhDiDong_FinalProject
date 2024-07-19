@@ -16,7 +16,6 @@ public class CartItemsHandler extends SQLiteOpenHelper {
 
     private static final String DB_NAME = "drinkingmanager";
     private static final int DB_VERSION = 1;
-
     private static final String TABLE_NAME = "CartItems";
     private static final String idCart = "CartID";
     private static final String idProduct = "ProductID";

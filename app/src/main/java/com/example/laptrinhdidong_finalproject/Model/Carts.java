@@ -8,10 +8,15 @@ public class Carts {
         this.cartID = cartID;
         this.customerID = customerID;
     }
-
+    public Carts(String customerId) {
+        this.customerID = customerId;
+        this.cartID = generateCartId(customerId);
+    }
     public Carts() {
     }
-
+    private String generateCartId(String customerId) {
+        return "Cart" + customerId;
+    }
     public String getCartID() {
         return cartID;
     }
