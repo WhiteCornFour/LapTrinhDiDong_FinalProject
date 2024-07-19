@@ -60,7 +60,7 @@ public class Activity_Login_Customer extends AppCompatActivity {
                 String phone = edtPhoneLogin.getText().toString().trim();
                 String password = edtPasswordLogin.getText().toString().trim();
 
-//            if (validateInputs(fullName, password)) {
+            if (validateInputs(phone, password)) {
                 boolean isValid = customerHandler.validateLogin(phone, password);
                 if (isValid) {
                     Toast.makeText(Activity_Login_Customer.this, "Login success", Toast.LENGTH_LONG).show();
@@ -79,7 +79,7 @@ public class Activity_Login_Customer extends AppCompatActivity {
                 } else {
                     Toast.makeText(getApplicationContext(), "Invalid username or password", Toast.LENGTH_LONG).show();
                 }
-//            }
+                }
             }
         });
 
@@ -110,10 +110,10 @@ public class Activity_Login_Customer extends AppCompatActivity {
         });
     }
 
-    public boolean validateInputs(String username, String password) {
+    public boolean validateInputs(String phonenumber, String password) {
         // Kiểm tra username có hơn 8 ký tự
-        if (username.trim().isEmpty() || username.trim().length() <= 8) {
-            Toast.makeText(this, "Username must have at least 8 letters", Toast.LENGTH_SHORT).show();
+        if (phonenumber.trim().isEmpty() || phonenumber.trim().length() != 10) {
+            Toast.makeText(this, "Phone number must have 10 number", Toast.LENGTH_SHORT).show();
             return false;
         }
         // Kiểm tra password có hơn 8 ký tự

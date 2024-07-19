@@ -15,10 +15,30 @@
         android:layout_gravity="bottom">
 
 
+        <TextView
+            android:id="@+id/textView12"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:textStyle="bold"
+            android:textColor="@color/light_beige"
+            android:gravity="center"
+            android:layout_margin="10dp"
+            android:textSize="13pt"
+            android:background="@drawable/rounded_darkbrown_radius_rectangle"
+            android:fontFamily="@font/alata"
+            android:text="Boba The Feedbacks" />
+
         <ListView
             android:id="@+id/lv_feedback_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_weight="1"
+            android:divider="@color/dark_brown"
+            android:dividerHeight="2dp"
             android:padding="10dp" />
     </LinearLayout>
 

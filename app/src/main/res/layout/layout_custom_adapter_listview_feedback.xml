@@ -16,7 +16,8 @@
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
-            android:text="Ngô Hoàng Nam"
+            android:text="Customer 1"
+            android:fontFamily="@font/alata"
             android:textColor="@color/black"
             android:layout_gravity="center"
             android:textSize="14sp"
@@ -29,6 +30,7 @@
             android:layout_height="wrap_content"
             android:paddingLeft="12dp"
             android:layout_marginLeft="30dp"
+            android:fontFamily="@font/alata"
             android:text="12/07/2024 10:30 AM"
             android:textColor="@color/black"
             android:textSize="12sp" />
@@ -45,6 +47,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:lineSpacingExtra="4dp"
+            android:fontFamily="@font/alata"
             android:text="hehehhe"
             android:textColor="@color/black"
             android:textSize="14sp" />

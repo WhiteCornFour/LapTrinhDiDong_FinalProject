@@ -48,7 +48,7 @@ public class CustomAdapter_ListView_Deleting_ProductCategories extends ArrayAdap
         }
 
         TextView tvIdProductCate = (TextView)  convertView.findViewById(R.id.tvIdProductCate);
-        tvIdProductCate.setText(pc.getNameCategory());
+        tvIdProductCate.setText(pc.getIdCategory());
 
         TextView tvNameProductCate = (TextView) convertView.findViewById(R.id.tvNameProductCate);
         tvNameProductCate.setText(pc.getNameCategory());
