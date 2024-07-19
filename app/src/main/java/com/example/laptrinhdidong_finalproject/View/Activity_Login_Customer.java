@@ -13,7 +13,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.laptrinhdidong_finalproject.Cotroller.CartsHandler;
 import com.example.laptrinhdidong_finalproject.Cotroller.CustomerHandler;
+import com.example.laptrinhdidong_finalproject.Model.Carts;
 import com.example.laptrinhdidong_finalproject.R;
 
 public class Activity_Login_Customer extends AppCompatActivity {
@@ -23,6 +25,7 @@ public class Activity_Login_Customer extends AppCompatActivity {
     TextView tvRegisterLogin, tvForgetPasswordLogin, tvLoginAD;
     CustomerHandler customerHandler;
     SQLiteDatabase sqLiteDatabase;
+    CartsHandler cartsHandler;
 
     private static final String DB_NAME = "drinkingmanager";
     private static final int DB_VERSION = 1;
@@ -34,6 +37,7 @@ public class Activity_Login_Customer extends AppCompatActivity {
         addControl();
         //----------------------
         customerHandler = new CustomerHandler(Activity_Login_Customer.this, DB_NAME, null, DB_VERSION);
+        cartsHandler = new CartsHandler(Activity_Login_Customer.this);
         customerHandler.onCreate(sqLiteDatabase);
         SharedPreferences sharedPreferences = getPreferences(MODE_PRIVATE);
         String pn = sharedPreferences.getString("số điện thoại", null);
@@ -73,6 +77,10 @@ public class Activity_Login_Customer extends AppCompatActivity {
                     SharedPreferences.Editor editor = sharedPreferences.edit();
                     editor.putString("idCus", idCus);
                     editor.apply();
+
+                    // tạo cart mới cho customer nếu chưa có
+                    Carts cart = new Carts(idCus);
+                    cartsHandler.insertNewCart(cart);
 
                     startActivity(intent);
                     resetEdt();

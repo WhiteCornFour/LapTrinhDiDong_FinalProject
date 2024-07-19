@@ -41,8 +41,7 @@ public class Fragment_Add_Feedback_Customer extends Fragment {
     CustomerFeedbackHandler customerFeedbackHandler;
 
     String customerName;
-    String customerID;
-    Map<String, Customer> customerInfoMap;
+    String customerID = Fragment_Home.getIdCus();
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -97,8 +96,8 @@ public class Fragment_Add_Feedback_Customer extends Fragment {
         edt_feedback = view.findViewById(R.id.edt_feedback);
         btn_submit_feedback = view.findViewById(R.id.btn_submit_feedback);
 
-        customerFeedbackHandler = new CustomerFeedbackHandler(getActivity(),DB_NAME,null,DB_VERSION);
-        customerHandler = new CustomerHandler(getActivity(),DB_NAME,null,DB_VERSION);
+        customerFeedbackHandler = new CustomerFeedbackHandler(getActivity(), DB_NAME, null, DB_VERSION);
+        customerHandler = new CustomerHandler(getActivity(), DB_NAME, null, DB_VERSION);
         btn_submit_feedback.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -120,38 +119,45 @@ public class Fragment_Add_Feedback_Customer extends Fragment {
         String feedbackTime = getCurrentTimestamp();
 
         //lưu xún cơ sở dữ liệu
-        CustomerFeedbacks feedback = new CustomerFeedbacks();
-        feedback.setCustomerID(String.valueOf(customerID));
-        feedback.setFeedbackContent(feedbackContent);
-        feedback.setFeedbackTime(feedbackTime);
+        CustomerFeedbacks feedback = new CustomerFeedbacks(customerID, feedbackContent, feedbackTime);
+        customerFeedbackHandler.insertFeedback(feedback);
+
+//        chuyển về trang feedback chính
+        Fragment_List_Feedback_Customer fragmentListFeedback = new Fragment_List_Feedback_Customer();
+        FragmentManager fragmentManager = getParentFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+        fragmentTransaction.replace(R.id.fragment_feedback, fragmentListFeedback);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
 
 
-        // Thêm phản hồi vào cơ sở dữ liệu và nhận feedbackID trả về
-        long feedbackID = customerFeedbackHandler.insertFeedback(feedback);
-
-        if (feedbackID != -1) {
-            Toast.makeText(requireContext(), "Gửi phản hồi thành công", Toast.LENGTH_SHORT).show();
-            //
-            Bundle result = new Bundle();
-            result.putString("customerID", customerID);
-            result.putString("customerName", customerName);
-            getParentFragmentManager().setFragmentResult("feedbackResult", result);
-
-            //chuyển về trang feedback chính
-            Fragment_List_Feedback_Customer fragmentListFeedback = new Fragment_List_Feedback_Customer();
-            FragmentManager fragmentManager = getParentFragmentManager();
-            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-
-            fragmentTransaction.replace(R.id.fragment_feedback, fragmentListFeedback);
-            fragmentTransaction.addToBackStack(null);
-            fragmentTransaction.commit();
-        } else {
-            Toast.makeText(requireContext(), "Đã xảy ra lỗi khi gửi phản hồi", Toast.LENGTH_SHORT).show();
-        }
+//        // Thêm phản hồi vào cơ sở dữ liệu và nhận feedbackID trả về
+//        long feedbackID = customerFeedbackHandler.insertFeedback(feedback);
+//
+//        if (feedbackID != -1) {
+//            Toast.makeText(requireContext(), "Gửi phản hồi thành công", Toast.LENGTH_SHORT).show();
+//            //
+//            Bundle result = new Bundle();
+//            result.putString("customerID", customerID);
+//            result.putString("customerName", customerName);
+//            getParentFragmentManager().setFragmentResult("feedbackResult", result);
+//
+//            //chuyển về trang feedback chính
+//            Fragment_List_Feedback_Customer fragmentListFeedback = new Fragment_List_Feedback_Customer();
+//            FragmentManager fragmentManager = getParentFragmentManager();
+//            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+//
+//            fragmentTransaction.replace(R.id.fragment_feedback, fragmentListFeedback);
+//            fragmentTransaction.addToBackStack(null);
+//            fragmentTransaction.commit();
+//        } else {
+//            Toast.makeText(requireContext(), "Đã xảy ra lỗi khi gửi phản hồi", Toast.LENGTH_SHORT).show();
+//        }
 
     }
 
-    
+
     //hàm nhận thời gian hiện tại của máy ảo
     private String getCurrentTimestamp() {
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss", Locale.getDefault());

@@ -13,6 +13,7 @@ import androidx.annotation.Nullable;
 import com.example.laptrinhdidong_finalproject.Model.Customer;
 import com.example.laptrinhdidong_finalproject.Model.CustomerFeedbacks;
 import com.example.laptrinhdidong_finalproject.Model.Products;
+import com.example.laptrinhdidong_finalproject.View.Fragment_Home;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -28,6 +29,7 @@ public class CustomerFeedbackHandler extends SQLiteOpenHelper {
     private static final String feedbackContent = "FeedbackContent";
     private static final String feedbackTime = "FeedbackTime";
     private static final String PATH = "/data/data/com.example.laptrinhdidong_finalproject/database/drinkingmanager.db";
+    String cusID = Fragment_Home.getIdCus();
 
     public CustomerFeedbackHandler(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
         super(context, DB_NAME, factory, DB_VERSION);
@@ -47,27 +49,15 @@ public class CustomerFeedbackHandler extends SQLiteOpenHelper {
 //        sqLiteDatabase.close();
     }
 
-    public long insertFeedback(CustomerFeedbacks feedback) {
+    public void insertFeedback(CustomerFeedbacks feedback) {
         SQLiteDatabase sqLiteDatabase = SQLiteDatabase.openDatabase(PATH, null, SQLiteDatabase.CREATE_IF_NECESSARY);
 
         String sql = "INSERT INTO " + TABLE_NAME + " ("
                 + idCustomer + ", " + feedbackContent + ", " + feedbackTime + ") VALUES ("
-                + "'" + feedback.getCustomerID() + "', '" + feedback.getFeedbackContent() + "', '" + feedback.getFeedbackTime() + "')";
+                + "'" + cusID + "', '" + feedback.getFeedbackContent() + "', '" + feedback.getFeedbackTime() + "')";
 
         sqLiteDatabase.execSQL(sql);
-
-        // Lấy feedbackID của phản hồi vừa chèn
-        String selectLastRowID = "SELECT last_insert_rowid()";
-        Cursor cursor = sqLiteDatabase.rawQuery(selectLastRowID, null);
-        long feedbackID = -1;
-        if (cursor.moveToFirst()) {
-            feedbackID = cursor.getLong(0);
-        }
-        cursor.close();
-
         sqLiteDatabase.close();
-
-        return feedbackID;
     }
     public ArrayList<CustomerFeedbacks> loadAllFeedbacks() {
         ArrayList<CustomerFeedbacks> feedbacksList = new ArrayList<>();
